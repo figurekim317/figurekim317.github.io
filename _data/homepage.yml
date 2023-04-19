@@ -1,7 +1,7 @@
 ####################### banner #######################################
 banner:
   enable: true
-  title: "Hi, I'm John Smith Doe. <br> I help people make the  worlds best software"
+  title: "Hi, I'm Jongwan Kim. <br> I help people make the  worlds best software"
   image: "/assets/images/banner/illustration.svg"
   bg_image: "/assets/images/banner/banner-bg.svg"
 
