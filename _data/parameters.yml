@@ -50,7 +50,7 @@ search:
 social:
   - name: "github"
     icon: "ti-github" # themify icon pack https://themify.me/themify-icons
-    link: "github.com/figurekim317"
+    link: https://github.com/figurekim317
 
   - name: "linkedin"
     icon: "ti-linkedin" # themify icon pack https://themify.me/themify-icons
