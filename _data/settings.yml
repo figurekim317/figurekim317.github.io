@@ -296,8 +296,10 @@ client-slider-items:
   - logo: "assets/images/clients-logo/client-logo-5.png"
     url: "#"
 
+<!--
 #-------------------------------
 # Contact Section
 
 contact-title: Contact Info
 contact-email: steve.fruits@email.com
+-->
