@@ -1,35 +1,15 @@
-baseurl: "/" # the subpath of your site, e.g. blog/
-url: "https://figurekim317.github.io" # the base hostname & protocol for your site, e.g. http://example.com/
-
-title: Northendlab Jekyll | Personal Blog Template
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-
-#################### Comment Section (Disqus) ################
-disqus_shortname: "" # Add your shortname for Disqus Comment. For example : mr-brown
-
-# Scss Directory
-sass:
-  sass_dir: assets/scss
-  style: compressed
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
 permalink: pretty
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
-  - jekyll/tagging
-
-paginate: 6
-paginate_path: "/page/:num"
-
-# include
-include:
-  - _pages
-  - _authors
+compress_html:
+  clippings: all
+  comments: all
+  startings: [html, head, body]
 
 # Pages Path
 defaults:
@@ -38,26 +18,17 @@ defaults:
     values:
       permalink: /:basename:output_ext
 
-  - scope:
-      path: "_authors"
-    values:
-      permalink: /author/:basename:output_ext
-      layout: author
+include:
+  - _pages
 
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      permalink: post/:title:output_ext
-      layout: post
-
-# Tags
-tag_page_dir: tag
-tag_page_layout: tags
-tag_permalink_style: pretty
+sass:
+  sass_dir: assets/scss
+  style: compressed
 
 # Exclude from processing.
 exclude:
   - Gemfile
   - Gemfile.lock
-  - vendor
+  - LICENSE.text
+  - README.md
+  - SECURITY.md
