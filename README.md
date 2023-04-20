@@ -1,45 +1,50 @@
-# Northendlab Jekyll
+# Kross Jekyll
 
-![northendlab](https://demo.themefisher.com/thumbnails/northendlab-jekyll.png)
+Kross Jekyll Creative Portfolio Template ported from [Kross HTML Template](https://themefisher.com/products/kross/)
 
-[live demo](https://demo.themefisher.com/northendlab-jekyll/)
+## Demo
 
-### Jekyll Install
+| Homepage  | About  | Blog  | Portfolio  | Contact  |
+|---|---|---|---|---|
+| ![Homepage](https://user-images.githubusercontent.com/37659754/58154295-1a9c5300-7c93-11e9-992c-ad8d2ff8d99f.png) | ![About](https://user-images.githubusercontent.com/37659754/58154317-28ea6f00-7c93-11e9-914b-b7e5f1cdab0e.png) | ![Blog](https://user-images.githubusercontent.com/37659754/58154339-369ff480-7c93-11e9-9568-53b7ebdc6b2d.png) | ![portfolio](https://user-images.githubusercontent.com/37659754/58154368-491a2e00-7c93-11e9-8900-f5a6abe0a61d.png) | ![contact](https://user-images.githubusercontent.com/37659754/58154403-57684a00-7c93-11e9-9cea-ea28253a6f6a.png) |
 
-First of all, you need to install Jekyll on your PC. If you don't know how to install Jekyll on your PC, here is great [documentation](https://jekyllrb.com/docs/installation/) for beginners.
+[Live Preview](http://demo.themefisher.com/kross).
 
-### Theme Install
+## Setup
 
-After installing Jekyll on your pc, [download](https://github.com/themefisher/northendlab-jekyll) the theme from this repository. Unzip it and run `bundle exec jekyll server` to run this template on your localhost.
+To start your project, fork this repository
+After forking the repo, your site will be live immediately on your personal Github Pages account, e.g. `https://yourusername.github.io/your-repo-name/`.
 
-### Main Configuration
+Make sure GitHub Pages is enabled for your repo. It might take some time for the site to propagate entirely.
 
-You don't need to change anything in the main configuration (`_config.yml`), just you need to change the `baseURL` when you host this template.
+## Customize
 
-You will find every parameter in `_data/parameters.yml`` this file.
+Things you can customize in `_data/settings.yml` (no HTML/CSS):
 
-#### Navigation Menu
+- Theme General Settings ( name, logo, email, phone, address )
+- Hero Section
+- About Section
+- Team Section
+- Skills Section
+- Experience Section
+- Education Section
+- Services Section
+- Portfolio Section
+- Testimonials Section
+- Client Slider Section
+- Contact Section
 
-You can set the main menu and footer menu also from `_data/parameters.yml`, just follow the existing loop for creating a new menu item. This theme also supports the dropdown menu.
+## Deployment
 
-### Creating New Post
+To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `jekyll serve` or `bundle exec jekyll serve` to start the Jekyll server.
+I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll's website.
 
-For creating a new blog post, you need to go to the `_posts` folder and create a new file. Make sure you are creating this file name with the existing post name structure which is `year-month-date-post-name.md`. (i.e `2020-02-06-my-awesome-blog.md`). Then follow the existing post front-matter to configure it. Or you can simply copy an existing post and replace its content.
+## Reporting Issues
 
-### Creating a New Author
+We use GitHub Issues as the official bug tracker for the **Kross Theme**. Please Search [existing issues](https://github.com/themefisher/kross-jekyll/issues). It’s possible someone has already reported the same problem.
+If your problem or idea is not addressed yet, [open a new issue](https://github.com/themefisher/kross-jekyll/issues/new)
 
-This is the same process for the blog post. Copy an existing author file, and replace your content and file name.
-
-### Customize Other Pages
-
-Another page customization (like about, contact) is very easy. You can see the other page in the `_pages/` folder. Find the page that you want to customize, and change the content from it. If this page has any loop item, then follow the existing loop to create a new one.
-
-### Reporting Issues
-
-We use GitHub Issues as the official bug tracker for the **Northendlab Jekyll Theme**. Please Search [existing issues](https://github.com/themefisher/northendlab-jekyll/issues). It’s possible someone has already reported the same problem.
-If your problem or idea is not addressed yet, [open a new issue](https://github.com/themefisher/northendlab-jekyll/issues/new)
-
-### Technical Support or Questions (Paid)
+## Technical Support or Questions
 
 If you have questions or need help integrating the product please [contact us](mailto:themefisher@gmail.com) instead of opening an issue.
 
@@ -48,6 +53,6 @@ If you have questions or need help integrating the product please [contact us](m
 
 Copyright (c) 2016 - Present, Designed & Developed by [Themefisher](https://themefisher.com)
 
-**Code License:** Released under the [MIT](https://github.com/themefisher/northendlab-jekyll/blob/main/LICENSE) license.
+**Code License:** Released under the [MIT](https://github.com/themefisher/kross-jekyll/blob/main/LICENSE) license.
 
 **Image license:** The images are only for demonstration purposes. They have their license, we don't have permission to share those images.
