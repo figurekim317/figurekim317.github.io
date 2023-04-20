@@ -6,13 +6,8 @@ image: assets/images/about/author.jpg
 signature: assets/images/about/signature.png
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat.
+I decided to pursue a career in control engineering because I received excellent grades in the subject during my undergraduate studies. Consequently, I was responsible for accelerator control and program development at CERN, the European Organization for Nuclear Research.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident.
+While considering attending graduate school, I watched the match between AlphaGo and Lee Sedol, which sparked my interest in the field of artificial intelligence. During my time in graduate school, I noticed that both my body and deep learning models were growing in size day by day. As a result, I started exercising and became interested in researching methods to compress deep learning models.
 
-Deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
+I believe that deep learning has the potential to drive positive change in the world. Therefore, I am currently developing and researching deep learning models that can be applied across various real-world fields.
