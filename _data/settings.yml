@@ -39,7 +39,7 @@ hero:
   hero-title: Hi! I’m Jongwan Kim<br> ML/DL Engineer
 
 social:
-  - { icon: "ti-facebook", link: "#" }
+  - { icon: "ti-github", link: "#" }
   - { icon: "ti-instagram", link: "#" }
   - { icon: "ti-dribbble", link: "#" }
   - { icon: "ti-twitter", link: "#" }
