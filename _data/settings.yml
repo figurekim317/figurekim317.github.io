@@ -61,7 +61,7 @@ skills:
   - { name: ROS, color: "#ffbcaa", value: "70%" }
   - { name: Gstreamer, color: "#fdb157", value: "90%" }
   - { name: JAVA, color: "#9473e6", value: "60%" }
-  - { name: Confluence \& JIRA, color: "#bdecf6", value: "80%" }
+  - { name: "Confluence & JIRA", color: "#bdecf6", value: "80%" }
   - { name: Adobe, color: "#ffbcaa", value: "70%" }
 
 
