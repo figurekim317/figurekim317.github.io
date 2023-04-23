@@ -2,20 +2,26 @@
 #-------------------------------
 # General Site Settings
 
-title: Kross
+title: Figure317
 logo:
-author: themefisher
+author: JongwanKim
 description: this is meta description
-email: steve.fruits@email.com
-phone: +880 2544 658 256
-address: 125/A, CA Commercial Area, California, USA
+email: jongwankim@snu.ac.kr
+phone: +82 10-4019-1133
+address: 15, Maebong-gil, Seongdong-gu, Seoul, Republic of Korea
 copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
 
 menu:
   - { name: About, link: "/about" }
-  - { name: Blog, link: "/blog" }
   - { name: Portfolio, link: "/portfolio" }
+  - { name: Blog, link: "/blog" }
   - { name: Contact, link: "/contact" }
+
+plugins:
+  - jekyll-spaceship
+  - jekyll-mathjax
+  - jekyll-sitemap
+
 
 #-------------------------------
 # Google Analytics Section
