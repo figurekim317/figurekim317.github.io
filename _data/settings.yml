@@ -83,10 +83,16 @@ team:
 
 skills-title: Skills
 skills:
-  - { name: Web Design, color: "#fdb157", value: "90%" }
-  - { name: Logo Design, color: "#9473e6", value: "60%" }
-  - { name: After Effects, color: "#bdecf6", value: "80%" }
-  - { name: Web App, color: "#ffbcaa", value: "70%" }
+  - { name: ML/DL algorithm, color: "#fdb157", value: "90%" }
+  - { name: python, color: "#9473e6", value: "60%" }
+  - { name: C++, color: "#bdecf6", value: "80%" }
+  - { name: openCV, color: "#bdecf6", value: "80%" }
+  - { name: ROS, color: "#ffbcaa", value: "70%" }
+  - { name: Gstreamer, color: "#fdb157", value: "90%" }
+  - { name: JAVA, color: "#9473e6", value: "60%" }
+  - { name: Confluence \& JIRA, color: "#bdecf6", value: "80%" }
+  - { name: Adobe, color: "#ffbcaa", value: "70%" }
+
 
 #-------------------------------
 # Exprerience Section
@@ -94,22 +100,16 @@ skills:
 experience-title: Experience
 experience:
   - {
-      name: Junior UX Designer,
+      name: Accelerator Control & Program Engineer,
       icon: "icon-1.png",
-      date: "Jan 2007 - Feb 2009",
-      organization: "WEBEX",
+      date: "2014 - 2017",
+      organization: "CERN, Geneve, Switzerland",
     }
   - {
-      name: UX & UI Designer,
+      name: Perception Engineer,
       icon: "icon-2.png",
-      date: "Mar 2009 - Aug 2014",
-      organization: "AUGMEDIX",
-    }
-  - {
-      name: Senior UI Designer,
-      icon: "icon-3.png",
-      date: "Sep 2014 - Present",
-      organization: "THEMEFISHER",
+      date: "2023",
+      organization: "Neubility",
     }
 
 #-------------------------------
@@ -118,49 +118,49 @@ experience:
 education-title: Education
 education:
   - {
-      name: Marters in UX Design,
-      date: "2006",
-      organization: "Masassusets Institute of Technology",
+      name: Autonomous Driving Dev Course,
+      date: "2023",
+      organization: "Programmers",
     }
   - {
-      name: Honours in Fine Arts,
-      date: "2004",
-      organization: "Harvard University",
+      name: ECE doctoral course completion,
+      date: "2022",
+      organization: "Seoul National University",
     }
   - {
-      name: Higher Secondary Certificat,
-      date: "2000",
-      organization: "Cardiff School",
+      name: ECE master degree,
+      date: "2020",
+      organization: "Seoul National University",
     }
   - {
-      name: Secondary School Certificate,
-      date: "1998",
-      organization: "Cardiff School",
+      name: EEE bachelor degree,
+      date: "2014",
+      organization: "Sungkyunkwan University",
     }
+
 
 #-------------------------------
 # Services Section
-
-services-title: Services
-services:
-  - {
-      name: UI Design,
-      icon: ti-palette,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      active: ,# Add true to select section
-    }
-  - {
-      name: UX Design,
-      icon: ti-vector,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      active: true, # Add true to select section
-    }
-  - {
-      name: Interaction Design,
-      icon: ti-panel,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      active: ,# Add true to select section
-    }
+# services-title: Services
+#services:
+#  - {
+#      name: UI Design,
+#      icon: ti-palette,
+#      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#      active: ,# Add true to select section
+#    }
+#  - {
+#      name: UX Design,
+#      icon: ti-vector,
+#      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#      active: true, # Add true to select section
+#    }
+#  - {
+#      name: Interaction Design,
+#      icon: ti-panel,
+#      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#      active: ,# Add true to select section
+#    }
 
 #-------------------------------
 # Portfolio (Section and Page)
@@ -168,7 +168,7 @@ services:
 # Portfolio Home Section
 portfolio-home-items:
   - image: "assets/images/portfolio/item-1.png"
-    url: "#"
+    url: "_posts/pr_df-gan.md"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "#"
@@ -184,9 +184,10 @@ portfolio-home-items:
 
 # Portfolio Page
 portfolio-label:
-  - { title: "UI/UX Design", type: "design" }
-  - { title: "BRANDING", type: "branding" }
-  - { title: "ILLUSTRATION", type: "illustration" }
+  - { title: "Model compression", type: "On device" }
+  - { title: "Object detection", type: "computer vision" }
+  - { title: "Segmentation", type: "computer vision" }
+  - { title: "Optimization", type: "optimization" }
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
