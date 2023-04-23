@@ -1,13 +1,18 @@
 ---
 layout: about
 title: About Me
-author: Jongwan Kim
+author: Johnathan Smith
 image: assets/images/about/author.jpg
 signature: assets/images/about/signature.png
 ---
 
-I decided to pursue a career in control engineering after receiving high grades in the subject during my undergraduate studies. Consequently, I took on the responsibilities of accelerator control and program development at CERN, the European Organization for Nuclear Research.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+commodo consequat.
 
-As I considered attending graduate school, I watched the match between AlphaGo and Lee Sedol, which sparked my interest in the field of artificial intelligence. Throughout my time in graduate school, I noticed that both my body and deep learning models were growing larger day by day. This prompted me to start exercising and develop an interest in researching deep learning model compression. This curiosity led us to explore effective ways to perform object detection or segmentation tasks, even in resource-constrained environments.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident.
 
-I believe that deep learning has the potential to move the world in a better direction. As a result, I am currently developing and researching deep learning models that can be applied in various real-world fields.
+Deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.

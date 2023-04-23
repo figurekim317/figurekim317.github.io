@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Blogs
+title: Portfolio
 ---
 <!-- portfolio -->
 <section class="section">
@@ -26,7 +26,7 @@ title: Blogs
           <img src="{{ site.baseurl }}/{{ item.image }}" alt="portfolio-image" class="img-fluid rounded w-100 d-block">
           <div class="hover-overlay">
             <div class="hover-content">
-              <a class="btn btn-light btn-sm" href="{{ item.url | relative_url }}">view project</a>
+              <a class="btn btn-light btn-sm" href="{{ item.url }}">view project</a>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ title: Blogs
 </section>
 <!-- /portfolio -->
 
-<!-- 
+<!-- clients -->
 <section class="section bg-light">
   <div class="container">
     <div class="row">
@@ -48,4 +48,4 @@ title: Blogs
     {% include client-slider.html %}
   </div>
 </section>
-/clients -->
+<!-- /clients -->
