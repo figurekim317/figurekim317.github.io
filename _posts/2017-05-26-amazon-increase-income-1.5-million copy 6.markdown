@@ -7,15 +7,13 @@ author: uixgeek
 tags:   UX design
 ---
 
-**DNN to SNN mapping 알고리즘 정확도 향상**
-CNN 기반 multi-object detection 알고리즘 개발
-SNN 기반 multi object detection 알고리즘 최적화
-차량용 자율 주행을 위한 알고리즘 경량화 및 최적화
-SNN 이식을 위한 알고리즘 경량화 및 정확도 향상
-SNN에서의 inference를 고려하여 DNN to SNN Mapping 알고리즘 성능 개선
-DNN 대비 SNN 오차율 < 5% 달성
+수직형 시냅스 어레이 구조를 위한 효율적인 SNN 학습 알고리즘 설계
+- 3D-CIM의 resource-constrained 환경을 위한 Knowledge Distillation을 이용한 
+   SNN의 학습 방법 제안
+- 모델 추론 시의 에너지 효율을 위해 스파이크의 발생을 줄이는 알고리즘을 구현
+- Compute capability 민감도 분석
 
-
-**HW/SW 통합**
-제안한 알고리즘을 제공받은 API 활용하여 칩에서 구현 및 최적화
-디지털 에뮬레이터 상에서 SNN기반의 다중 물체 인식 알고리즘 시연, ReLU 및 Pooling 등의 핵심 기능 구현, 병렬 데이터 인터페이스 구현
+소자 noise에 강인한 인공신경망 추론 모델 구현
+- 3D CIM에서 발생하는 time-variant noise에 robust한 SNN 모델 설계
+- ECOC 기반 Noise Robust 인공신경망 고도화 및 앙상블 기술 구현
+- Bayesian 모델의 일종인 모델 앙상블 기술을 분석 및 적용
