@@ -189,9 +189,9 @@ portfolio-home-items:
 
 # Portfolio Page
 portfolio-label:
-  - { title: "UI/UX Design", type: "design" }
-  - { title: "BRANDING", type: "branding" }
-  - { title: "ILLUSTRATION", type: "illustration" }
+  - { title: "Model Compression", type: "design" }
+  - { title: "Computer Vision", type: "branding" }
+  - { title: "Optimization", type: "illustration" }
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
