@@ -8,6 +8,7 @@ author: JongwanKim
 description: this is meta description
 email: jongwankim@snu.ac.kr
 phone: +82 10-4019-1133
+github: https://github.com/figurekim317
 address: 15, Maebong-gil, Seongdong-gu, Seoul, Republic of Korea
 copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
 
@@ -136,7 +137,7 @@ portfolio-label:
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
-    url: "#"
+    url: "/fpost/1/"
     portfolio-type:
       - type: "design"
       - type: "illustration"
