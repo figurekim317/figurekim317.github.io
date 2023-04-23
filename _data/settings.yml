@@ -88,10 +88,15 @@ team:
 
 skills-title: Skills
 skills:
-  - { name: Web Design, color: "#fdb157", value: "90%" }
-  - { name: Logo Design, color: "#9473e6", value: "60%" }
-  - { name: After Effects, color: "#bdecf6", value: "80%" }
-  - { name: Web App, color: "#ffbcaa", value: "70%" }
+  - { name: ML/DL algorithm, color: "#fdb157", value: "90%" }
+  - { name: python, color: "#9473e6", value: "60%" }
+  - { name: C++, color: "#bdecf6", value: "80%" }
+  - { name: openCV, color: "#bdecf6", value: "80%" }
+  - { name: ROS, color: "#ffbcaa", value: "70%" }
+  - { name: Gstreamer, color: "#fdb157", value: "90%" }
+  - { name: JAVA, color: "#9473e6", value: "60%" }
+  - { name: Confluence, JIRA, color: "#bdecf6", value: "80%" }
+  - { name: Adobe, color: "#ffbcaa", value: "70%" }
 
 #-------------------------------
 # Exprerience Section
