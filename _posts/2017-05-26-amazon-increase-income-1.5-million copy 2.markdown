@@ -1,4 +1,4 @@
----
+<!--
 layout: post
 title: \[Paper review\] DF-GAN\: A Simple and Effective Baseline for Text-to-Image Synthesis
 date:   2017-05-26 15:05:55 +0300
@@ -6,6 +6,14 @@ image:  /assets/images/blog/post-5.jpg
 author: uixgeek
 tags:   UX design
 mathjax: true
+-->
+---
+layout: post
+title:  Amazon increase income 1.5 Million
+date:   2017-05-26 15:05:55 +0300
+image:  /assets/images/blog/post-5.jpg
+author: uixgeek
+tags:   UX design
 ---
 
 ### title: "[Paper review] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis"
