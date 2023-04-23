@@ -31,3 +31,8 @@ blockquote > p {
     line-height: 1.5;
   }
 }
+
+  /* Adjust line-height for math equations */
+.math {
+    line-height: 1.2;
+}
