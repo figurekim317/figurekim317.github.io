@@ -8,10 +8,6 @@ tags:   UX design
 mathjax: true
 ---
 
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
 title: "[논문리뷰] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis"
 last_modified_at: 2022-12-21
 categories:
