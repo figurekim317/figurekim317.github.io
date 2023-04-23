@@ -168,7 +168,7 @@ education:
 # Portfolio Home Section
 portfolio-home-items:
   - image: "assets/images/portfolio/item-1.png"
-    url: "_posts/pr_df-gan.md"
+    url: "/_posts/pr_df-gan.md"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "#"
