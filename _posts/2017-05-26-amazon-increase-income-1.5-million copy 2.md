@@ -61,7 +61,7 @@ GAN의 text-to-image 합성 분야의 2가지 주요 challenge는
 → 모델이 deep하기 때문에 안정적인 학습을 위해 residual network로 구성  
 - 안정적인 학습을 위해 hinge loss 사용
 - 아래 식은 hinge loss를 적용한 loss function  
-($$z$$는 noise vector, $e$는 sentence vector, $\mathbb{P_g}$, $\mathbb{P_r}$, $\mathbb{P_{mis}}$는 생성된 데이터, 실제 데이터, mismatch 데이터의 분포)
+($$z$$는 noise vector, $$e$$는 sentence vector, $$\mathbb{P_g}$$, $$\mathbb{P_r}$$, $$\mathbb{P_{mis}}$$는 생성된 데이터, 실제 데이터, mismatch 데이터의 분포)
 
 $$
 \begin{aligned}
