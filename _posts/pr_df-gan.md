@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  \[Paper review\] DF-GAN\: A Simple and Effective Baseline for Text-to-Image Synthesis
+title: \[Paper review\] DF-GAN\: A Simple and Effective Baseline for Text-to-Image Synthesis
 date:   2017-05-26 15:05:55 +0300
 image:  /assets/images/blog/post-5.jpg
 author: uixgeek
@@ -36,7 +36,8 @@ GAN의 text-to-image 합성 분야의 2가지 주요 challenge는
 
 그럼에도 기존 sota 모델들에는 여전히 3가지 문제가 있으며, 논문에서 저자는 각각의 해결방법을 제시하였다. 
 
-<center><img src='{{"/assets/img/df-gan/df-gan-osb.PNG" | relative_url}}' width="55%"></center>
+<!-- <center><img src='{{"/assets/img/df-gan/df-gan-osb.PNG" | relative_url}}' width="55%"></center>
+-->
 
 1. Stack 구조는 generator 사이의 entanglement를 만들기 때문에 최종 이미지는 흐릿한 모양과 디테일의 단순한 합으로 표현된다. (각 generator가 서로 다른 image scale에서 특징을 만든다.)  
 → one-stage backbone으로 해결 (generator 1개)
@@ -49,8 +50,8 @@ GAN의 text-to-image 합성 분야의 2가지 주요 challenge는
   
 
 ## DF-GAN 구조
-<center><img src='{{"/assets/img/df-gan/df-gan-structure.PNG" | relative_url}}' width="100%"></center>
-
+<!--<center><img src='{{"/assets/img/df-gan/df-gan-structure.PNG" | relative_url}}' width="100%"></center>
+-->
 <br>  
 
 각 해결 방법을 자세히 살펴보면 다음과 같다.  
