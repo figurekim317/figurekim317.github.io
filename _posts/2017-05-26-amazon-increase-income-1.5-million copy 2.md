@@ -8,7 +8,6 @@ tags:   UX design
 mathjax: true
 ---
 
-
 title: "[논문리뷰] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis"
 last_modified_at: 2022-12-21
 categories:
