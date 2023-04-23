@@ -17,7 +17,10 @@ menu:
   - { name: Blog, link: "/portfolio" }
   - { name: Contact, link: "/contact" }
 
-mathjax: true
+plugins:
+  - jekyll-spaceship
+  - jekyll-mathjax
+  - jekyll-sitemap
 #-------------------------------
 # Google Analytics Section
 
