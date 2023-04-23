@@ -130,15 +130,15 @@ $$ \gamma = MLP_1 (e) \\ \theta = MLP_2 (e) \\ AFF(x_i, e) = \gamma_i \cdot x_i 
 ### Results
 <center><img src='{{"/assets/img/df-gan/df-gan-table1.PNG" | relative_url}}' width="50%"></center>
 
-### Ablation study
+#### Ablation study
 <center><img src='{{"/assets/img/df-gan/df-gan-table2.PNG" | relative_url}}' width="50%"></center>
 <center><img src='{{"/assets/img/df-gan/df-gan-table3.PNG" | relative_url}}' width="50%"></center>
 
-## Limitation
+#### Limitation
 - 문장 수준의 text 정보만 다룸. (fine-grained visual feature 합성 능력은 미지수)
 - pre-trained large language model을 사용한 것이 성능 향상에 영향을 주었을 수 있음
   
-## 개인적인 생각
+#### 개인적인 생각
 - 최근에 나오고 있는 diffusion 기반의 모델들보다는 성능이 많이 떨어진다. 하지만 이 논문이 나온 당시에는 state-of-the-art를 찍을 정도로 좋은 성능을 보였으며, 특히 모델의 파라미터 개수(NoP)가 19M 밖에 되지 않기 때문에 굉장히 빠르다.  
 - 아쉬운 점은 text encoder에 대한 설명이 너무 부족하다는 것이다. Text encoder가 얼마나 텍스트 정보를 잘 표현하는 지가 text-image semantic consistency에서 중요한 부분이기 때문에 이에 대한 설명이 없다는 것이 아쉽다.  
 - 실제 implementation code를 보면 text encoder로 Transformer 기반의 모델이 아닌 RNN을 사용한 것으로 보아 모델의 크기를 줄이려는 의도가 아닐까 싶다. 아니면 저자들이 애초에 pre-trained RNN의 성능이 충분하다고 생각했을 수도 있다. 추후 pre-trained transformer을 text encoder로 사용하였을 때 성능의 향상을 보이는 지 확인해 보아야 겠다.  
