@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  [Paper review] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis
+title:  \[Paper review\] DF-GAN\: A Simple and Effective Baseline for Text-to-Image Synthesis
 date:   2017-05-26 15:05:55 +0300
 image:  /assets/images/blog/post-5.jpg
 author: uixgeek
