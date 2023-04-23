@@ -1,33 +1,28 @@
 ---
 layout: page
-title: Portfolio
+title: Blogs
 ---
-
-{% assign pofols = site.pofols | where: "category", "portfolio" %}
-
-{% if pofols.size > 0 %}
+<!-- blog -->
 <section class="section">
   <div class="container">
     <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="section-title">Portfolio</h2>
-      </div>
-    </div>
-    <div class="row shuffle-wrapper">
-      {% for item in pofols %}
-      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups='["all", "{{ item.tags }}"]'>
-        <div class="position-relative rounded hover-wrapper">
-          <img src="{{ site.baseurl }}/{{ item.image }}" alt="portfolio-image" class="img-fluid rounded w-100 d-block">
-          <div class="hover-overlay">
-            <div class="hover-content">
-              <a class="btn btn-light btn-sm" href="{{ item.url | relative_url }}">view project</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% for post in site.portfolios %}
+      {% include post.html %}
       {% endfor %}
     </div>
   </div>
 </section>
-<!-- /portfolio -->
-{% endif %}
+<!-- /blog -->
+
+<!-- clients
+<section class="section bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">My Clients</h2>
+      </div>
+    </div>
+    {% include client-slider.html %}
+  </div>
+</section>
+/clients -->
