@@ -24,38 +24,27 @@ plugins:
 
 
 #-------------------------------
-# Google Analytics Section
-
-# Analytics helps you understand who visits your website.
-# Learn more at: http://support.google.com/analytics/answer/1008065
-
-# NOTE: If you want to use Google Analytics for basic web tracking: Just uncomment and enter your UA-Code here.
-
-google-analytics: # UA-XXXXXX-X
-
-#-------------------------------
 # Comment Section (Disqus)
 
-disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
+disqus-identifier: myblog
 
 #-------------------------------
 # Hero Section
 
 hero:
-  hero-title: Hi! I’m <br> Christoher <br> UX designer
+  hero-title: Hi! I’m Jongwan Kim<br> ML/DL Engineer
 
 social:
-  - { icon: "ti-facebook", link: "#" }
-  - { icon: "ti-instagram", link: "#" }
-  - { icon: "ti-dribbble", link: "#" }
-  - { icon: "ti-twitter", link: "#" }
+  - { icon: "ti-github", link: "https://github.com/figurekim317" }
+  #- { icon: "ti-instagram", link: "#" }
+  #- { icon: "ti-dribbble", link: "#" }
+  #- { icon: "ti-twitter", link: "#" }
 
 #-------------------------------
 # About (Section and Page)
 
 # About Section
-blurb: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
+blurb: In the pursuit of improving the world, <br>I am consistently and gradually making sincere progress.
 blurb-btn-link: "/about"
 blurb-btn-name: know more
 
