@@ -5,9 +5,7 @@
       <div class="col-12 text-center">
         <h2 class="section-title">Portfolio</h2>
       </div>
-    </div>
-    <div class="row shuffle-wrapper">
-      {% for post in site.portfolios offset:0 limit:3 %}
+      {% for post in site.posts offset:0 limit:3 %}
       {% include post.html %}
       {% endfor %}
     </div>

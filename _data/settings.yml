@@ -9,7 +9,6 @@ description: this is meta description
 email: jongwankim@snu.ac.kr
 phone: +82 10-4019-1133
 address: 15, Maebong-gil, Seongdong-gu, Seoul, Republic of Korea
-github: https://github.com/figurekim317
 copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
 
 menu:
@@ -37,9 +36,9 @@ hero:
 
 social:
   - { icon: "ti-github", link: "https://github.com/figurekim317" }
-  #- { icon: "ti-instagram", link: "#" }
-  #- { icon: "ti-dribbble", link: "#" }
-  #- { icon: "ti-twitter", link: "#" }
+#  - { icon: "ti-instagram", link: "#" }
+#  - { icon: "ti-dribbble", link: "#" }
+#  - { icon: "ti-twitter", link: "#" }
 
 #-------------------------------
 # About (Section and Page)
@@ -48,6 +47,36 @@ social:
 blurb: In the pursuit of improving the world, <br>I am consistently and gradually making sincere progress.
 blurb-btn-link: "/about"
 blurb-btn-name: know more
+
+# About Page
+
+# Work Process Section
+work-process:
+  - title: "Research and Plan"
+    icon: "assets/images/icons/plan.png"
+    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+  - title: "Design and Develop"
+    icon: "assets/images/icons/design.png"
+    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+  - title: "Deliver"
+    icon: "assets/images/icons/print.png"
+    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+# My Team Section
+team:
+  - title: "Jack Schenziwe"
+    image: "assets/images/team/member-1.png"
+    designation: "Project Manager"
+
+  - title: "Julias Carlie"
+    image: "assets/images/team/member-2.png"
+    designation: "Web Developer"
+
+  - title: "John Doe"
+    image: "assets/images/team/member-3.png"
+    designation: "Designer"
 
 #-------------------------------
 # Skills Section
@@ -61,9 +90,8 @@ skills:
   - { name: ROS, color: "#ffbcaa", value: "70%" }
   - { name: Gstreamer, color: "#fdb157", value: "90%" }
   - { name: JAVA, color: "#9473e6", value: "60%" }
-  - { name: "Confluence & JIRA", color: "#bdecf6", value: "80%" }
+  - { name: Confluence \& JIRA, color: "#bdecf6", value: "80%" }
   - { name: Adobe, color: "#ffbcaa", value: "70%" }
-
 
 #-------------------------------
 # Exprerience Section
@@ -109,7 +137,186 @@ education:
       organization: "Sungkyunkwan University",
     }
 
+# Portfolio (Section and Page)
+
+# Portfolio Home Section
+portfolio-home-items:
+  - image: "assets/images/portfolio/item-1.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-5.png"
+    url: "#"
+
+# Portfolio Page
+portfolio-label:
+  - { title: "Model compression", type: "On device" }
+  - { title: "Object detection", type: "computer vision" }
+  - { title: "Segmentation", type: "computer vision" }
+  - { title: "Optimization", type: "optimization" }
+
+portfolio-items:
+  - image: "assets/images/portfolio/item-1.png"
+    url: "#"
+    portfolio-type:
+      - type: "On device"
+      - type: "computer vision"
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "#"
+    portfolio-type:
+      - type: "branding"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "#"
+    portfolio-type:
+      - type: "illustration"
+
+  - image: "assets/images/portfolio/item-6.png"
+    url: "#"
+    portfolio-type:
+      - type: "design"
+      - type: "branding"
+
+  - image: "assets/images/portfolio/item-8.png"
+    url: "#"
+    portfolio-type:
+      - type: "illustration"
+
+  - image: "assets/images/portfolio/item-5.png"
+    url: "#"
+    portfolio-type:
+      - type: "design"
+
+  - image: "assets/images/portfolio/item-1.png"
+    url: "#"
+    portfolio-type:
+      - type: "branding"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "#"
+    portfolio-type:
+      - type: "design"
+      - type: "illustration"
+      - type: "branding"
+
+  - image: "assets/images/portfolio/item-7.png"
+    url: "#"
+    portfolio-type:
+      - type: "illustration"
+
+#-------------------------------
+
+
+
+# Portfolio Home Section
+portfolio-home-items:
+  - image: "assets/images/portfolio/item-1.png"
+    url: "https://figurekim317.github.io/2017-05-26-amazon-increase-income-1.5-million copy 6"
+
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-5.png"
+    url: "#"
+
+# Services Section
+
+#services-title: Services
+#services:
+#  - {
+#      name: UI Design,
+#      icon: ti-palette,
+#      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#     active: ,# Add true to select section
+#    }
+#  - {
+#      name: UX Design,
+#      icon: ti-vector,
+#      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#      active: true, # Add true to select section
+#    }
+#  - {
+#      name: Interaction Design,
+#      icon: ti-panel,
+#      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#      active: ,# Add true to select section
+#    }
+
+#-------------------------------
+
+
+#-------------------------------
+# Testimonials Section
+
+#testimonial-items:
+#  - name: "Jesica Gomez"
+#    image: "assets/images/testimonial/client-1.png"
+#    designation: "CEO, Funder"
+#    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+
+#  - name: "Jesica Gomez"
+#    image: "assets/images/testimonial/client-1.png"
+#    designation: "CEO, Funder"
+#    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+
+#  - name: "Jesica Gomez"
+#    image: "assets/images/testimonial/client-1.png"
+#    designation: "CEO, Funder"
+#    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+
+#-------------------------------
+# Client Slider Section
+
+#client-slider-items:
+#  - logo: "assets/images/clients-logo/client-logo-1.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-2.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-3.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-4.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-5.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-1.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-2.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-3.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-4.png"
+#    url: "#"
+
+#  - logo: "assets/images/clients-logo/client-logo-5.png"
+#    url: "#"
+
+
+#-------------------------------
 # Contact Section
 
 #contact-title: Contact Info
-#contact-email: steve.fruits@email.com
+#contact-email: jongwankim@snu.ac.kr

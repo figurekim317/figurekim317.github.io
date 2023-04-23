@@ -14,12 +14,6 @@ compress_html:
   comments: all
   startings: [html, head, body]
 
-# Collections
-collections:
-  portfolios:
-    output: true
-    permalink: /portfolios/:title/
-
 # Pages Path
 defaults:
   - scope:
