@@ -26,8 +26,6 @@ layout: default
     <div class="row">
       <div class="col-lg-12">
         <h3 class="font-tertiary mb-5">{{ page.title | escape }}</h3>
-        <p class="font-secondary">Published on {{ page.date | date: '%b %d, %Y' }} by <span class="text-primary">{{ page.author }}</span
-            class="text-primary"> on {% for tag in page.tags %}<span>{{ tag }} </span>{% endfor %}</p>
         <div class="content">
           <img src="{{page.image | relative_url }}" class="img-fluid rounded float-left mr-5 mb-4" alt="{{page.title}}">
           {{ content }}
@@ -36,6 +34,13 @@ layout: default
     </div>
   </div>
 </section>
+
+<!--
+          <p class="font-secondary">Published on {{ page.date | date: '%b %d, %Y' }} by <span class="text-primary">{{ page.author }}</span
+            class="text-primary"> on {% for tag in page.tags %}<span>{{ tag }} </span>{% endfor %}</p>
+
+-->
+
 
 {% if site.data.settings.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
 
