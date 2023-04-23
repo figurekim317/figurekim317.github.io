@@ -154,36 +154,18 @@ education:
 
 # Portfolio (Section and Page)
 
-# Portfolio Home Section
-portfolio-home-items:
-  - image: "assets/images/portfolio/item-1.png"
-    url: "https://figurekim317.github.io/2017-05-26-amazon-increase-income-1.5-million copy 6"
-
-
-  - image: "assets/images/portfolio/item-2.png"
-    url: "#"
-
-  - image: "assets/images/portfolio/item-3.png"
-    url: "#"
-
-  - image: "assets/images/portfolio/item-4.png"
-    url: "#"
-
-  - image: "assets/images/portfolio/item-5.png"
-    url: "#"
-
 # Portfolio Page
 portfolio-label:
-  - { title: "Model Compression", type: "design" }
-  - { title: "Computer Vision", type: "branding" }
-  - { title: "Optimization", type: "illustration" }
+  - { title: "Model Compression", type: "Model Compression" }
+  - { title: "Computer Vision", type: "Computer vision" }
+  - { title: "Optimization", type: "Optimization" }
 
 portfolio-items:
-  - image: "assets/images/portfolio/item-1.png"
+  - image: "assets/images/portfolio/post-1.jpg"
     url: "#"
     portfolio-type:
-      - type: "design"
-      - type: "illustration"
+      - type: "Model Compression"
+      - type: "Model Compression"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "#"
@@ -229,6 +211,27 @@ portfolio-items:
       - type: "illustration"
 
 #-------------------------------
+
+
+
+# Portfolio Home Section
+portfolio-home-items:
+  - image: "assets/images/portfolio/item-1.png"
+    url: "https://figurekim317.github.io/2017-05-26-amazon-increase-income-1.5-million copy 6"
+
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-5.png"
+    url: "#"
+
 # Services Section
 
 #services-title: Services
