@@ -17,6 +17,7 @@ menu:
   - { name: Blog, link: "/portfolio" }
   - { name: Contact, link: "/contact" }
 
+mathjax: true
 #-------------------------------
 # Google Analytics Section
 
