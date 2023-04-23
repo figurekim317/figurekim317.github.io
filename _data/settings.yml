@@ -173,7 +173,8 @@ services:
 # Portfolio Home Section
 portfolio-home-items:
   - image: "assets/images/portfolio/item-1.png"
-    url: "https://figurekim317.github.io/2017/05/26/amazon-increase-income-1.5-million-copy-2/"
+    url: "https://figurekim317.github.io/snn"
+    
 
   - image: "assets/images/portfolio/item-2.png"
     url: "#"
