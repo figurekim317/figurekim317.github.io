@@ -7,9 +7,9 @@
       </div>
     </div>
     <div class="row shuffle-wrapper">
-      {% for portfolio in site.portfolios offset:0 limit:3 %}
-      {% include portfolio.html %}
-      {% endfor %}    
+      {% for post in site.portfolios offset:0 limit:3 %}
+      {% include post.html %}
+      {% endfor %}
     </div>
   </div>
 </section>
