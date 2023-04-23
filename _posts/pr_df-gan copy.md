@@ -5,10 +5,9 @@ date:   2017-05-26 15:05:55 +0300
 image:  /assets/images/blog/post-5.jpg
 author: uixgeek
 tags:   UX design
-mathjax: true
 ---
 
-[Paper review] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis
+### title: "[Paper review] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis"
 last_modified_at: 2022-12-21
 categories:
   - 논문리뷰
@@ -25,7 +24,7 @@ classes: wide
 > Ming Tao, Hao Tang, Fei Wu, Xiao-Yuan Jing, Bing-Kun Bao, Changsheng Xu    
 > 13 Aug 2020  
 
-Introduction
+## Introduction
 
 GAN의 text-to-image 합성 분야의 2가지 주요 challenge는 
 
@@ -74,7 +73,6 @@ L_D = &- \mathbb{E}_{x\sim \mathbb{P_r}} [\min(0, -1+D(x,e))] \\
 L_G = &-\mathbb{E}_{G(z)\sim \mathbb{P_g}} [D(G(z),e)]
 \end{aligned}
 $$
-
 
 ### 2. Matching-Aware Gradient Penalty (MA-GP)
 <center><img src='{{"/assets/img/df-gan/df-gan-ma-gp.PNG" | relative_url}}' width="55%"></center>
