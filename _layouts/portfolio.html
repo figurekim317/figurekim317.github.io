@@ -46,8 +46,8 @@ layout: default
       <div class="col-12 text-center">
         <h2 class="section-title">Similar Stories</h2>
       </div>
-      {% for post in site.posts offset:0 limit:3 %}
-      {% include post.html %}
+      {% for portfolio in site.portfolios offset:0 limit:3 %}
+      {% include portfolio.html %}
       {% endfor %}
     </div>
   </div>
