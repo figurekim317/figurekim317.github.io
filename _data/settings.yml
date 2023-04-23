@@ -2,13 +2,13 @@
 #-------------------------------
 # General Site Settings
 
-title: Kross
+title: Figure317
 logo:
-author: themefisher
+author: JongwanKim
 description: this is meta description
-email: steve.fruits@email.com
-phone: +880 2544 658 256
-address: 125/A, CA Commercial Area, California, USA
+email: jongwankim@snu.ac.kr
+phone: +82 10-4019-1133
+address: 15, Maebong-gil, Seongdong-gu, Seoul, Republic of Korea
 copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
 
 menu:
@@ -17,81 +17,50 @@ menu:
   - { name: Portfolio, link: "/portfolio" }
   - { name: Contact, link: "/contact" }
 
-#-------------------------------
-# Google Analytics Section
+plugins:
+  - jekyll-spaceship
+  - jekyll-mathjax
+  - jekyll-sitemap
 
-# Analytics helps you understand who visits your website.
-# Learn more at: http://support.google.com/analytics/answer/1008065
-
-# NOTE: If you want to use Google Analytics for basic web tracking: Just uncomment and enter your UA-Code here.
-
-google-analytics: # UA-XXXXXX-X
-
-#-------------------------------
-# Comment Section (Disqus)
-
-disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
 
 #-------------------------------
 # Hero Section
 
 hero:
-  hero-title: Hi! I’m <br> Christoher <br> UX designer
+  hero-title: Hi! I’m Jongwan Kim<br> ML/DL Engineer
 
 social:
-  - { icon: "ti-facebook", link: "#" }
-  - { icon: "ti-instagram", link: "#" }
-  - { icon: "ti-dribbble", link: "#" }
-  - { icon: "ti-twitter", link: "#" }
+  - { icon: "ti-github", link: "https://github.com/figurekim317" }
+#  - { icon: "ti-instagram", link: "#" }
+#  - { icon: "ti-dribbble", link: "#" }
+#  - { icon: "ti-twitter", link: "#" }
 
 #-------------------------------
 # About (Section and Page)
 
 # About Section
-blurb: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
+blurb: In the pursuit of improving the world, <br>I am consistently and gradually making sincere progress.
 blurb-btn-link: "/about"
 blurb-btn-name: know more
 
+
 # About Page
-
-# Work Process Section
-work-process:
-  - title: "Research and Plan"
-    icon: "assets/images/icons/plan.png"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-
-  - title: "Design and Develop"
-    icon: "assets/images/icons/design.png"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-
-  - title: "Deliver"
-    icon: "assets/images/icons/print.png"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-
-# My Team Section
-team:
-  - title: "Jack Schenziwe"
-    image: "assets/images/team/member-1.png"
-    designation: "Project Manager"
-
-  - title: "Julias Carlie"
-    image: "assets/images/team/member-2.png"
-    designation: "Web Developer"
-
-  - title: "John Doe"
-    image: "assets/images/team/member-3.png"
-    designation: "Designer"
 
 #-------------------------------
 # Skills Section
 
 skills-title: Skills
 skills:
-  - { name: Web Design, color: "#fdb157", value: "90%" }
-  - { name: Logo Design, color: "#9473e6", value: "60%" }
-  - { name: After Effects, color: "#bdecf6", value: "80%" }
-  - { name: Web App, color: "#ffbcaa", value: "70%" }
+  - { name: ML/DL algorithm, color: "#fdb157", value: "90%" }
+  - { name: python, color: "#9473e6", value: "60%" }
+  - { name: C++, color: "#bdecf6", value: "80%" }
+  - { name: openCV, color: "#bdecf6", value: "80%" }
+  - { name: ROS, color: "#ffbcaa", value: "70%" }
+  - { name: Gstreamer, color: "#fdb157", value: "90%" }
+  - { name: JAVA, color: "#9473e6", value: "60%" }
+  - { name: Confluence \& JIRA, color: "#bdecf6", value: "80%" }
+  - { name: Adobe, color: "#ffbcaa", value: "70%" }
+
 
 #-------------------------------
 # Exprerience Section
@@ -99,23 +68,18 @@ skills:
 experience-title: Experience
 experience:
   - {
-      name: Junior UX Designer,
+      name: Accelerator Control & Program Engineer,
       icon: "icon-1.png",
-      date: "Jan 2007 - Feb 2009",
-      organization: "WEBEX",
+      date: "2014 - 2017",
+      organization: "CERN, Geneve, Switzerland",
     }
   - {
-      name: UX & UI Designer,
+      name: Perception Engineer,
       icon: "icon-2.png",
-      date: "Mar 2009 - Aug 2014",
-      organization: "AUGMEDIX",
+      date: "2023",
+      organization: "Neubility",
     }
-  - {
-      name: Senior UI Designer,
-      icon: "icon-3.png",
-      date: "Sep 2014 - Present",
-      organization: "THEMEFISHER",
-    }
+
 
 #-------------------------------
 # Education Section
@@ -123,24 +87,24 @@ experience:
 education-title: Education
 education:
   - {
-      name: Marters in UX Design,
-      date: "2006",
-      organization: "Masassusets Institute of Technology",
+      name: Autonomous Driving Dev Course,
+      date: "2023",
+      organization: "Programmers",
     }
   - {
-      name: Honours in Fine Arts,
-      date: "2004",
-      organization: "Harvard University",
+      name: ECE doctoral course completion,
+      date: "2022",
+      organization: "Seoul National University",
     }
   - {
-      name: Higher Secondary Certificat,
-      date: "2000",
-      organization: "Cardiff School",
+      name: ECE master degree,
+      date: "2020",
+      organization: "Seoul National University",
     }
   - {
-      name: Secondary School Certificate,
-      date: "1998",
-      organization: "Cardiff School",
+      name: EEE bachelor degree,
+      date: "2014",
+      organization: "Sungkyunkwan University",
     }
 
 #-------------------------------
