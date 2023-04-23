@@ -30,6 +30,8 @@ layout: default
           <img src="{{page.image | relative_url }}" class="img-fluid rounded float-left mr-5 mb-4" alt="{{page.title}}">
           {{ content }}
         </div>
+        <p class="font-secondary"></span
+          class="text-primary"> on {% for tag in page.tags %}<span>{{ tag }} </span>{% endfor %}</p>
       </div>
     </div>
   </div>
