@@ -18,7 +18,7 @@ blockquote > p {
 }
 
 .content {
-  font-size: 18px;
+  font-size: 15px;
 
   > * {
     margin-bottom: 20px;
@@ -30,7 +30,7 @@ blockquote > p {
 
   strong {
     font-family: $secondary-font;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: normal;
     color: $text-color-dark;
     display: inherit;
