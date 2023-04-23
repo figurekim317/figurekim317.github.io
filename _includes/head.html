@@ -2,10 +2,34 @@
   <meta charset="utf-8">
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.data.settings.title }}{% endif %}</title>
 
+  <!-- MathJax -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="{%if page.description%}{{page.description}}{%else%}{{site.data.settings.description}}{%endif%}">
   
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      "HTML-CSS": {
+        linebreaks: { automatic: true },
+        scale: 90
+      },
+      SVG: {
+        linebreaks: { automatic: true },
+        scale: 90
+      }
+    });
+  </script>
+
+
   <!-- theme meta -->
   <meta name="theme-name" content="kross-jekyll" />
 
@@ -32,3 +56,5 @@
   {% endif %}
 
 </head>
+
+
