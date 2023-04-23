@@ -113,11 +113,7 @@ $$
 (2) Representation space가 확장됨에 따라 다양한 text에 높은 semantic consistency를 가진 이미지를 생성하게 된다.  
 (3) 기존 model의 cross-modal attention은 이미지 크기가 커지면 computational cost가 급격하게 증가하지만 affine transformation은 그렇지 않다.  
 
-$$
-\gamma = MLP_1 (e) \\
-\theta = MLP_2 (e) \\
-AFF(x_i, e) = \gamma_i \cdot x_i + \theta_i
-$$
+$$ \gamma = MLP_1 (e) \\ \theta = MLP_2 (e) \\ AFF(x_i, e) = \gamma_i \cdot x_i + \theta_i$$
 
 
 ## Experiments
