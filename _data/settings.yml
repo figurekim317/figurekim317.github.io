@@ -77,12 +77,14 @@ experience:
       name: Accelerator Control & Program Engineer,
       icon: "icon-1.png",
       date: "2014 - 2017",
+      team: RF2,
       organization: "CERN, Geneve, Switzerland",
     }
   - {
       name: Perception Engineer,
       icon: "icon-2.png",
-      date: "2023",
+      date: "2023 - ",
+      team: Perception,
       organization: "Neubility",
     }
 
@@ -99,18 +101,22 @@ education:
     }
   - {
       name: ECE doctoral course completion,
-      date: "2022",
+      date: "2021",
       organization: "Seoul National University",
+      GPA: "4.06 / 4.3"
     }
   - {
       name: ECE master degree,
-      date: "2020",
+      date: "2019",
       organization: "Seoul National University",
+      GPA: "4.06 / 4.3"
+
     }
   - {
       name: EEE bachelor degree,
       date: "2014",
       organization: "Sungkyunkwan University",
+      GPA: "4.24 / 4.5 (Summa Cun Laude)"
     }
 
 #-------------------------------
