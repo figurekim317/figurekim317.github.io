@@ -34,9 +34,9 @@ body {
   }
 
   h1, .h1{
-    font-size: 60px; // 제목 크기를 원하는대로 조절하세요.
+    font-size: 80px; // 제목 크기를 원하는대로 조절하세요.
     @include desktop {
-      font-size: 48px;
+      font-size: 65px;
     }
   }
 
