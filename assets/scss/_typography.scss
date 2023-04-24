@@ -24,7 +24,7 @@ body {
 p, .paragraph {
   font-weight: 400;
   color: $text-color;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
   font-family: $primary-font;
   &-lg{
@@ -49,14 +49,14 @@ h1, .h1{
 }
 
 h2, .h2{
-  font-size: 60px;
+  font-size: 50px;
   @include desktop {
     font-size: 50px;
   }
 }
 
 h3, .h3{
-  font-size: 40px;
+  font-size: 32px;
 }
 
 h4, .h4{
@@ -84,7 +84,7 @@ h6, .h6{
 }
 
 .post-content h1, .post-content .h1 {
-    font-size: 80px; // 제목 크기를 원하는대로 조절하세요.
+    font-size: 70px; // 제목 크기를 원하는대로 조절하세요.
     font-family: $secondary-font;
     @include desktop {
       font-size: 65px;
@@ -100,7 +100,7 @@ h6, .h6{
 }
 
 .post-content h3, .post-content .h3 {
-    font-size: 40px;
+    font-size: 32px;
     font-family: $secondary-font;
 }
   
