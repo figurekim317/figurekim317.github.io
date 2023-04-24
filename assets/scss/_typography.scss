@@ -1,12 +1,12 @@
-// $primary-font: 'Playfair Display', serif;
+$primary-font: 'Playfair Display', serif;
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:400');
 
 //$primary-font: 'Nanum Gothic', sans-serif;
 //$secondary-font: 'Nanum Gothic', sans-serif;
 //@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-$primary-font: 'Spoqa Han Sans Bold', 'Spoqa Han Sans', sans-serif;
-$secondary-font: 'Spoqa Han Sans', sans-serif;
+// $primary-font: 'Spoqa Han Sans Bold', 'Spoqa Han Sans', sans-serif;
+$secondary-font: 'Spoqa Han Sans Bold', 'Spoqa Han Sans', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Spoqa+Han+Sans&display=swap');
 
 body {
@@ -27,16 +27,16 @@ body {
     color: $text-color;
     font-size: 16px; // 크기를 원하는대로 조절하세요.
     line-height: 1.8;
-    font-family: $primary-font;
+    font-family: $secondary-font;
     &-lg{
       font-size: 22px;
     }
   }
 
   h1, .h1{
-    font-size: 70px; // 제목 크기를 원하는대로 조절하세요.
+    font-size: 60px; // 제목 크기를 원하는대로 조절하세요.
     @include desktop {
-      font-size: 55px;
+      font-size: 48px;
     }
   }
 
@@ -47,7 +47,6 @@ body {
     }
   }
 
-  // 나머지 스타일도 이와 같이 변경해주세요.
 }
 
 h1,h2,h3,h4,h5,h6 {
