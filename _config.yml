@@ -32,3 +32,5 @@ exclude:
   - LICENSE.text
   - README.md
   - SECURITY.md
+
+encoding: utf-8
