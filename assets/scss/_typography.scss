@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Spoqa+Han+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700');
+
 
 // Font Variables
-$primary-font: 'Playfair Display', serif;
+$primary-font:  'Playfair Display', serif;
 $secondary-font: 'Spoqa Han Sans Bold', 'Spoqa Han Sans', sans-serif;
 $icon-font: 'themify';
 
@@ -13,10 +14,10 @@ $icon-font: 'themify';
 // $primary-font: 
 
 body {
-  line-height: 1.2;
-  font-family: $primary-font;
+  line-height: 1.8;
+  font-family: $secondary-font;
   -webkit-font-smoothing: antialiased;
-  font-size: 15px;
+  font-size: 16px;
   color: $text-color;
 }
 
