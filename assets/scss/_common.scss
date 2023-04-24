@@ -71,7 +71,7 @@ a:hover {
 
   &-title {
     margin-bottom: 80px;
-    font-family: $secondary-font;
+    font-family: $primary-font;
   }
 }
 
@@ -183,11 +183,11 @@ a:hover {
 }
 
 .font-secondary {
-  font-family: $secondary-font !important;
+  font-family: $primary-font !important;
 }
 
 .font-tertiary {
-  font-family: $secondary-font !important;
+  font-family: $primary-font !important;
 }
 
 .shadow {
@@ -290,3 +290,4 @@ th, td {
 th {
   background-color: #f2f2f2;
 }
+

@@ -14,7 +14,7 @@ $icon-font: 'themify';
 
 body {
   line-height: 1.2;
-  font-family: $secondary-font;
+  font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   color: $text-color;
@@ -25,7 +25,7 @@ p, .paragraph {
   color: $text-color;
   font-size: 15px;
   line-height: 1.8;
-  font-family: $secondary-font;
+  font-family: $primary-font;
   &-lg{
     font-size: 22px;
   }
@@ -33,7 +33,7 @@ p, .paragraph {
 
 h1,h2,h3,h4,h5,h6 {
   color: $text-color-dark;
-  font-family: $secondary-font;
+  font-family: $primary-font;
   line-height: 1.2;
 }
 
@@ -69,15 +69,13 @@ h6, .h6{
 
 
 .post-content {
-  p, .paragraph {
     font-weight: 400;
     color: $text-color;
     font-size: 16px; // 크기를 원하는대로 조절하세요.
     line-height: 1.8;
-    font-family: $primary-font;
+    font-family: $secondary-font;
     &-lg{
       font-size: 22px;
-    }
   }
 
   h1, .h1{
