@@ -59,7 +59,7 @@ skills:
 
   - { name: PYTHON, color: "#FFB4B4", value: "70%" }
   - { name: C++, color: "#FFB4B4", value: "70%" }
-  - { name: openCV, color: "#FFB4B4", value: "60%" }
+  - { name: OpenCV, color: "#FFB4B4", value: "60%" }
   - { name: ROS, color: "#FFB4B4", value: "60%" }
 
   - { name: Github, color: "#FFDEB4", value: "70%" }
