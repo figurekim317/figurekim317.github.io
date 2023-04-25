@@ -7,8 +7,6 @@ author: uixgeek
 tags:   UX design
 ---
 
-**Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.**
-
 DVS, RGB, ToF 센서를 통해 설비의 특정 동작 패턴 감지할 수 있는 딥러닝 모델 개발
 - Image segmentation, object detection model 개발
 - 감지된 패턴들에서 물리적인 수치를 추출할 수 있는 모듈 개발

@@ -128,49 +128,54 @@ portfolio-home-items:
     url: "/fpost/1/"
 
   - image: "assets/images/portfolio/item-2.png"
-    url: "#"
+    url: "/fpost/2/"
 
   - image: "assets/images/portfolio/item-3.png"
-    url: "#"
+    url: "/fpost/3/"
 
   - image: "assets/images/portfolio/item-4.png"
-    url: "#"
+    url: "/fpost/4/"
 
   - image: "assets/images/portfolio/item-5.png"
-    url: "#"
+    url: "/fpost/5/"
 
 # Portfolio Page
 portfolio-label:
-  - { title: "Model compression", type: "On device" }
+  - { title: "Model Compression", type: "Model compression" }
   - { title: "Object detection", type: "computer vision" }
   - { title: "Segmentation", type: "computer vision" }
   - { title: "Optimization", type: "optimization" }
+  - { title: "SNN", type: "snn"}
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
     url: "/fpost/1/"
     portfolio-type:
-      - type: "design"
-      - type: "illustration"
+      - type: "Model compression"
+      - type: "Computer vision"
+      - type: "optmization"
+      - type: "snn"
+
+
 
   - image: "assets/images/portfolio/item-2.png"
-    url: "#"
+    url: "/fpost/2/"
     portfolio-type:
       - type: "branding"
 
   - image: "assets/images/portfolio/item-3.png"
-    url: "#"
+    url: "/fpost/3/"
     portfolio-type:
       - type: "illustration"
 
   - image: "assets/images/portfolio/item-6.png"
-    url: "#"
+    url: "/fpost/4/"
     portfolio-type:
       - type: "design"
       - type: "branding"
 
   - image: "assets/images/portfolio/item-8.png"
-    url: "#"
+    url: "/fpost/5/"
     portfolio-type:
       - type: "illustration"
 

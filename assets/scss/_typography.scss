@@ -119,3 +119,11 @@ h6, .h6{
     font-size: 14px;
     font-family: $secondary-font;
 }
+
+.post-conten body {
+  line-height: 1.8;
+  font-family: $secondary-font;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: $text-color;
+}
