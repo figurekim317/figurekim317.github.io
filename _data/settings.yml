@@ -143,9 +143,11 @@ portfolio-home-items:
 portfolio-label:
   - { title: "Model Compression", type: "Model compression" }
   - { title: "Object detection", type: "Object detection" }
-  - { title: "Segmentation", type: "Segementation" }
+  - { title: "Segmentation", type: "Segmentation" }
   - { title: "Optimization", type: "Optimization" }
   - { title: "SNN", type: "SNN"}
+  - { title: "Anomaly", type: "Anomaly"}
+  - { title: "Sequence", type: "Sequence"}
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
@@ -153,29 +155,35 @@ portfolio-items:
     portfolio-type:
       - type: "Model compression"
       - type: "Object detection"
-      - type: "Optmization"
+      - type: "Optimization"
       - type: "Segmentation"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "/fpost/2/"
     portfolio-type:
-      - type: "branding"
+      - type: "Model compression"
+      - type: "Object detection"
+      - type: "SNN"
 
   - image: "assets/images/portfolio/item-3.png"
     url: "/fpost/3/"
     portfolio-type:
-      - type: "illustration"
+      - type: "SNN"
+      - type: "Object detection"
 
   - image: "assets/images/portfolio/item-6.png"
     url: "/fpost/4/"
     portfolio-type:
-      - type: "design"
-      - type: "branding"
+      - type: "Model compression"
+      - type: "Object detection"
+      - type: "Segmentation"
+      - type: "Anomaly"
 
   - image: "assets/images/portfolio/item-8.png"
     url: "/fpost/5/"
     portfolio-type:
-      - type: "illustration"
+      - type: "Sequence"
+      - type: "Anomaly"
 
   - image: "assets/images/portfolio/item-5.png"
     url: "#"
