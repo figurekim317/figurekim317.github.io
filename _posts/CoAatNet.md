@@ -3,8 +3,6 @@ layout: post
 mathjax: true
 image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] CoAtNet: Marrying Convolution and Attention for All Data Sizes"
-categories:
-  - 논문리뷰
 tags:
   - ViT
   - Computer Vision
