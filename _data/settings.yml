@@ -142,21 +142,19 @@ portfolio-home-items:
 # Portfolio Page
 portfolio-label:
   - { title: "Model Compression", type: "Model compression" }
-  - { title: "Object detection", type: "computer vision" }
-  - { title: "Segmentation", type: "computer vision" }
-  - { title: "Optimization", type: "optimization" }
-  - { title: "SNN", type: "snn"}
+  - { title: "Object detection", type: "Object detection" }
+  - { title: "Segmentation", type: "Segementation" }
+  - { title: "Optimization", type: "Optimization" }
+  - { title: "SNN", type: "SNN"}
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
     url: "/fpost/1/"
     portfolio-type:
       - type: "Model compression"
-      - type: "Computer vision"
-      - type: "optmization"
-      - type: "snn"
-
-
+      - type: "Object detection"
+      - type: "Optmization"
+      - type: "Segmentation"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "/fpost/2/"
