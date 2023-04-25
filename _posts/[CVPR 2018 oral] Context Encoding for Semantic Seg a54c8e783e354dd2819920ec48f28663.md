@@ -1,3 +1,13 @@
+---
+layout: post
+title:  [CVPR 2018 oral] Context Encoding for Semantic Segmentation
+
+date:   2017-05-26 13:05:55 +0300
+image:  /assets/images/blog/post-3.jpg
+author: uixgeek
+tags:   UX design
+---
+
 # [CVPR 2018 oral] Context Encoding for Semantic Segmentation
 
 # 참고자료:
