@@ -1,0 +1,30 @@
+<!-- Add Shuffle.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Shuffle/5.3.0/shuffle.min.js" integrity="sha512-cSH0ge+GerT1VOL62UhhWB6Kg6WPYNe9lUW8CKola5d5k5jKv5srGZ5Q2e3Kj+yaaILQDyX9fW8SgKkEi_SZgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var Shuffle = window.Shuffle;
+    var element = document.querySelector('.shuffle-wrapper');
+    var shuffleInstance = new Shuffle(element, {
+      itemSelector: '.shuffle-item',
+      sizer: null, // could also be a selector: '.my-sizer-element'
+    });
+
+    // Filtering function
+    var filterButtons = document.querySelectorAll('input[name="shuffle-filter"]');
+    filterButtons.forEach(function(button) {
+      button.addEventListener('change', function(evt) {
+        var input = evt.currentTarget;
+        var value = input.value;
+        if (value === 'all') {
+          shuffleInstance.filter(Shuffle.ALL_ITEMS);
+        } else {
+          shuffleInstance.filter(function(element) {
+            var groups = JSON.parse(element.getAttribute('data-groups'));
+            return groups.includes(value);
+          });
+        }
+      });
+    });
+  });
+</script>

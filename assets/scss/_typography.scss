@@ -84,16 +84,16 @@ h6, .h6{
 }
 
 .post-content h1, .post-content .h1 {
-    font-size: 70px; // 제목 크기를 원하는대로 조절하세요.
-    font-family: $secondary-font;
+    font-size: 60px; // 제목 크기를 원하는대로 조절하세요.
+    font-family: $primary-font;
     @include desktop {
       font-size: 65px;
   }
 }
 
 .post-content h2, .post-content .h2{
-    font-size: 50px;
-    font-family: $secondary-font;
+    font-size: 40px;
+    font-family: $primary-font;
     @include desktop {
       font-size: 40px;
   }
@@ -101,7 +101,7 @@ h6, .h6{
 
 .post-content h3, .post-content .h3 {
     font-size: 32px;
-    font-family: $secondary-font;
+    font-family: $primary-font;
 }
   
 .post-content h4, .post-content .h4 {
@@ -120,7 +120,7 @@ h6, .h6{
     font-family: $secondary-font;
 }
 
-.post-conten body {
+.post-content body {
   line-height: 1.8;
   font-family: $secondary-font;
   -webkit-font-smoothing: antialiased;

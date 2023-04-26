@@ -5,9 +5,33 @@ title: Blogs
 <!-- blog -->
 <section class="section">
   <div class="container">
-    <div class="row">
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="btn-group btn-group-toggle justify-content-center d-flex" data-toggle="buttons">
+          <label class="btn btn-sm btn-primary active">
+            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All
+          </label>
+          {% for tag in site.data.settings.blog-tags %}
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" value="{{ tag.type }}" />{{ tag.title }}
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
       {% for post in site.posts %}
-      {% include post.html %}
+      <div class="col-lg-4 col-md-6 col-12 mb-4 shuffle-item" data-groups='["all"{% for tag in post.tags %}, "{{ tag }}"{% endfor %}]'>
+        <div class="card">
+          <img class="card-img-top" src="{{ post.image }}" alt="Card image cap">
+          <div class="card-body">
+            <div class="card-title" style="height: 100px; overflow-y: auto; margin-bottom: 5px;">
+              <h5>{{ post.title | truncate: 100 }}</h5>
+            </div>
+            <a href="{{ post.url | relative_url }}" class="btn btn-primary" style="font-size: 1em; padding: 6px 12px;">Read More</a>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
   </div>

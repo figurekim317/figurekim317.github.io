@@ -26,10 +26,8 @@ layout: default
     <div class="row">
       <div class="col-lg-12">
         <h3 class="font-tertiary mb-5">{{ page.title | escape }}</h3>
-        <div class="content">
-          <div class="post-content">
-            {{ content }}
-          </div>
+        <div class="post-content">
+          {{ content }}
         </div>
       </div>
     </div>
@@ -38,7 +36,6 @@ layout: default
 
 {% if site.data.settings.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
 
-<!-- blog -->
 <section class="section">
   <div class="container">
     <div class="row">

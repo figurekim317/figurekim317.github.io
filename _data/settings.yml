@@ -186,6 +186,18 @@ portfolio-items:
       - type: "Anomaly"
 
 #-------------------------------
+# Blog Section
+blog-tags:
+  - { title: "Model Compression", type: "model compression" }
+  - { title: "Object detection", type: "object detection" }
+  - { title: "Segmentation", type: "segmentation" }
+  - { title: "Diffusion", type: "diffusion" }
+  - { title: "Self-driving", type: "self-driving"}
+  - { title: "Dev course", type: "dev"}
+  - { title: "Coding", type: "coding"}
+
+  
+#-------------------------------
 # Contact Section
 
 # contact-title: Contact
