@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Imaginary Voice: Face-styled Diffusion Model for Text-to-Speech (Face-TTS)"
 last_modified_at: 2023-03-15
 categories:

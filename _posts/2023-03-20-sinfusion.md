@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] SinFusion: Training Diffusion Models on a Single Image or Video"
 last_modified_at: 2023-03-20
 categories:

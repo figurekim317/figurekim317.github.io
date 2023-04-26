@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Training language models to follow instructions with human feedback (InstructGPT)"
 last_modified_at: 2023-04-06
 categories:

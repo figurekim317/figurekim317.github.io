@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Noise2Music: Text-conditioned Music Generation with Diffusion Models"
 last_modified_at: 2023-04-10
 categories:

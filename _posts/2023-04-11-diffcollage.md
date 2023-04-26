@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] DiffCollage: Parallel Generation of Large Content with Diffusion Models"
 last_modified_at: 2023-04-11
 categories:

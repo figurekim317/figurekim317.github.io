@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Unlimited-Size Diffusion Restoration"
 last_modified_at: 2023-03-18
 categories:

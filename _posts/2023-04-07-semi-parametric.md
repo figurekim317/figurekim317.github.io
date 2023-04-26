@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Semi-Parametric Neural Image Synthesis"
 last_modified_at: 2023-04-07
 categories:
