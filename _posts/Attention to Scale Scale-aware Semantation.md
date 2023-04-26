@@ -1,10 +1,18 @@
 ---
 layout: post
-title:  "[CVPR 2016] Attention to Scale: Scale-aware Semantic Image Segmentation"
-date:   2017-05-26 13:05:55 +0300
-image:  /assets/images/blog/post-3.jpg
-author: uixgeek
-tags:   UX design
+image:  /assets/images/blog/post-5.jpg
+mathjax: true
+title:  "[Paper review] Attention to Scale: Scale-aware Semantic Image Segmentation"
+last_modified_at: 2023-04-15
+tags:
+  - Diffusion
+  - GAN
+  - Image Generation
+  - Computer Vision
+  - AI
+excerpt: "Attention to Scale: Scale-aware Semantic Image Segmentation"
+use_math: true
+classes: wide
 ---
 
 # [CVPR 2016] Attention to Scale: Scale-aware Semantic Image Segmentation
@@ -12,8 +20,6 @@ tags:   UX design
 > [https://arxiv.org/pdf/1511.03339.pdf](https://arxiv.org/pdf/1511.03339.pdf)
 
 ## Abstract
-
----
 
 - **Incorporating multi-scale features** in **FCNs** has been a **key element** to achieving state-of-the-art performance on semantic image segmentation.
 

@@ -1,11 +1,8 @@
 ---
 layout: post
 image:  /assets/images/blog/post-5.jpg
-mathjax: true
 title:  "[Paper review] BiSeNet V2: Bilateral Network with Guided Aggregation for Real-time Semantic Segmentation"
 last_modified_at: 2023-04-15
-categories:
-  - Paper review
 tags:
   - GAN
   - Image Translation
