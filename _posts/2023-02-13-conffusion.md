@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Conffusion: Confidence Intervals for Diffusion Models"
 last_modified_at: 2023-02-13
 categories:

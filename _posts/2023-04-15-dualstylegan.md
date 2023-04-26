@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Pastiche Master: Exemplar-Based High-Resolution Portrait Style Transfer (DualStyleGAN)"
 last_modified_at: 2023-04-15
 categories:

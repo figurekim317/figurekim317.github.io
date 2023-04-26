@@ -3,11 +3,15 @@ layout: post
 mathjax: true
 image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Denoising Diffusion Probabilistic Models (DDPM)"
+last_modified_at: 2023-04-15
+categories:
+  - Paper review
 tags:
-  - Diffusion
-  - Image Generation
+  - GAN
+  - Image Translation
   - Computer Vision
   - AI
+excerpt: "DualStyleGAN Paper review"
 use_math: true
 classes: wide
 ---

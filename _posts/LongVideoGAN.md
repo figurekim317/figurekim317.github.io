@@ -3,11 +3,15 @@ layout: post
 image:  /assets/images/blog/post-5.jpg
 mathjax: true
 title: "[Paper review] Generating Long Videos of Dynamic Scenes (LongVideoGAN)"
+last_modified_at: 2023-04-15
+categories:
+  - Paper review
 tags:
   - GAN
-  - Video Generation
+  - Image Translation
   - Computer Vision
   - AI
+excerpt: "DualStyleGAN Paper review"
 use_math: true
 classes: wide
 ---

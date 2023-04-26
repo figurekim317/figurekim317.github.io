@@ -3,11 +3,14 @@ layout: post
 image:  /assets/images/blog/post-5.jpg
 mathjax: true
 title: "[Paper review] TRACT: Denoising Diffusion Models with Transitive Closure Time-Distillation"
+categories:
+  - Paper review
 tags:
-  - Diffusion
-  - Distillation
+  - GAN
+  - Image Translation
   - Computer Vision
   - AI
+excerpt: "DualStyleGAN Paper review"
 use_math: true
 classes: wide
 ---

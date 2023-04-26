@@ -3,11 +3,15 @@ layout: post
 image:  /assets/images/blog/post-5.jpg
 mathjax: true
 title: "[Paper review] StyleGAN-T: Unlocking the Power of GANs for Fast Large-Scale Text-to-Image Synthesis"
+last_modified_at: 2023-04-15
+categories:
+  - Paper review
 tags:
   - GAN
-  - Text-to-Image
+  - Image Translation
   - Computer Vision
   - AI
+excerpt: "DualStyleGAN Paper review"
 use_math: true
 classes: wide
 ---

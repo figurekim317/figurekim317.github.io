@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Tackling the Generative Learning Trilemma with Denoising Diffusion GANs"
 last_modified_at: 2023-02-16
 categories:

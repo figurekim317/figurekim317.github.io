@@ -3,15 +3,17 @@ layout: post
 image:  /assets/images/blog/post-5.jpg
 mathjax: true
 title:  "[Paper review] BiSeNet V2: Bilateral Network with Guided Aggregation for Real-time Semantic Segmentation"
-date:   2017-05-26 15:05:55 +0300
-author: uixgeek
-tags:   
+last_modified_at: 2023-04-15
+categories:
   - Paper review
-  - Segmentation
-  - Real-time
+tags:
+  - GAN
+  - Image Translation
   - Computer Vision
   - AI
+excerpt: "DualStyleGAN Paper review"
 use_math: true
+classes: wide
 ---
 
 > CVPR 2022 Oral. [[Paper](https://arxiv.org/abs/2004.02147)] [[Github](https://github.com/CoinCheung/BiSeNet)]  

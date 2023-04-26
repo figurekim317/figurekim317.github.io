@@ -3,15 +3,15 @@ title: "[Paper review] HyperStyle: StyleGAN Inversion with HyperNetworks for Rea
 layout: post
 image:  /assets/images/blog/post-5.jpg
 mathjax: true
+last_modified_at: 2023-04-15
 categories:
-  - paper review
+  - Paper review
 tags:
-  - GAN Inversion
   - GAN
   - Image Translation
   - Computer Vision
   - AI
-excerpt: "HyperStyle 논문 리뷰"
+excerpt: "DualStyleGAN Paper review"
 use_math: true
 classes: wide
 ---

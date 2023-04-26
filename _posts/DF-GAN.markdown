@@ -3,15 +3,17 @@ layout: post
 title:  "[Paper review] DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis"
 date:   2017-05-26 15:05:55 +0300
 image:  /assets/images/blog/post-5.jpg
-author: uixgeek
-tags:   
+last_modified_at: 2023-04-15
+categories:
   - Paper review
+tags:
   - GAN
-  - Text-to-Image
+  - Image Translation
   - Computer Vision
   - AI
-mathjax: true
+excerpt: "DualStyleGAN Paper review"
 use_math: true
+classes: wide
 ---
 
 > CVPR 2022 Oral. [[Paper](https://arxiv.org/abs/2008.05865)] [[Github](https://github.com/tobran/DF-GAN)]  

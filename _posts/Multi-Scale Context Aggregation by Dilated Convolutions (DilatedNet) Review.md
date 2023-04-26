@@ -3,15 +3,17 @@ layout: post
 title:  "[Paper review] Multi-Scale Context Aggregation by Dilated Convolutions (DilatedNet)"
 date:   2017-05-26 15:05:55 +0300
 image:  /assets/images/blog/post-5.jpg
-author: uixgeek
-tags:   
+last_modified_at: 2023-04-15
+categories:
   - Paper review
-  - Segmentation
-  - Dilated convolutions
+tags:
+  - GAN
+  - Image Translation
   - Computer Vision
   - AI
-mathjax: true
+excerpt: "DualStyleGAN Paper review"
 use_math: true
+classes: wide
 ---
 
 # Multi-Scale Context Aggregation by Dilated Convolutions (DilatedNet) Review
