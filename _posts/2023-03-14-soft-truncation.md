@@ -1,8 +1,7 @@
 ---
+layout: post
 title: "[Paper review] Soft Truncation: A Universal Training Technique of Score-based Diffusion Model for High Precision Score Estimation"
-last_modified_at: 2023-03-14
-categories:
-  - Paper review
+image:  /assets/images/blog/post-5.jpg
 tags:
   - Diffusion
   - Image Generation
@@ -10,8 +9,10 @@ tags:
   - AI
 excerpt: "Soft Truncation Paper review"
 use_math: true
+mathjax: true
 classes: wide
 ---
+
 
 > ICML 2022. [[Paper](https://arxiv.org/abs/2106.05527)]  
 > Dongjun Kim, Seungjae Shin, Kyungwoo Song, Wanmo Kang, Il-Chul Moon  

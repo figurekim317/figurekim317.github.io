@@ -3,7 +3,6 @@ layout: post
 image:  /assets/images/blog/post-5.jpg
 mathjax: true
 title:  "[Paper review] Attention to Scale: Scale-aware Semantic Image Segmentation"
-last_modified_at: 2023-04-15
 tags:
   - Diffusion
   - GAN
