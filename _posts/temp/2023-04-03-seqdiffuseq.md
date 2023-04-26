@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] SeqDiffuSeq: Text Diffusion with Encoder-Decoder Transformers"
+title: "[Paper review] SeqDiffuSeq: Text Diffusion with Encoder-Decoder Transformers"
 last_modified_at: 2023-04-03
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Language Generation
   - Natural Language Processing
   - AI
-excerpt: "SeqDiffuSeq 논문 리뷰"
+excerpt: "SeqDiffuSeq Paper review"
 use_math: true
 classes: wide
 ---
@@ -34,7 +34,7 @@ SeqDiffuSeq의 개요는 위 그림에 묘사되어 있다. 입력 및 출력 �
 
 ### 1. Diffusion Model
 #### The forward process
-본 논문은 [iDDPM](https://kimjy99.github.io/논문리뷰/iddpm)을 자연어 도메인에 적용한 DiffusionLM에서 제안된 forward process 디자인을 따른다. 출력 시퀀스 $w_y$의 경우 embedding function $g_\phi$를 사용하여 이산적인 단어 토큰 $w_y^i$를 연속적인 단어 임베딩 $g_\phi(w_y^i)$로 매핑한다. 그런 다음 토큰 임베딩을 스택하여 시퀀스 $y$를 위한 임베딩 $g_\phi (w_y) \in \mathbb{R}^{n \times d}$를 정의한다 ($d$는 임베딩의 차원, $n$은 시퀀스 길이). Markov transition이 forward process에 더해지며
+본 논문은 [iDDPM](https://kimjy99.github.io/Paper review/iddpm)을 자연어 도메인에 적용한 DiffusionLM에서 제안된 forward process 디자인을 따른다. 출력 시퀀스 $w_y$의 경우 embedding function $g_\phi$를 사용하여 이산적인 단어 토큰 $w_y^i$를 연속적인 단어 임베딩 $g_\phi(w_y^i)$로 매핑한다. 그런 다음 토큰 임베딩을 스택하여 시퀀스 $y$를 위한 임베딩 $g_\phi (w_y) \in \mathbb{R}^{n \times d}$를 정의한다 ($d$는 임베딩의 차원, $n$은 시퀀스 길이). Markov transition이 forward process에 더해지며
 
 $$
 \begin{equation}

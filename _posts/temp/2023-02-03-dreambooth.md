@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation"
+title: "[Paper review] DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation"
 last_modified_at: 2023-02-03
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Text-to-Image
   - Computer Vision
   - AI
-excerpt: "DreamBooth 논문 리뷰"
+excerpt: "DreamBooth Paper review"
 use_math: true
 classes: wide
 ---

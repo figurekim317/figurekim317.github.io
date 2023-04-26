@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] SinFusion: Training Diffusion Models on a Single Image or Video"
+title: "[Paper review] SinFusion: Training Diffusion Models on a Single Image or Video"
 last_modified_at: 2023-03-20
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Video Generation
   - Computer Vision
   - AI
-excerpt: "SinFusion 논문 리뷰"
+excerpt: "SinFusion Paper review"
 use_math: true
 classes: wide
 ---

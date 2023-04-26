@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Training language models to follow instructions with human feedback (InstructGPT)"
+title: "[Paper review] Training language models to follow instructions with human feedback (InstructGPT)"
 last_modified_at: 2023-04-06
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - RLHF
   - Reinforcement Learning
   - Natural Language Processing
   - AI
-excerpt: "InstructGPT 논문 리뷰"
+excerpt: "InstructGPT Paper review"
 use_math: true
 classes: wide
 ---

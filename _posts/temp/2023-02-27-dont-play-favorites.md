@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Don’t Play Favorites: Minority Guidance for Diffusion Models"
+title: "[Paper review] Don’t Play Favorites: Minority Guidance for Diffusion Models"
 last_modified_at: 2023-02-27
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Image Generation
   - Computer Vision
   - AI
-excerpt: "Don’t Play Favorites 논문 리뷰"
+excerpt: "Don’t Play Favorites Paper review"
 use_math: true
 classes: wide
 ---
@@ -110,7 +110,7 @@ $w$는 guidance를 위한 scaling factor이다. 이 테크닉을 **minority guid
 
 ## Experiments
 - 데이터셋: Unconditional CIFAR-10, CelebA 64$\times$64, LSUN-Bedrooms 256$\times$256
-- Pre-trained model & classifier: [Diffusion models beat gans on image synthesis 논문](https://kimjy99.github.io/논문리뷰/dmbg)의 모델 사용
+- Pre-trained model & classifier: [Diffusion models beat gans on image synthesis 논문](https://kimjy99.github.io/Paper review/dmbg)의 모델 사용
 
 #### 1. Validation of the roles of $\tilde{l}$ and $w$
 다음은 다양한 minority class $\tilde{l}$에 대하여 생성된 샘플들로, CelebA에서 $L = 100$에 대하여 얻은 것이다. 왼쪽, 가운데, 오른쪽이 각각 $\tilde{l} = 0$, $\tilde{l} = 50$, $\tilde{l} = 100$으로 컨디셔닝되어 생성된 샘플이다. 

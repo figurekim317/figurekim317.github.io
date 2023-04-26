@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] DiffusionInst: Diffusion Model for Instance Segmentation"
+title: "[Paper review] DiffusionInst: Diffusion Model for Instance Segmentation"
 last_modified_at: 2023-02-17
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Instance Segmentation
   - Computer Vision
   - AI
-excerpt: "DiffusionInst 논문 리뷰"
+excerpt: "DiffusionInst Paper review"
 use_math: true
 classes: wide
 ---

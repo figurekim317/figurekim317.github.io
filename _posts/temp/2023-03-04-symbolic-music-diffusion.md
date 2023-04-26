@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Symbolic Music Generation with Diffusion Models"
+title: "[Paper review] Symbolic Music Generation with Diffusion Models"
 last_modified_at: 2023-03-04
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Music Generation
   - Audio and Speech Processing
   - AI
-excerpt: "Symbolic Music Generation with Diffusion Models 논문 리뷰"
+excerpt: "Symbolic Music Generation with Diffusion Models Paper review"
 use_math: true
 classes: wide
 ---

@@ -1,15 +1,15 @@
 ---
-title: "[논문리뷰] Tackling the Generative Learning Trilemma with Denoising Diffusion GANs"
+title: "[Paper review] Tackling the Generative Learning Trilemma with Denoising Diffusion GANs"
 last_modified_at: 2023-02-16
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - GAN
   - Image Generation
   - Computer Vision
   - AI
-excerpt: "Denoising Diffusion GAN 논문 리뷰"
+excerpt: "Denoising Diffusion GAN Paper review"
 use_math: true
 classes: wide
 ---

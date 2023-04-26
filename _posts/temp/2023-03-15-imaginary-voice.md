@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Imaginary Voice: Face-styled Diffusion Model for Text-to-Speech (Face-TTS)"
+title: "[Paper review] Imaginary Voice: Face-styled Diffusion Model for Text-to-Speech (Face-TTS)"
 last_modified_at: 2023-03-15
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Text-to-Speech
   - Audio and Speech Processing
   - AI
-excerpt: "Imaginary Voice 논문 리뷰"
+excerpt: "Imaginary Voice Paper review"
 use_math: true
 classes: wide
 ---

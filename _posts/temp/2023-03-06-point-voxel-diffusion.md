@@ -1,13 +1,13 @@
 ---
-title: "[논문리뷰] 3D Shape Generation and Completion through Point-Voxel Diffusion (PVD)"
+title: "[Paper review] 3D Shape Generation and Completion through Point-Voxel Diffusion (PVD)"
 last_modified_at: 2023-03-06
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - 3D Vision
   - AI
-excerpt: "Point-Voxel Diffusion 논문 리뷰"
+excerpt: "Point-Voxel Diffusion Paper review"
 use_math: true
 classes: wide
 ---

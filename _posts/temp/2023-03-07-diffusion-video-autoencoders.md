@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Diffusion Video Autoencoders: Toward Temporally Consistent Face Video Editing via Disentangled Video Encoding"
+title: "[Paper review] Diffusion Video Autoencoders: Toward Temporally Consistent Face Video Editing via Disentangled Video Encoding"
 last_modified_at: 2023-03-07
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Video Generation
   - Computer Vision
   - AI
-excerpt: "Diffusion Video Autoencoders 논문 리뷰"
+excerpt: "Diffusion Video Autoencoders Paper review"
 use_math: true
 classes: wide
 ---
@@ -31,7 +31,7 @@ classes: wide
 
 기존 GAN 기반 방법의 재구성 문제 외에도 동영상 편집 task에서 편집된 프레임 간의 시간적 일관성을 고려하여 현실적인 결과를 생성하는 것이 중요하다. 이를 해결하기 위해 일부 이전 연구들은 원래 프레임의 latent trajectory의 부드러움에 의존하거나 모든 프레임에 대해 동일한 편집 step을 수행하면서 latent feature를 직접 부드럽게 한다. 그러나 이 부드러움은 시간적 일관성을 보장하지 않는다. 오히려, 동일한 편집 step은 의도하지 않게 관련없는 모션 feature과 얽히게 될 수 있기 때문에 다른 프레임에 대해 다른 결과를 만들 수 있다. 예를 들어, 위 그림의 중간 줄에서 안경은 시간이 지남에 따라 다양하며 때로는 사람이 눈을 감을 때 줄어 든다.
 
-본 논문에서는 기존의 한계를 극복한 **Diffusion Video Autoencoder**라는 얼굴 영상을 위한 새로운 영상 편집 프레임워크를 제안한다. 첫째, 불완전한 재구성 품질로 어려움을 겪는 GAN 기반의 편집 방법 대신 얼굴 동영상 편집을 위한 diffusion 기반 모델을 새로 도입한다. 최근에 제안된 [DiffAE](https://kimjy99.github.io/논문리뷰/diffae/)처럼 모델은 원본 이미지를 완벽하게 복구할 수 있고 직접 편집할 수 있는 의미론적으로 유의미 한 latent space를 학습한다. 뿐만 아니라 동영상 편집 모델 최초로 동영상의 다음과 같이 분해된 feature를 인코딩한다. 
+본 논문에서는 기존의 한계를 극복한 **Diffusion Video Autoencoder**라는 얼굴 영상을 위한 새로운 영상 편집 프레임워크를 제안한다. 첫째, 불완전한 재구성 품질로 어려움을 겪는 GAN 기반의 편집 방법 대신 얼굴 동영상 편집을 위한 diffusion 기반 모델을 새로 도입한다. 최근에 제안된 [DiffAE](https://kimjy99.github.io/Paper review/diffae/)처럼 모델은 원본 이미지를 완벽하게 복구할 수 있고 직접 편집할 수 있는 의미론적으로 유의미 한 latent space를 학습한다. 뿐만 아니라 동영상 편집 모델 최초로 동영상의 다음과 같이 분해된 feature를 인코딩한다. 
 
 1. 모든 프레임이 공유하는 identity feature
 2. 각 프레임에서 동작이나 표정의 feature

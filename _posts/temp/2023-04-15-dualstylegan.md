@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Pastiche Master: Exemplar-Based High-Resolution Portrait Style Transfer (DualStyleGAN)"
+title: "[Paper review] Pastiche Master: Exemplar-Based High-Resolution Portrait Style Transfer (DualStyleGAN)"
 last_modified_at: 2023-04-15
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - GAN
   - Image Translation
   - Computer Vision
   - AI
-excerpt: "DualStyleGAN 논문 리뷰"
+excerpt: "DualStyleGAN Paper review"
 use_math: true
 classes: wide
 ---

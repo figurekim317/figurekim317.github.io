@@ -1,15 +1,15 @@
 ---
-title: "[논문리뷰] Semi-Parametric Neural Image Synthesis"
+title: "[Paper review] Semi-Parametric Neural Image Synthesis"
 last_modified_at: 2023-04-07
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Image Generation
   - Autoregressive
   - Computer Vision
   - AI
-excerpt: "Semi-Parametric Neural Image Synthesis 논문 리뷰"
+excerpt: "Semi-Parametric Neural Image Synthesis Paper review"
 use_math: true
 classes: wide
 ---

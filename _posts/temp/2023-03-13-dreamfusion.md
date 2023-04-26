@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] DreamFusion: Text-to-3D using 2D Diffusion"
+title: "[Paper review] DreamFusion: Text-to-3D using 2D Diffusion"
 last_modified_at: 2023-03-13
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Text-to-3D
   - 3D Vision
   - AI
-excerpt: "DreamFusion 논문 리뷰"
+excerpt: "DreamFusion Paper review"
 use_math: true
 classes: wide
 ---
@@ -129,7 +129,7 @@ $$\mathcal{L}_\textrm{SDS}$$의 모드 탐색 특성을 감안할 때 이 loss�
 ## The DreamFusion Algorithm
 <center><img src='{{"/assets/img/dreamfusion/dreamfusion-fig3.PNG" | relative_url}}' width="100%"></center>
 <br>
-샘플을 생성하기 위해 일반적인 연속 최적화 문제 내에서 diffusion model을 loss로 사용할 수 있는 방법을 설명했으므로 이제 텍스트에서 3D 에셋을 생성할 수 있는 특정 알고리즘을 구성할 것이다. Diffusion model의 경우 텍스트에서 이미지를 합성하도록 학습된 [Imagen](https://kimjy99.github.io/논문리뷰/imagen) 모델을 사용한다. 저자들은 64$\times$64 base model만 사용하고 이 사전 학습된 모델을 수정 없이 그대로 사용한다. 텍스트에서 scene을 합성하기 위해 NeRF와 유사한 모델을 임의의 가중치로 초기화한 다음 임의의 카메라 위치와 각도에서 해당 NeRF의 view를 반복적으로 렌더링한다. 이러한 렌더링을 Imagen을 감싸는 score distillation loss function에 대한 입력으로 사용한다. 이 접근 방식을 사용한 간단한 gradient descent은 결국 텍스트와 유사한 NeRF로 parameterize된 3D 모델을 생성한다. 이 접근 방식에 대한 개요는 위 그림과 같다.
+샘플을 생성하기 위해 일반적인 연속 최적화 문제 내에서 diffusion model을 loss로 사용할 수 있는 방법을 설명했으므로 이제 텍스트에서 3D 에셋을 생성할 수 있는 특정 알고리즘을 구성할 것이다. Diffusion model의 경우 텍스트에서 이미지를 합성하도록 학습된 [Imagen](https://kimjy99.github.io/Paper review/imagen) 모델을 사용한다. 저자들은 64$\times$64 base model만 사용하고 이 사전 학습된 모델을 수정 없이 그대로 사용한다. 텍스트에서 scene을 합성하기 위해 NeRF와 유사한 모델을 임의의 가중치로 초기화한 다음 임의의 카메라 위치와 각도에서 해당 NeRF의 view를 반복적으로 렌더링한다. 이러한 렌더링을 Imagen을 감싸는 score distillation loss function에 대한 입력으로 사용한다. 이 접근 방식을 사용한 간단한 gradient descent은 결국 텍스트와 유사한 NeRF로 parameterize된 3D 모델을 생성한다. 이 접근 방식에 대한 개요는 위 그림과 같다.
 
 ### 1. Neural Rendering of a 3D Model
 NeRF는 volumetric raytracer와 MLP로 구성된 neural inverse rendering 기술이다. NeRF에서 이미지를 렌더링하는 것은 카메라의 projection 중심에서 이미지 평면의 픽셀 위치로 각 픽셀에 대한 광선(ray)을 캐스팅하여 수행된다. 각 광선을 따라 샘플링된 3D 포인트 $\mu$는 MLP를 통과하여 4개의 스칼라 값을 출력으로 생성합니다.
@@ -199,7 +199,7 @@ $$
 #### 3. Diffusion loss with view-dependent conditioning
 텍스트 프롬프트는 객체의 표준 view는 잘 설명하지만, 다른 view를 샘플링할 때는 좋은 설명이 아니다. 따라서 랜덤하게 샘플링된 카메라의 위치에 기반하여 view에 따라 다른 텍스트를 원래 텍스트에 추가하는 것이 유익하다. $\phi_\textrm{cam} > 60^\circ$의 경우 "overhead view"를 추가하고 $\phi_\textrm{cam} \le 60^\circ$의 경우 $\theta_\textrm{cam}$에 따라 "front view", "side view", "back view"를 추가하기 위해 텍스트 임베딩의 가중치 조합을 사용한다. 
 
-[Imagen](https://kimjy99.github.io/논문리뷰/imagen)의 사전 학습된 64$\times$64 base text-to-image model을 사용한다. 이 모델은 대규모 웹 이미지-텍스트 데이터로 학습되었으며 T5-XXL 텍스트 임베딩에 의존한다. 저자들은 가중치 함수 $w(t) = \sigma_t^2$를 사용하였지만, 균일한 가중치를 사용하는 것도 유사한 결과를 보였다고 한다. 수치적 불안정성으로 인한 매우 높고 낮은 noise level을 피하기 위해 $t \sim \mathcal{U}(0.02, 0.98)$에서 샘플링한다. Classifier-free guidance의 경우, $\omega = 100$으로 설정하였으며, guidance 가중치가 높을수록 샘플 품질이 향상된다는 것을 알 수 있었다고 한다. 이는 이미지 샘플링 방법보다 훨씬 더 크며 작은 guidance 가중치에서 과도하게 oversmoothing되는 목적함수의 모드 탐색 특성으로 인해 필요할 수 있다. 렌더링된 이미지와 샘플링된 timestep $t$가 주어지면 노이즈를 샘플링하고 NeRF 파라미터의 기울기를 계산한다. 
+[Imagen](https://kimjy99.github.io/Paper review/imagen)의 사전 학습된 64$\times$64 base text-to-image model을 사용한다. 이 모델은 대규모 웹 이미지-텍스트 데이터로 학습되었으며 T5-XXL 텍스트 임베딩에 의존한다. 저자들은 가중치 함수 $w(t) = \sigma_t^2$를 사용하였지만, 균일한 가중치를 사용하는 것도 유사한 결과를 보였다고 한다. 수치적 불안정성으로 인한 매우 높고 낮은 noise level을 피하기 위해 $t \sim \mathcal{U}(0.02, 0.98)$에서 샘플링한다. Classifier-free guidance의 경우, $\omega = 100$으로 설정하였으며, guidance 가중치가 높을수록 샘플 품질이 향상된다는 것을 알 수 있었다고 한다. 이는 이미지 샘플링 방법보다 훨씬 더 크며 작은 guidance 가중치에서 과도하게 oversmoothing되는 목적함수의 모드 탐색 특성으로 인해 필요할 수 있다. 렌더링된 이미지와 샘플링된 timestep $t$가 주어지면 노이즈를 샘플링하고 NeRF 파라미터의 기울기를 계산한다. 
 
 #### 4. Optimization
 본 논문의 3D scene은 칩이 4개인 TPUv4 시스템에 최적화되어 있다. 각 칩은 별도의 view를 렌더링하고 device당 batch size 1로 diffusion U-Net을 평가한다. 약 1.5시간이 걸리는 15,000 iteration으로 최적화한다. 컴퓨팅 시간은 NeRF 렌더링과 diffusion model 평가 사이의 균등하게 분할된다. 파라미터는 Distributed Shampoo optimizer를 사용하여 최적화돤다.

@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Noise2Music: Text-conditioned Music Generation with Diffusion Models"
+title: "[Paper review] Noise2Music: Text-conditioned Music Generation with Diffusion Models"
 last_modified_at: 2023-04-10
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Text-to-Speech
   - Audio and Speech Processing
   - AI
-excerpt: "Noise2Music 논문 리뷰"
+excerpt: "Noise2Music Paper review"
 use_math: true
 classes: wide
 ---
@@ -31,7 +31,7 @@ classes: wide
 
 ## Methods
 ### 1. Diffusion models
-[DDPM 논문리뷰](https://kimjy99.github.io/논문리뷰/ddpm) 참고
+[DDPM Paper review](https://kimjy99.github.io/Paper review/ddpm) 참고
 
 $$
 \begin{equation}

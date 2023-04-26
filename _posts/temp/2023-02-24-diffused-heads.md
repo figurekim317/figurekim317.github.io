@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Diffused Heads: Diffusion Models Beat GANs on Talking-Face Generation"
+title: "[Paper review] Diffused Heads: Diffusion Models Beat GANs on Talking-Face Generation"
 last_modified_at: 2023-02-24
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Video Generation
   - Computer Vision
   - AI
-excerpt: "Diffused Heads 논문 리뷰"
+excerpt: "Diffused Heads Paper review"
 use_math: true
 classes: wide
 ---

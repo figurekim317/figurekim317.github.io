@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Guided-TTS: A Diffusion Model for Text-to-Speech via Classifier Guidance"
+title: "[Paper review] Guided-TTS: A Diffusion Model for Text-to-Speech via Classifier Guidance"
 last_modified_at: 2023-03-02
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Text-to-Speech
   - Audio and Speech Processing
   - AI
-excerpt: "Guided-TTS 논문 리뷰"
+excerpt: "Guided-TTS Paper review"
 use_math: true
 classes: wide
 ---

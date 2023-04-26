@@ -1,8 +1,8 @@
 ---
-title: "[논문리뷰] AdaptDiffuser: Diffusion Models as Adaptive Self-evolving Planners"
+title: "[Paper review] AdaptDiffuser: Diffusion Models as Adaptive Self-evolving Planners"
 last_modified_at: 2023-03-22
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Reinforcement Learning
@@ -81,7 +81,7 @@ $\tau^i$는 궤적 $\tau^0$를 $i$번 $\epsilon$으로 손상시킨 것이다. $
 
 ## Method
 ### 1. Planning with Task-oriented Diffusion Model
-[Diffuser](https://kimjy99.github.io/논문리뷰/diffuser) 논문을 따라, 본 논문은 planning 궤적을 다음과 같은 state의 추가 차원으로 action을 포함하는 특수한 종류의 시퀀스 데이터로 재정의할 수 있다.
+[Diffuser](https://kimjy99.github.io/Paper review/diffuser) 논문을 따라, 본 논문은 planning 궤적을 다음과 같은 state의 추가 차원으로 action을 포함하는 특수한 종류의 시퀀스 데이터로 재정의할 수 있다.
 
 $$
 \begin{equation}

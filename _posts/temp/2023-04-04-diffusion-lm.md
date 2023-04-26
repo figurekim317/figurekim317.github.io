@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Diffusion-LM Improves Controllable Text Generation"
+title: "[Paper review] Diffusion-LM Improves Controllable Text Generation"
 last_modified_at: 2023-04-04
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Language Generation
   - Natural Language Processing
   - AI
-excerpt: "Diffusion-LM 논문 리뷰"
+excerpt: "Diffusion-LM Paper review"
 use_math: true
 classes: wide
 ---

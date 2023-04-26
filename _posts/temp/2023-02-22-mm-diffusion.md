@@ -1,8 +1,8 @@
 ---
-title: "[논문리뷰] MM-Diffusion: Learning Multi-Modal Diffusion Models for Joint Audio and Video Generation"
+title: "[Paper review] MM-Diffusion: Learning Multi-Modal Diffusion Models for Joint Audio and Video Generation"
 last_modified_at: 2023-02-22
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Video Generation
@@ -10,7 +10,7 @@ tags:
   - Computer Vision
   - Audio and Speech Processing
   - AI
-excerpt: "MM-Diffusion 논문 리뷰"
+excerpt: "MM-Diffusion Paper review"
 use_math: true
 classes: wide
 ---
@@ -33,7 +33,7 @@ Multimodal diffusion model 디자인의 어려움은 주로 다음 두 가지 �
 
 ## Approach
 ### 1. Preliminaries of Vanilla Diffusion
-[DDPM 논문리뷰](https://kimjy99.github.io/논문리뷰/ddpm) 참고
+[DDPM Paper review](https://kimjy99.github.io/Paper review/ddpm) 참고
 
 ### 2. Multi-Modal Diffusion Models
 <center><img src='{{"/assets/img/mmdiff/mmdiff-fig2.PNG" | relative_url}}' width="50%"></center>

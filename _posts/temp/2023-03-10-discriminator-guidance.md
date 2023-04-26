@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Refining Generative Process with Discriminator Guidance in Score-based Diffusion Models"
+title: "[Paper review] Refining Generative Process with Discriminator Guidance in Score-based Diffusion Models"
 last_modified_at: 2023-03-10
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Image Generation
   - Computer Vision
   - AI
-excerpt: "Discriminator Guidance 논문 리뷰"
+excerpt: "Discriminator Guidance Paper review"
 use_math: true
 classes: wide
 ---

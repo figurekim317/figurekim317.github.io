@@ -1,15 +1,15 @@
 ---
-title: "[논문리뷰] Make-A-Video: Text-to-Video Generation without Text-Video Data"
+title: "[Paper review] Make-A-Video: Text-to-Video Generation without Text-Video Data"
 last_modified_at: 2023-02-23
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Video Generation
   - Text-to-Video
   - Computer Vision
   - AI
-excerpt: "Make-A-Video 논문 리뷰"
+excerpt: "Make-A-Video Paper review"
 use_math: true
 classes: wide
 ---

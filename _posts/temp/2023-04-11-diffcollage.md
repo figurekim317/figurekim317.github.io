@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] DiffCollage: Parallel Generation of Large Content with Diffusion Models"
+title: "[Paper review] DiffCollage: Parallel Generation of Large Content with Diffusion Models"
 last_modified_at: 2023-04-11
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Image Generation
   - Computer Vision
   - AI
-excerpt: "DiffCollage 논문 리뷰"
+excerpt: "DiffCollage Paper review"
 use_math: true
 classes: wide
 ---

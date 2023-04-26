@@ -1,13 +1,13 @@
 ---
-title: "[논문리뷰] Cross-domain Compositing with Pretrained Diffusion Models"
+title: "[Paper review] Cross-domain Compositing with Pretrained Diffusion Models"
 last_modified_at: 2023-03-01
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Computer Vision
   - AI
-excerpt: "Cross-domain Compositing with Pretrained Diffusion Models 논문 리뷰"
+excerpt: "Cross-domain Compositing with Pretrained Diffusion Models Paper review"
 use_math: true
 classes: wide
 ---
@@ -44,7 +44,7 @@ x_t = \sqrt{\vphantom{1} \bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilo
 \end{equation}
 $$
 
-자세한 내용은 [DDPM 논문리뷰](https://kimjy99.github.io/논문리뷰/ddpm) 참고
+자세한 내용은 [DDPM Paper review](https://kimjy99.github.io/Paper review/ddpm) 참고
 
 ### 2. Masked ILVR
 본 논문의 목표는 서로 다른 시각적 도메인의 부분을 포함하는 합성 이미지를 만드는 것이다. 이를 위해서는 객체의 구조를 유지하면서 외형을 변경할 수 있는 방법이 필요하다. 또한 이 방법은 사실적인 블렌딩과 같은 다른 합성 요구 사항을 이상적으로 해결해야 한다. 

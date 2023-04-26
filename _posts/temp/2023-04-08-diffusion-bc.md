@@ -1,13 +1,13 @@
 ---
-title: "[논문리뷰] Imitating Human Behaviour with Diffusion Models"
+title: "[Paper review] Imitating Human Behaviour with Diffusion Models"
 last_modified_at: 2023-04-08
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Reinforcement Learning
   - AI
-excerpt: "Imitating Human Behaviour with Diffusion Models 논문 리뷰"
+excerpt: "Imitating Human Behaviour with Diffusion Models Paper review"
 use_math: true
 classes: wide
 ---
@@ -38,7 +38,7 @@ BC에 대한 인기 있는 접근 방식은 학습을 더 간단하게 만들기
 ### 1. Diffusion Model Overview
 Diffusion mode은 Gaussian noise를 반복적인 방식으로 일부 대상 분포에 매핑하는 생성 모델이며, 선택적으로 일부 컨텍스트로 컨디셔닝할 수 있다. $a_T \sim \mathcal{N} (0, I)$부터 시작하여 시퀀스 $a_{T -1}, a_{T -2}, \cdots, a_0$은 깨끗한 샘플인 $a_0$과 함께 각각 이전 버전의 약간 denoise된 버전으로 예측된다. 여기서 $T$는 denoising step의 총 수이다. 
 
-본 논문은 [DDPM](https://kimjy99.github.io/논문리뷰/ddpm)을 사용한다. 학습 중에 noisy한 입력은 다음과 같이 생성될 수 있다. 
+본 논문은 [DDPM](https://kimjy99.github.io/Paper review/ddpm)을 사용한다. 학습 중에 noisy한 입력은 다음과 같이 생성될 수 있다. 
 
 $$
 \begin{equation}

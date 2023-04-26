@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Unlimited-Size Diffusion Restoration"
+title: "[Paper review] Unlimited-Size Diffusion Restoration"
 last_modified_at: 2023-03-18
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Image Restoration
   - Computer Vision
   - AI
-excerpt: "Unlimited-Size Diffusion Restoration 논문 리뷰"
+excerpt: "Unlimited-Size Diffusion Restoration Paper review"
 use_math: true
 classes: wide
 ---
@@ -30,13 +30,13 @@ Diffusion 기반의 Image Restoration (IR) 방법들은 크게 supervised와 zer
 
 OOD 문제는 랜덤하게 crop된 이미지로 diffusion model을 학습시켜 해결할 수 있다. 하지만 신경망 구조의 제약은 해결하기 어렵다. 이 제약을 피하기 위한 일반적인 방법은 이미지를 고정된 크기의 패치로 나누고 각 패치를 독립적으로 처리한 후 패치들을 연결하여 최종 결과로 사용한다. 하지만, 이 방법은 모든 패치의 글로벌한 semantic을 고려하지 않기 때문에 분명한 블럭 아티팩트와 합리적이지 않은 복구 결과를 만들어 낸다. 
 
-저자들은 [DDNM](https://kimjy99.github.io/논문리뷰/ddnm)이 inpainting task에서 이웃한 패치간의 상관관계가 잘 고려됨을 관찰하였다. 저자들은 DDNM에서 영감을 받아 패치들을 나눌 때 겹치는 영역을 그대로 두고 다음 패치를 처리할 때 겹치는 영역을 추가 마스크 제약 조건으로 사용한다. 이 방법을 **Mask Shift Restoration (MSR)**이라고 부르며, 패치들 사이의 일관성을 보장하고 효과적으로 경계 아티팩트를 제거한다.
+저자들은 [DDNM](https://kimjy99.github.io/Paper review/ddnm)이 inpainting task에서 이웃한 패치간의 상관관계가 잘 고려됨을 관찰하였다. 저자들은 DDNM에서 영감을 받아 패치들을 나눌 때 겹치는 영역을 그대로 두고 다음 패치를 처리할 때 겹치는 영역을 추가 마스크 제약 조건으로 사용한다. 이 방법을 **Mask Shift Restoration (MSR)**이라고 부르며, 패치들 사이의 일관성을 보장하고 효과적으로 경계 아티팩트를 제거한다.
 
 추가로 OOD 문제를 완화하기 위해 먼저 작은 크기에서 결과를 복구한 다음에 이 작은 결과를 글로벌한 사전 지식으로 사용하여 최종 결과를 만든다. 이 방법을 **Hierarchical Restoration (HiR)**이라 부른다. MSR과 HiR 모두 zero-shot 성질에 완벽하게 맞으며 유연하게 결합할 수 있다. Range-Null space Decomposition (RND) 관점에서 MSR과 HiR은 주어진 inverse problem에 필수적으로 추가 선형 제약들을 추가한다. 이 성질은 DDNM에 완벽하게 알맞으며 RND의 원칙을 정확히 따른다. 
 
 ## Preliminaries
-- Diffusion model: [DDPM 논문리뷰](https://kimjy99.github.io/논문리뷰/ddpm) 참고
-- Denoising Diffusion Null-space Model (DDNM): [DDNM 논문리뷰](https://kimjy99.github.io/논문리뷰/ddnm) 참고
+- Diffusion model: [DDPM Paper review](https://kimjy99.github.io/Paper review/ddpm) 참고
+- Denoising Diffusion Null-space Model (DDNM): [DDNM Paper review](https://kimjy99.github.io/Paper review/ddnm) 참고
 
 <center><img src='{{"/assets/img/unlimited-size/unlimited-size-algo1.PNG" | relative_url}}' width="50%"></center>
 
@@ -60,7 +60,7 @@ OOD 문제는 랜덤하게 crop된 이미지로 diffusion model을 학습시켜 
 임의의 이미지 크기를 해결하기 위해 처리 크기가 고정된 diffusion model을 사용할 수 있는 방법은 무엇이 있을까? 간단한 해결책은 입력 이미지 $y$를 패치로 나누고 각 패치를 독립적으로 해결한 다음 결과를 연결하는 것이다. 그러나 이는 분명한 경계 아티팩트를 유발할 수 있다. 이는 각 패치가 독립적으로 해결되고 패치들의 연결이 고려되지 않기 때문이다. 
 
 ### 3. Mask-Shift Restoration
-많은 IR task 중 inpainting은 마스킹된 영역과 마스킹되지 않은 영역 간의 연결을 고려한 대표적인 작업입니다. DDNM과 [RePaint](https://kimjy99.github.io/논문리뷰/repaint)와 같은 zero-shot 방법은 inpainting 해결에 좋은 성능을 보여준다. 
+많은 IR task 중 inpainting은 마스킹된 영역과 마스킹되지 않은 영역 간의 연결을 고려한 대표적인 작업입니다. DDNM과 [RePaint](https://kimjy99.github.io/Paper review/repaint)와 같은 zero-shot 방법은 inpainting 해결에 좋은 성능을 보여준다. 
 
 저자들의 통찰은 패치를 나눌 때 겹치는 영역을 남겨두고 다음 패치를 해결할 때 이러한 겹치는 영역을 추가 제약 조건으로 사용할 수 있다는 것이다. 멋진 점은 이 제약 조건을 코드 한 줄만 추가하면 기존의 zero-shot 방법에 통합할 수 있다는 것이다. 
 

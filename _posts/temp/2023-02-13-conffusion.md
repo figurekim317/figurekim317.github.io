@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] Conffusion: Confidence Intervals for Diffusion Models"
+title: "[Paper review] Conffusion: Confidence Intervals for Diffusion Models"
 last_modified_at: 2023-02-13
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Inpainting
   - Computer Vision
   - AI
-excerpt: "Conffusion 논문 리뷰"
+excerpt: "Conffusion Paper review"
 use_math: true
 classes: wide
 ---

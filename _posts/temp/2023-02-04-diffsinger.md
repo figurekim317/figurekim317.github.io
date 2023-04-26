@@ -1,14 +1,14 @@
 ---
-title: "[논문리뷰] DiffSinger: Singing Voice Synthesis via Shallow Diffusion Mechanism"
+title: "[Paper review] DiffSinger: Singing Voice Synthesis via Shallow Diffusion Mechanism"
 last_modified_at: 2023-02-04
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Singing Voice Synthesis
   - Audio and Speech Processing
   - AI
-excerpt: "DiffSinger 논문 리뷰"
+excerpt: "DiffSinger Paper review"
 use_math: true
 classes: wide
 ---
@@ -42,7 +42,7 @@ Singing voice synthesis (SVS)는 악보로부터 자연스럽고 표현력 있�
 또한 SVS의 파이프라인은 TTS task와 유사하므로 일반화를 위해 DiffSinger를 조정하여 DiffSpeech도 만들 수 있다. 
 
 ## Diffusion model
-[DDPM 논문리뷰](https://kimjy99.github.io/논문리뷰/ddpm) 참고
+[DDPM Paper review](https://kimjy99.github.io/Paper review/ddpm) 참고
 
 ## DiffSinger
 ### 1. Naive Version of DiffSinger
