@@ -1,0 +1,231 @@
+---
+layout: post
+image:  /assets/images/blog/post-5.jpg
+mathjax: true
+title: "[Autonomy devcourse 1$_{st}$] Linux"
+last_modified_at: 2023-04-27
+categories:
+  - Paper review
+tags:
+  - Autonomy-driving
+  - dev
+excerpt: "Dev course review"
+use_math: true
+classes: wide
+---
+
+## 1. Introduction
+- \- All electronic devices such as computers and smartphones are composed of hardware and software.
+   - \- Hardware (HW): everything physically in an electronic device
+   - \- Software (SW): A collection of commands given to a computer to achieve a specific purpose
+- \- When using the software, the computer's CPU, RAM, and other hardware are used to perform the operation requested by the user.
+   - \- At this time, the Operating System (OS) allocates hardware resources as needed for the software.
+     - \- The operating system manages limited hardware resources such as CPU and RAM and mediates between HW and SW.
+     - ex. Windows, MAC, Android, IOS etc.
+- \- Linux is also an operating system
+   - \- An operating system based on UNIX by Linus Torvals, a Finnish SW engineer.
+
+## 2. Why use Linux?
+- \- **Open source**
+   - \- Linux is an open source operating system
+   - \- Anyone, whether an individual or a corporation, can install and use Linux for free.
+   - \- open source movement
+
+- \- **Customizing**
+   - \- Linux strictly means the Linux kernel.
+     - \- The kernel is a part of the OS that performs the core functions of the OS.
+   - \- Only the core functions that Linux OS needs to perform are defined, and the other parts can be customized and used by the user according to his/her own use.
+
+- \- **Stable operation**
+   - \- Since it is open source, various users can verify it in real time.
+
+## 3. Linux(UNIX) Required Commands
+### 3.1. CLI(Command Line Interface) commands
+   - \- Made for i18n (internationalization)
+   - \- UTF-8 is used as the default character set
+   - \- It is recommended to use the en_US locale as it is affected by the setting of the LANG environment variable
+
+#### File
+- \- **Path**
+  - \- command
+    - $pwd$: print working directory
+    - $cd$: change directory
+  - \- /: root directory
+  - \- ~: home directory
+  - \- -: previous directory
+  - \- Path type
+    - \- Absolute path (abs-path): path starting from the root directory
+    - \- Relative path: path starting from the current directory (.)
+
+- \- **Check**
+   - \- command
+     - \- $ls, file, stat, which, find$
+   
+   - \- file mode bit: 3+9 bit system representing UNIX file permissions
+     - \- how to write
+       - \- Symbolic mode:
+         - How to mark with "rwx" symbol
+         - Consists of owner, group, and others parts, each with 3 spaces
+         - r: readable, w: writable, e: executable
+       - \- Octal mode: A method of expressing bits in octal notation
+
+    - \- $stat$: outputs status of file, meta data of file
+      - \- meta data: Modifying information, not content (file name, creation time, permissions)
+    
+    - \- $touch$: update meta data of file, create an empty file if file does not exist
+    
+    - \- $find$: find directory
+      - \-name filename: search for files with the same name as filename
+      - \-size n: search for files of size n
+      - \-mtime n: search for files with modified time n
+      - \-inum n: Search for files with inode number n
+      - \-max(min)depth level: Search for files with a maximum (minimum) depth of level in the subdirectory of the location to be searched
+      - $ex1.$ find . -name '*k.data' -a -size 1M (-a: AND, -o: OR)
+      - $ex2.$ find -name "*.tmp" -exec rm {}\ ;
+        - \- *.tmp files are put in {}
+        - \- The meaning of "\" is that the command is executed while searching one by one.
+        - \- "\+" finds everything and executes the command at once
+        
+      - practice 1. Find general files whose contents have been changed within the last 24 hours under the current directory and save the list as mtime_b24.txt file
+        - find ./ -mtime -1 -type f > mtime_b24.txt
+      - practice 2. If it goes beyond the 3rd level under the current directory, it is not searched, and all files that satisfy the condition are copied to the "~/backup" directory.
+        - find ./ -maxdepth 3 ... -exec cp {} ~/backup \;
+
+<center>
+  <figure>
+    <img src='{{"/assets/images/blog/dev/1_linux/file descripter.png" | relative_url}}' width="70%">
+    <figcaption>Figure 3. File descriptor.</figcaption>
+  </figure>
+</center>
+
+
+- \- **stdio** (standard input/output)
+   - file channel: channel for input/output to file
+     - \- A kind of virtualization layer that allows standardized input/output methods to be used to input/output channels to files without being directly transferred to hardware.
+       - \- file channel: object with meta information for input/output to a file
+     - \- Enables simplicity of I/O interface in C language
+   - File descriptor (often used as file descriptor, fd)
+     - \- Unique idenfifier attached to file channels, named numerically
+     - Starting from positive number 0 and increasing
+     - Reserved file descriptors: 0 (stdin), 1 (stdout), 2 (stderr)
+The fd value is given within the process.
+Can't I open the same file twice?
+- Even if the same process opens the same file, a new pd value is assigned. It's possible, but there's a possibility of overlapping updates.
+- used as communication between PIPE processes
+   - A type of IPC (inter-process communication)
+   - Type of pipe
+     - anonymous pipe
+       - serial connection of processes "(A|B|C)"
+       - Temporarily created and destroyed pipes
+       - Created by using "|" (vertical bar) in the shell.
+       - Ex. "find ~ | wc -l"
+         - "find ~": find all files under the home directory
+         - "|" Since there is a pipe, since it is wc (word count), it is per line, so I want to know how many files are under the home directory.
+         - The output of the find command (stdout) is concatenated with the input (stdin) of the wc command.
+         - Has the same meaning as "find ~ > tmp.txt; wc -l < temp.txt; rm tmp.txt".
+         - fd: 1 is connected to fd: 0 via a pipe
+         - When using the wc -l option, the number of lines is counted.
+     - named pipes
+       In Unix, the implementation of a named pipe is called a FIFO pipe.
+       - It is structured like a file, so there is a path+filename.
+       - Expresses that having a path is named.
+       - mkfifo or POSIX C API
+-Redirection
+   - Link the direction of a channel to another place
+   - A > B : connect (save) A's stdout to file B
+     - ls -a > ls.txt
+   - A < B : link A's stdin to file B
+   - A >> B: direction is the same as >, append mode
+     ex. strace ls 2> strace.txt
+       - 2> means a command that connects file descriptor number 2 to a file.
+       - Save the output of stderr, which is fd 2, to a file.
+
+- $cat$: default filter to freely link stdout to files
+   - Used to output the contents of a file to stdout
+   - Used to redirect input from stdin and output it to a file
+   - Ex. cat ~/.bashrc
+   - Ex. cat > hello.txt Then, if you write Hello world and do ^D, Hello world is entered into hello.txt and exited. 
+
+
+- \- **Change data**
+    - \- command
+      - \- $cp, mv, rm, mkdir/rmdir, ln$
+    - \- $mkdir$: make directory
+    - \- $rmdir$: remove directory (In many cases, files and directories are deleted together with $rm -rf$ instead of $rmdir$.)
+    - \- $cp$: copy
+    - \- $mv$: move, rename
+    - \- $rm$: remove
+
+- \- **Meta change**
+   - \- command
+    - \- $chmod$: change mode 
+    - \- $chown, chgrp$: change owner/group
+
+- \- **Archive**
+    - \- $tar$
+   - An archive is a grouping of multiple files.
+   -tar -ctxv
+     - c (create): create an archive
+     - t(test) : test the archive
+     - x (extract) : Extracts a file from an archive
+     - v (verbose): output detailed information (not used in practice)
+   - f archive-file: Archive file name to input/output --exclude file: Exclude the file from the target
+   - Ex. tar c *.c > arc_c.tar == tar cf arc_c.tar *.c (just give the f option. *.c files go into arc_c.tar)
+
+- \- **Compress**
+    - \- $gzip, zstd$
+   - The compression rate is **xz** > bzip2 > **zstd** > gzip > lz4
+   - xz: Compression rate is good, but slow.
+   - zstd: used a lot these days
+
+   ex. The classic way to use tar and gzip together
+   - compression: tar c /etc/*.conf | gzip -c > etc.tar.gz
+   - release: gzip -cd etc.tar.gz | tar x
+
+#### Text
+- \- Editor
+   - \- vim(vi)
+- \- Filter
+   - \- cat(tac), head, tail, less/more, sort
+- \- Regex
+   - \- grep, sed, awk
+
+#### Job control
+  - \- jobs, fg, bg
+
+#### process control
+  - \- kill, pkill, pgrep, strace(tracing)
+
+#### Networking
+  - \- nc (net cat), curl, wget
+
+#### Disk
+  - \- df
+
+#### System
+  - \- free, top, ps, pidstat, lshw
+
+### 3.2. Admin commands
+
+#### Package
+- \- Redhat: rpm, yum
+- \- Debian: dpkg, apt
+
+#### Network
+- \- status: ss, netstat(old fashion)
+- \- config: nmcli, ip
+- \- ssh
+- \- packet: tcpdump, wireshark, tshark
+
+#### Files and kernel
+- \- lsof
+- \- sysctl
+
+#### Disks
+- \- fdisk, parted, mkfs, mount, lsblk, blkid, grubby, udisksctl
+
+#### User
+- \- useradd, groupadd, usermod
+- \- passwd, chpasswd
+
+## 4.
