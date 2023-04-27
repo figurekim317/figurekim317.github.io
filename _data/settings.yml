@@ -192,7 +192,7 @@ blog-tags:
   - { title: "Object detection", type: "object detection" }
   - { title: "Segmentation", type: "segmentation" }
   - { title: "Diffusion", type: "diffusion" }
-  - { title: "Self-driving", type: "self-driving"}
+  - { title: "Autonomy-driving", type: "Autonomy-driving"}
   - { title: "Dev course", type: "dev"}
   - { title: "Coding", type: "coding"}
 
