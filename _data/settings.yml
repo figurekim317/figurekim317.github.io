@@ -171,7 +171,7 @@ portfolio-items:
       - type: "SNN"
       - type: "Object detection"
 
-  - image: "assets/images/portfolio/item-6.png"
+  - image: "assets/images/portfolio/item-4.png"
     url: "/fpost/4/"
     portfolio-type:
       - type: "Model compression"
@@ -179,7 +179,7 @@ portfolio-items:
       - type: "Segmentation"
       - type: "Anomaly"
 
-  - image: "assets/images/portfolio/item-8.png"
+  - image: "assets/images/portfolio/item-5.png"
     url: "/fpost/5/"
     portfolio-type:
       - type: "Sequence"
