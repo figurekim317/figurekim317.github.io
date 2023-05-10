@@ -8,6 +8,7 @@ last_modified_at: 2023-05-10
 tags:
   - Perception
   - Facial emotion recognition
+  - Autonomy driving
 excerpt: "Perception emotion recognition model selection"
 use_math: true
 classes: wide
@@ -53,8 +54,32 @@ img2 = DeepFace.extract_faces(img_path = "img2.jpg", target_size=target_size, de
  
 img1 = np.expand_dims(img1, axis=0) #(224, 224, 3) to (1, 224, 224, 3)
 img2 = np.expand_dims(img2, axis=0) #(224, 224, 3) to (1, 224, 224, 3)
-
 `
+
+## 3. Normalization
+Face detector detect faces in a squared area. So, detected faces come with some noise such as background color.
+Dlib can find 68 facial landmarks.
+- We can extract face and get rid of any noise in this way.
+- This optional step is called as normalization in facial recognition.
+MediaPipe can find 468 landmarks
+https://sefiks.com/2022/01/14/deep-face-detection-with-mediapipe/
+https://sefiks.com/2022/01/15/virtual-background-with-mediapipe/
+
+## 4. Representation
+- Deep learning just appears in this representation stage.
+- We will feed face images to a CNN model but the task is here is not classification.
+- We will use CNN models to find embeddings similar to autoencoders.
+- The most popular face recognition models are VGG-Face, Google FaceNet, OpenFace and Facebook DeepFace.
+`shell
+model_name = "VGG-Face"
+model = DeepFace.build_model(model_name = model_name)
+`
+- These models have different input and output shapes. 
+  - VGG-Face (224, 224, 3) -> 2622 dimensional vector
+  - FaceNet (160, 160, 3) -> 128 dimensional vector
+- We have to pass the input shape to detectFace function in the detet and align stage.
+- We must put detectFace command after input shape retrieved.
+
 
 <center>
   <figure>
