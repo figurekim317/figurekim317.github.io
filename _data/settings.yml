@@ -4,10 +4,10 @@
 
 title: Figure317
 logo:
-author: JongwanKim
+author: Dohyeong Kim
 description: this is meta description
-email: jongwankim@snu.ac.kr
-phone: +82 10-4019-1133
+email: figurekim317@gmail.com
+phone: +82 10-7130-1776
 github: https://github.com/figurekim317
 address: 15, Maebong-gil, Seongdong-gu, Seoul, Republic of Korea
 copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
@@ -28,7 +28,7 @@ plugins:
 # Hero Section
 
 hero:
-  hero-title: Hi! I’m Jongwan Kim<br> ML/DL Engineer
+  hero-title: Hi! I’m Dohyeong Kim<br> ML/DL Engineer
 
 social:
   - { icon: "ti-github", link: "https://github.com/figurekim317" }

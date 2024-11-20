@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About Me
-author: Jongwan Kim
+author: Dohyeong Kim
 image: assets/images/about/author.jpg
 signature: assets/images/about/signature.png
 ---
