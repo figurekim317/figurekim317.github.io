@@ -74,31 +74,31 @@ skills:
 experience-title: Experience
 experience:
   - {
-      name: Chief Technology Officer (CTO),
-      icon: "icon-1.png",
+      name: CTO,
+      icon: "rga.png",
       date: "May 2023 – Oct 2024",
-      team: "Executive Leadership",
+      #team: "RGA Inc.",
       organization: "RGA Inc., Seoul, South Korea",
     }
   - {
       name: AI Perception Engineer,
-      icon: "icon-2.png",
+      icon: "neubility.png",
       date: "Feb 2023 – Apr 2023",
-      team: "Perception Team",
+      #team: "Perception Team",
       organization: "Neubility, Seoul, South Korea",
     }
   - {
       name: Student Researcher,
-      icon: "icon-3.png",
+      icon: "kist".png",
       date: "May 2022 – Aug 2022",
-      team: "AI and Robotics Research Group",
+      #team: "AI and Robotics Research Group",
       organization: "Korea Institute of Science and Technology (KIST), Seoul, South Korea",
     }
   - {
       name: Researcher,
-      icon: "icon-4.png",
+      icon: "cern.png",
       date: "Jul 2015 – Aug 2017",
-      team: "RF2 Team",
+      #team: "RF2 Team",
       organization: "European Organization for Nuclear Research (CERN), Geneva, Switzerland",
     }
 
