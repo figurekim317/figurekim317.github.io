@@ -1,0 +1,26 @@
+{% if site.data.settings.areas %}
+<!-- skills -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title"><strong>{{ site.data.settings.research-title }}</strong></h2>
+      </div>
+      {% for area in site.data.settings.areas %}
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="{{ area.color }}">
+            <div class="wave" data-progress="{{ area.value }}"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h5 class="card-title"><strong>{{ skill.name }}</strong></h5>
+            <h6>{{ area.value }}</h6>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- /skills -->
+{% endif %}
