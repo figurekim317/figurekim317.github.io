@@ -32,7 +32,7 @@ hero:
 
 social:
   - { icon: "ti-github", link: "https://github.com/figurekim317" }
-#  - { icon: "ti-instagram", link: "#" }
+  - { icon: "ti-likedin", link: "#" }
 #  - { icon: "ti-dribbble", link: "#" }
 #  - { icon: "ti-twitter", link: "#" }
 
@@ -62,8 +62,8 @@ skills:
   - { name: OpenCV, color: "#FFB4B4", value: "60%" }
   - { name: ROS, color: "#FFB4B4", value: "60%" }
 
-  - { name: Github, color: "#FFDEB4", value: "70%" }
-  - { name: Confluence & JIRA, color: "#FFDEB4", value: "70%" }
+  - { name: Github, color: "#FFDEB4", value: "90%" }
+  - { name: Confluence & JIRA, color: "#FFDEB4", value: "90%" }
   - { name: Gstreamer, color: "#FFDEB4", value: "50%" }
   - { name: Adobe, color: "#FFDEB4", value: "80%" }
 
@@ -202,4 +202,4 @@ blog-tags:
 # Contact Section
 
 # contact-title: Contact
-contact-email: jongwankim@snu.ac.kr
+contact-email: figurekim317@gmail.com
