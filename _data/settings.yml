@@ -77,29 +77,29 @@ experience:
       name: CTO,
       icon: "rga.png",
       date: "May 2023 – Oct 2024",
-      #team: "RGA Inc.",
+      team: "RGA Inc.",
       organization: "RGA Inc., Seoul, South Korea",
     }
   - {
       name: AI Perception Engineer,
       icon: "neubility.png",
       date: "Feb 2023 – Apr 2023",
-      #team: "Perception Team",
+      team: "Perception",
       organization: "Neubility, Seoul, South Korea",
     }
   - {
       name: Student Researcher,
       icon: "kist".png",
       date: "May 2022 – Aug 2022",
-      #team: "AI and Robotics Research Group",
-      organization: "Korea Institute of Science and Technology (KIST), Seoul, South Korea",
+      team: ""Artificial Brain Convergence Research Center"",
+      organization: "KIST, Seoul, South Korea",
     }
   - {
       name: Researcher,
       icon: "cern.png",
       date: "Jul 2015 – Aug 2017",
-      #team: "RF2 Team",
-      organization: "European Organization for Nuclear Research (CERN), Geneva, Switzerland",
+      team: "RF2 Team",
+      organization: "CERN, Geneva, Switzerland",
     }
 
 
@@ -109,29 +109,25 @@ experience:
 education-title: Education
 education:
   - {
-      name: Autonomous Driving Dev Course,
-      date: "2023",
+      name: Programmers Dev Course in Autonomous Driving (Planning & Control),
+      date: "Mar 2023 – Sep 2023",
       organization: "Programmers",
     }
   - {
-      name: ECE doctoral course completion,
-      date: "2021",
+      name: Integrated MS/PhD Program in Artificial Intelligence,
+      date: "Mar 2018 – Feb 2023",
       organization: "Seoul National University",
-      gpa: "GPA: 4.06 / 4.3"
+      gpa: "GPA: 3.9 / 4.3",
     }
   - {
-      name: ECE master degree,
-      date: "2019",
-      organization: "Seoul National University",
-      gpa: "GPA: 4.06 / 4.3"
-
-    }
-  - {
-      name: EEE bachelor degree,
-      date: "2014",
+      name: BSE in Electronic and Electrical Engineering,
+      date: "Mar 2008 – Feb 2014",
       organization: "Sungkyunkwan University",
-      gpa: "GPA: 4.24 / 4.5 (Summa Cun Laude)"
+      gpa: "GPA: 4.24 / 4.5 (Summa Cum Laude, Top 0.16%)",
     }
+
+
+
 
 #-------------------------------
 # Portfolio (Section and Page)
