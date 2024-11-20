@@ -6,6 +6,10 @@ markdown: kramdown
 permalink: pretty
 plugins:
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-gist
+  - jekyll-github-metadata
 compress_html:
   clippings: all
   comments: all
