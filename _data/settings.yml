@@ -70,7 +70,7 @@ skills:
 # Skills Section
 
 research-title: Research Area
-areas:
+research:
   - { name: Model Compression, color: "#B2A4FF", value: "80%" }
   - { name: Computer Vision, color: "#B2A4FF", value: "80%" }
   - { name: Optimization, color: "#B2A4FF", value: "80%" }

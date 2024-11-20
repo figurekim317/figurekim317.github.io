@@ -1,4 +1,4 @@
-{% if site.data.settings.areas %}
+{% if site.data.settings.research %}
 <!-- skills -->
 <section class="section">
   <div class="container">
@@ -9,12 +9,12 @@
       {% for area in site.data.settings.areas %}
       <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
         <div class="card shadow text-center">
-          <div class="position-relative rounded-top progress-wrapper" data-color="{{ area.color }}">
-            <div class="wave" data-progress="{{ area.value }}"></div>
+          <div class="position-relative rounded-top progress-wrapper" data-color="{{ research.color }}">
+            <div class="wave" data-progress="{{ research.value }}"></div>
           </div>
           <div class="card-footer bg-white">
-            <h5 class="card-title"><strong>{{ skill.name }}</strong></h5>
-            <h6>{{ area.value }}</h6>
+            <h5 class="card-title"><strong>{{ research.name }}</strong></h5>
+            <h6>{{ research.value }}</h6>
           </div>
         </div>
       </div>
