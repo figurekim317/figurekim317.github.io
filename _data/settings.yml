@@ -67,10 +67,11 @@ skills:
   - { name: Gstreamer, color: "#FFDEB4", value: "50%" }
   - { name: Adobe, color: "#FFDEB4", value: "80%" }
 
-# Skills Section
+#-------------------------------
+# Research Section
 
 research-title: Research Area
-research:
+researches:
   - { name: Model Compression, color: "#B2A4FF", value: "80%" }
   - { name: Computer Vision, color: "#B2A4FF", value: "80%" }
   - { name: Optimization, color: "#B2A4FF", value: "80%" }
