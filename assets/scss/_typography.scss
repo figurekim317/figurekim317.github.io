@@ -1,129 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Spoqa+Han+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700');
+/* Roboto 폰트 임포트 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+/* Font Variables */
+$primary-font: 'Roboto', sans-serif;
+$secondary-font: 'Roboto', sans-serif;
+$icon-font: 'themify';
 
-// Font Variables
-//$primary-font:  'Playfair Display', serif;
-//$secondary-font: 'Spoqa Han Sans Bold', 'Spoqa Han Sans', sans-serif;
-//$icon-font: 'themify';
+/* 색상 변수를 예로 들었습니다. 프로젝트에 맞게 수정하세요 */
+$text-color: #333;
+$text-color-dark: #000;
 
-$primary-font: 'Nanum Gothic', sans-serif;
-$secondary-font: 'Nanum Gothic', sans-serif;
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
-// $primary-font: 
-
+/* 공통 바디 스타일 */
 body {
-  line-height: 1.8;
+  line-height: 1.9; /* 행간을 조금 늘려서 가독성을 높임 */
   font-family: $secondary-font;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
   color: $text-color;
 }
 
+/* 본문 텍스트 스타일 */
 p, .paragraph {
   font-weight: 400;
   color: $text-color;
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.9;
   font-family: $primary-font;
-  &-lg{
-    font-size: 30px;
+
+  &-lg {
+    font-size: 22px;
   }
-  &-lgg{
-    font-size: 22px
+  &-lgg {
+    font-size: 18px;
   }
 }
 
+/* 제목(Heading) 스타일 */
 h1,h2,h3,h4,h5,h6 {
   color: $text-color-dark;
   font-family: $primary-font;
   line-height: 1.2;
 }
 
-h1, .h1{
-  font-size: 70px;
+/* 큰 타이틀은 너무 크지 않게 적절히 줄임 */
+h1, .h1 {
+  font-size: 48px; 
   @include desktop {
-    font-size: 60px;
+    font-size: 44px;
   }
 }
 
-h2, .h2{
-  font-size: 50px;
+h2, .h2 {
+  font-size: 36px;
   @include desktop {
-    font-size: 50px;
+    font-size: 32px;
   }
 }
 
-h3, .h3{
-  font-size: 32px;
+h3, .h3 {
+  font-size: 28px;
 }
 
-h4, .h4{
+h4, .h4 {
   font-size: 22px;
 }
 
-h5, .h5{
+h5, .h5 {
   font-size: 18px;
 }
 
-h6, .h6{
-  font-size: 14px;
+h6, .h6 {
+  font-size: 16px;
 }
 
+/* post-content 영역 내부 스타일 */
+.post-content {
+  body {
+    line-height: 1.9;
+    font-family: $secondary-font;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    color: $text-color;
+  }
 
-.post-content p, .post-content .paragraph {
+  p, .paragraph {
     font-weight: 400;
     color: $text-color;
-    font-size: 16px; // 크기를 원하는대로 조절하세요.
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.9;
     font-family: $secondary-font;
-    &-lg{
-      font-size: 22px;
-  }
-}
 
-.post-content h1, .post-content .h1 {
-    font-size: 60px; // 제목 크기를 원하는대로 조절하세요.
+    &-lg {
+      font-size: 20px; 
+    }
+  }
+
+  h1, .h1 {
+    font-size: 48px;
     font-family: $primary-font;
     @include desktop {
-      font-size: 65px;
+      font-size: 44px;
+    }
   }
-}
 
-.post-content h2, .post-content .h2{
-    font-size: 40px;
+  h2, .h2 {
+    font-size: 36px;
     font-family: $primary-font;
     @include desktop {
-      font-size: 40px;
+      font-size: 32px;
+    }
   }
-}
 
-.post-content h3, .post-content .h3 {
-    font-size: 32px;
+  h3, .h3 {
+    font-size: 28px;
     font-family: $primary-font;
-}
-  
-.post-content h4, .post-content .h4 {
+  }
+
+  h4, .h4 {
     font-size: 22px;
-    font-family: $secondary-font;
+    font-family: $primary-font;
+  }
 
-}
-  
-.post-content h5, .post-content .h5 {
+  h5, .h5 {
     font-size: 18px;
-    font-family: $secondary-font;
-}
-  
-.post-content h6, .post-content .h6 {
-    font-size: 14px;
-    font-family: $secondary-font;
-}
+    font-family: $primary-font;
+  }
 
-.post-content body {
-  line-height: 1.8;
-  font-family: $secondary-font;
-  -webkit-font-smoothing: antialiased;
-  font-size: 16px;
-  color: $text-color;
+  h6, .h6 {
+    font-size: 16px;
+    font-family: $primary-font;
+  }
 }
