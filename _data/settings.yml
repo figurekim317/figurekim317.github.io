@@ -168,6 +168,15 @@ portfolio-home-items:
   - image: "assets/images/portfolio/item-5.png"
     url: "/fpost/5/"
 
+  - image: "assets/images/portfolio/item-6.png"
+    url: "/fpost/6/"
+
+  - image: "assets/images/portfolio/item-7.png"
+    url: "/fpost/7/"
+
+  - image: "assets/images/portfolio/item-8.png"
+    url: "/fpost/8/"
+
 # Portfolio Page
 portfolio-label:
   - { title: "Model Compression", type: "Model compression" }

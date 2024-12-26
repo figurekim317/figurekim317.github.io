@@ -2,17 +2,9 @@
 layout: page
 title: Portfolio
 ---
-
-<!-- 
-  portfolio.html 
-  - 포트폴리오 전용 페이지
-  - 'site.data.settings.portfolio-items' 전체 아이템(8개 등)을 렌더링한다.
--->
-
 <!-- portfolio -->
 <section class="section">
   <div class="container">
-    <!-- 필터 영역 -->
     <div class="row mb-5">
       <div class="col-12">
         <div class="btn-group btn-group-toggle justify-content-center d-flex" data-toggle="buttons">
@@ -27,15 +19,11 @@ title: Portfolio
         </div>
       </div>
     </div>
-
-    <!-- 실제 포트폴리오 아이템들 -->
     <div class="row shuffle-wrapper">
       {% for item in site.data.settings.portfolio-items %}
-      <div class="col-lg-4 col-6 mb-4 shuffle-item" 
-           data-groups="[{% for portfolio in item.portfolio-type %}{% if forloop.first == true %}{% else %},{% endif %}&quot;{{ portfolio.type }}&quot;{% endfor %}]">
+      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[{% for portfolio in item.portfolio-type %}{% if forloop.first == true %}{% else %},{% endif %}&quot;{{ portfolio.type }}&quot;{% endfor %}]">
         <div class="position-relative rounded hover-wrapper">
-          <img src="{{ site.baseurl }}/{{ item.image }}" 
-               alt="portfolio-image" class="img-fluid rounded w-100 d-block">
+          <img src="{{ site.baseurl }}/{{ item.image }}" alt="portfolio-image" class="img-fluid rounded w-100 d-block">
           <div class="hover-overlay">
             <div class="hover-content">
               <a class="btn btn-light btn-sm" href="{{ item.url }}">view project</a>

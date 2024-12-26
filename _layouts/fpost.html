@@ -1,15 +1,6 @@
 ---
 layout: default
 ---
-
-<!-- 
-  fpost.html
-  - 기본 포스트(게시글)나 일반 페이지용 레이아웃
-  - "portfolio.html"과는 다르게, 별도의 포트폴리오 섹션을 여기서 직접 렌더링하지 않는다.
-  - 필요하다면 '_includes/portfolio-section.html'을 include 할 수 있지만, 
-    현재는 주어진 코드 상 포트폴리오 섹션을 직접 출력하지 않으므로 중복 X
--->
-
 <!-- page title -->
 <section class="page-title bg-primary position-relative">
   <div class="container">
@@ -34,25 +25,16 @@ layout: default
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <!-- 페이지 제목 -->
         <h3 class="font-tertiary mb-5">{{ page.title | escape }}</h3>
-
-        <!-- 실제 컨텐츠 -->
         <div class="post-content">
           {{ content }}
         </div>
-
-        <!-- 태그 표시 -->
         <p class="font-secondary">
-          {% for tag in page.tags %}
-            <span>#{{ tag }} </span>
-          {% endfor %}
+          {% for tag in page.tags %}<span>#{{ tag }} </span>{% endfor %}
         </p>
       </div>
     </div>
   </div>
 </section>
 
-{% if site.data.settings.disqus-identifier %}
-  {% include disqus-comments.html %}
-{% endif %}
+{% if site.data.settings.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
