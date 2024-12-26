@@ -1,62 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Spoqa+Han+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700');
-
-
-// Font Variables
-$primary-font:  'Playfair Display', serif;
-$secondary-font: 'Spoqa Han Sans Bold', 'Spoqa Han Sans', sans-serif;
-$icon-font: 'themify';
-
-//$primary-font: 'Nanum Gothic', sans-serif;
-//$secondary-font: 'Nanum Gothic', sans-serif;
-//@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
-// $primary-font: 
+/*  typography */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:400');
 
 body {
-  line-height: 1.8;
-  font-family: $secondary-font;
+  line-height: 1.2;
+  font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
-  font-size: 16px;
+  font-size: 15px;
   color: $text-color;
 }
 
 p, .paragraph {
   font-weight: 400;
   color: $text-color;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.8;
   font-family: $primary-font;
   &-lg{
-    font-size: 30px;
-  }
-  &-lgg{
-    font-size: 22px
+    font-size: 22px;
   }
 }
 
 h1,h2,h3,h4,h5,h6 {
   color: $text-color-dark;
-  font-family: $primary-font;
+  font-family: $secondary-font;
   line-height: 1.2;
 }
 
 h1, .h1{
-  font-size: 70px;
+  font-size: 80px;
   @include desktop {
-    font-size: 60px;
+    font-size: 65px;
   }
 }
 
 h2, .h2{
-  font-size: 50px;
+  font-size: 60px;
   @include desktop {
     font-size: 50px;
   }
 }
 
 h3, .h3{
-  font-size: 32px;
+  font-size: 40px;
 }
 
 h4, .h4{
@@ -69,61 +54,4 @@ h5, .h5{
 
 h6, .h6{
   font-size: 14px;
-}
-
-
-.post-content p, .post-content .paragraph {
-    font-weight: 400;
-    color: $text-color;
-    font-size: 16px; // 크기를 원하는대로 조절하세요.
-    line-height: 1.8;
-    font-family: $secondary-font;
-    &-lg{
-      font-size: 22px;
-  }
-}
-
-.post-content h1, .post-content .h1 {
-    font-size: 60px; // 제목 크기를 원하는대로 조절하세요.
-    font-family: $primary-font;
-    @include desktop {
-      font-size: 65px;
-  }
-}
-
-.post-content h2, .post-content .h2{
-    font-size: 40px;
-    font-family: $primary-font;
-    @include desktop {
-      font-size: 40px;
-  }
-}
-
-.post-content h3, .post-content .h3 {
-    font-size: 32px;
-    font-family: $primary-font;
-}
-  
-.post-content h4, .post-content .h4 {
-    font-size: 22px;
-    font-family: $secondary-font;
-
-}
-  
-.post-content h5, .post-content .h5 {
-    font-size: 18px;
-    font-family: $secondary-font;
-}
-  
-.post-content h6, .post-content .h6 {
-    font-size: 14px;
-    font-family: $secondary-font;
-}
-
-.post-content body {
-  line-height: 1.8;
-  font-family: $secondary-font;
-  -webkit-font-smoothing: antialiased;
-  font-size: 16px;
-  color: $text-color;
 }
