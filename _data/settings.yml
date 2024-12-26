@@ -217,8 +217,26 @@ portfolio-items:
       - type: "Segmentation"
       - type: "Anomaly"
 
-  - image: "assets/images/portfolio/item-5.png"
+  - image: "assets/images/portfolio/item-2.png"
     url: "/fpost/5/"
+    portfolio-type:
+      - type: "Sequence"
+      - type: "Anomaly"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "/fpost/6/"
+    portfolio-type:
+      - type: "Sequence"
+      - type: "Anomaly"
+  
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/7/"
+    portfolio-type:
+      - type: "Sequence"
+      - type: "Anomaly"
+
+  - image: "assets/images/portfolio/item-5.png"
+    url: "/fpost/8/"
     portfolio-type:
       - type: "Sequence"
       - type: "Anomaly"
