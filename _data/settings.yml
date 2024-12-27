@@ -194,8 +194,7 @@ portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
     url: "/fpost/1/"
     portfolio-type:
-      - type: "RGA"
-      - type: "Foundation"
+      - type: "Neubility"
       - type: "Detection"
       - type: "Compression"
       - type: "Depth"
@@ -233,6 +232,14 @@ portfolio-items:
 
   - image: "assets/images/portfolio/item-4.png"
     url: "/fpost/7/"
+    portfolio-type:
+      - type: "RGA"
+      - type: "Detection"
+      - type: "Foundation"
+      - type: "Compression"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/9/"
     portfolio-type:
       - type: "RGA"
       - type: "Detection"
