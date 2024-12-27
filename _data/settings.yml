@@ -153,29 +153,32 @@ education:
 
 # Portfolio Home Section
 portfolio-home-items:
-  - image: "assets/images/portfolio/item-1.png"
-    url: "/fpost/1/"
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/rga/depth_estimation/"
 
   - image: "assets/images/portfolio/item-2.png"
-    url: "/fpost/2/"
-
-  - image: "assets/images/portfolio/item-3.png"
-    url: "/fpost/3/"
-
-  - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/4/"
+    url: "/fpost/rga/face_recognition/"
 
   - image: "assets/images/portfolio/item-2.png"
-    url: "/fpost/5/"
+    url: "/fpost/rga/mimic_animal/"
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/rga/object_detection/"
 
   - image: "assets/images/portfolio/item-3.png"
-    url: "/fpost/6/"
+    url: "/fpost/neubility/object_detection/"
 
   - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/7/"
+    url: "/fpost/snu/snn/"
 
-  - image: "assets/images/portfolio/item-5.png"
-    url: "/fpost/8/"
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/snu/snn_project/"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/snu/battery/"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/snu/anomaly_detection/"
 
 # Portfolio Page
 portfolio-label:
@@ -190,65 +193,65 @@ portfolio-label:
   - { title: "LLM", type: "LLM"}
 
 portfolio-items:
-  - image: "assets/images/portfolio/item-3.png"
-    url: "/fpost/rga_cvpr/"
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/rga/depth_estimation/"
     portfolio-type:
       - type: "Detection"
       - type: "Compression"
       - type: "Depth"
       - type: "RGA"
 
-  - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/rga_face/"
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/rga/face_recognition/"
     portfolio-type:
       - type: "RGA"
       - type: "Detection"
       - type: "Foundation"
       - type: "Compression"
 
-  - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/rga_ob/"
-    portfolio-type:
-      - type: "RGA"
-      - type: "Detection"
-      - type: "Compression"
-
-  - image: "assets/images/portfolio/item-5.png"
-    url: "/fpost/rga_rl/"
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/rga/mimic_animal/"
     portfolio-type:
       - type: "RGA"
       - type: "RL"
 
   - image: "assets/images/portfolio/item-2.png"
-    url: "/fpost/neubility_ob/"
+    url: "/fpost/rga/object_detection/"
+    portfolio-type:
+      - type: "RGA"
+      - type: "Detection"
+      - type: "Compression"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "/fpost/neubility/object_detection/"
     portfolio-type:
       - type: "Neubility"
       - type: "Detection"
       - type: "Compression"
       - type: "Depth"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "assets/images/portfolio/item-4.png"
     url: "/fpost/snu_snn/"
     portfolio-type:
       - type: "Compression"
       - type: "SNU"
       - type: "Detection"
 
-  - image: "assets/images/portfolio/item-3.png"
-    url: "/fpost/snu_snnproject/"
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/snu/snn_project/"
     portfolio-type:
       - type: "SNU"
       - type: "Detection"
 
   - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/snu_anomaly/"
+    url: "/fpost/snu/anomaly_detection/"
     portfolio-type:
       - type: "Detection"
       - type: "Compression"
       - type: "SNU"
 
-  - image: "assets/images/portfolio/item-2.png"
-    url: "/fpost/snu_battery/"
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/snu/battery/"
     portfolio-type:
       - type: "SNU"
 
