@@ -179,68 +179,71 @@ portfolio-home-items:
 
 # Portfolio Page
 portfolio-label:
-  - { title: "Model Compression", type: "Model compression" }
-  - { title: "Object detection", type: "Object detection" }
-  - { title: "Segmentation", type: "Segmentation" }
-  - { title: "Optimization", type: "Optimization" }
-  - { title: "SNN", type: "SNN"}
-  - { title: "Anomaly", type: "Anomaly"}
-  - { title: "Sequence", type: "Sequence"}
+  - { title: "RGA Inc.", type: "RGA"}
+  - { title: "Neubility", type: "Neubility"}
+  - { title: "SNU", type: "SNU"}
+  - { title: "Foundation", type: "Foundation"}
+  - { title: "Detection", type: "Detection"}
+  - { title: "Compression", type: "Compression"}
+  - { title: "RL", type: "RL"}
+  - { title: "LLM", type: "LLM"}
+  - { title: "Nerf", type: "Nerf"}
+  - { title: "Depth", type: "Depth"}
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
     url: "/fpost/1/"
     portfolio-type:
-      - type: "Model compression"
-      - type: "Object detection"
-      - type: "Optimization"
-      - type: "Segmentation"
+      - type: "RGA"
+      - type: "Foundation"
+      - type: "Detection"
+      - type: "Compression"
+      - type: "Depth"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "/fpost/2/"
     portfolio-type:
-      - type: "Model compression"
-      - type: "Object detection"
-      - type: "SNN"
+      - type: "Compression"
+      - type: "SNU"
+      - type: "Detection"
 
   - image: "assets/images/portfolio/item-3.png"
     url: "/fpost/3/"
     portfolio-type:
-      - type: "SNN"
-      - type: "Object detection"
+      - type: "SNU"
+      - type: "Detection"
 
   - image: "assets/images/portfolio/item-4.png"
     url: "/fpost/4/"
     portfolio-type:
-      - type: "Model compression"
-      - type: "Object detection"
-      - type: "Segmentation"
-      - type: "Anomaly"
+      - type: "Detection"
+      - type: "SNU"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "/fpost/5/"
     portfolio-type:
-      - type: "Sequence"
-      - type: "Anomaly"
+      - type: "SNU"
 
   - image: "assets/images/portfolio/item-3.png"
     url: "/fpost/6/"
     portfolio-type:
-      - type: "Sequence"
-      - type: "Anomaly"
-  
+      - type: "Detection"
+      - type: "Compression"
+      - type: "Depth"
+
   - image: "assets/images/portfolio/item-4.png"
     url: "/fpost/7/"
     portfolio-type:
-      - type: "Sequence"
-      - type: "Anomaly"
+      - type: "RGA"
+      - type: "Detection"
+      - type: "Compression"
 
   - image: "assets/images/portfolio/item-5.png"
     url: "/fpost/8/"
     portfolio-type:
-      - type: "Sequence"
-      - type: "Anomaly"
-
+      - type: "RGA"
+      - type: "RL"
+      - type: "Nerf"
 #-------------------------------
 # Blog Section
 blog-tags:
