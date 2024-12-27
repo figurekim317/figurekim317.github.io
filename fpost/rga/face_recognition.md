@@ -1,8 +1,8 @@
 ---
 layout: fpost
 title: "Project 7: Face Recognition & Representation Learning"
-permalink: /fpost/7/
-author: Jongwan Kim
+permalink: /fpost/rga/face recognition/
+author: Dohyeong Kim
 tags:   
   - Face Recognition
   - Representation Learning

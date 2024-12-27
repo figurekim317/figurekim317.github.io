@@ -1,7 +1,7 @@
 ---
 layout: fpost
 title: "Project 6"
-permalink: /fpost/6/
+permalink: /fpost/rga/depth_estimation/
 author: Dohyeong Kim
 tags:   
   - RGA

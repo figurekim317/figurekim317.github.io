@@ -1,10 +1,10 @@
 ---
 layout: fpost
 title: "Project 4"
-permalink: /fpost/4/
+permalink: /fpost/snu/anomaly_detection/
 #date:   2017-05-26 15:05:55 +0300
 image:  /assets/images/blog/post-5.jpg
-author: Jongwan Kim
+author: Dohyeong Kim
 tags:   
   - Anomaly detection
   - Quantization
