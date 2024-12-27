@@ -1,7 +1,7 @@
 ---
 layout: fpost
 title: "Project: Baseline Model Selection and Optimization"
-permalink: /fpost/9/
+permalink: /fpost/rga_ob/
 author: Dohyeong Kim
 tags:   
   - Real-time Object Detection

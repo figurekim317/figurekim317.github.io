@@ -184,54 +184,22 @@ portfolio-label:
   - { title: "SNU", type: "SNU"}
   - { title: "Foundation", type: "Foundation"}
   - { title: "Detection", type: "Detection"}
+  - { title: "Depth", type: "Depth"}
   - { title: "Compression", type: "Compression"}
   - { title: "RL", type: "RL"}
   - { title: "LLM", type: "LLM"}
-  - { title: "Nerf", type: "Nerf"}
-  - { title: "Depth", type: "Depth"}
 
 portfolio-items:
-  - image: "assets/images/portfolio/item-1.png"
-    url: "/fpost/1/"
-    portfolio-type:
-      - type: "Neubility"
-      - type: "Detection"
-      - type: "Compression"
-      - type: "Depth"
-
-  - image: "assets/images/portfolio/item-2.png"
-    url: "/fpost/2/"
-    portfolio-type:
-      - type: "Compression"
-      - type: "SNU"
-      - type: "Detection"
-
   - image: "assets/images/portfolio/item-3.png"
-    url: "/fpost/3/"
-    portfolio-type:
-      - type: "SNU"
-      - type: "Detection"
-
-  - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/4/"
-    portfolio-type:
-      - type: "Detection"
-      - type: "SNU"
-
-  - image: "assets/images/portfolio/item-2.png"
-    url: "/fpost/5/"
-    portfolio-type:
-      - type: "SNU"
-
-  - image: "assets/images/portfolio/item-3.png"
-    url: "/fpost/6/"
+    url: "/fpost/rga_cvpr/"
     portfolio-type:
       - type: "Detection"
       - type: "Compression"
       - type: "Depth"
+      - type: "RGA"
 
   - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/7/"
+    url: "/fpost/rga_face/"
     portfolio-type:
       - type: "RGA"
       - type: "Detection"
@@ -239,18 +207,52 @@ portfolio-items:
       - type: "Compression"
 
   - image: "assets/images/portfolio/item-4.png"
-    url: "/fpost/9/"
+    url: "/fpost/rga_ob/"
     portfolio-type:
       - type: "RGA"
       - type: "Detection"
       - type: "Compression"
 
   - image: "assets/images/portfolio/item-5.png"
-    url: "/fpost/8/"
+    url: "/fpost/rga_rl/"
     portfolio-type:
       - type: "RGA"
       - type: "RL"
-      - type: "Nerf"
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/neubility_ob/"
+    portfolio-type:
+      - type: "Neubility"
+      - type: "Detection"
+      - type: "Compression"
+      - type: "Depth"
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/snu_snn/"
+    portfolio-type:
+      - type: "Compression"
+      - type: "SNU"
+      - type: "Detection"
+
+  - image: "assets/images/portfolio/item-3.png"
+    url: "/fpost/snu_snnproject/"
+    portfolio-type:
+      - type: "SNU"
+      - type: "Detection"
+
+  - image: "assets/images/portfolio/item-4.png"
+    url: "/fpost/snu_anomaly/"
+    portfolio-type:
+      - type: "Detection"
+      - type: "Compression"
+      - type: "SNU"
+
+  - image: "assets/images/portfolio/item-2.png"
+    url: "/fpost/snu_battery/"
+    portfolio-type:
+      - type: "SNU"
+
+  
 #-------------------------------
 # Blog Section
 blog-tags:
