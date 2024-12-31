@@ -38,50 +38,97 @@ tags:
 
 <br/>
 
-### 2. Proposed Model & Approach
+## 2. Proposed Model & Approach
 
-#### • Utilizing **Relative Depth (Depth Anything)**
-- Use a **pre-trained ‘Depth Anything’** model to extract **relative depth** as an additional guide.
-- Concatenate the relative depth with both the LR depth map and the input image, forming multi-channel inputs for the network.
+### • Utilizing **Relative Depth (Depth Anything)**
+- We incorporate a **pre-trained ‘Depth Anything’** model to extract **relative depth**, which serves as an additional guide for upsampling.
+- The **relative depth map**, along with the **low-resolution (LR) depth map** and the **input image**, are concatenated to form multi-channel inputs. This combined input enriches the model with supplementary features necessary for depth super-resolution.
 
-#### • U-Net with Separate Paths
-- **U-Net Architecture**:
-  - **Encoder**: Splits into two paths — one for **relative depth** and one for **LR depth**.
-  - **Fusion Module**: Combines features with **Adaptive Instance Normalization (AdaIN)**.
-  - **Decoder**: Leverages skip connections for final high-resolution depth prediction.
+---
+
+### • U-Net-like Structure with Tailored Design
+Our architecture is inspired by the **U-Net framework**, retaining its characteristic **encoder-decoder design** and **skip connections**. However, the structure has been customized to address specific challenges in depth super-resolution:
+
+#### - **Encoder**
+- Features two parallel paths:
+  - **Relative Depth Path**: Processes features from the extracted relative depth map.
+  - **LR Depth Path**: Handles features from the degraded low-resolution depth map.
+- Both paths use **NAFNet blocks** instead of standard convolutional blocks to enhance feature extraction at each downsampling stage.
+
+#### - **Fusion Module**
+- Integrates features from the relative depth and LR depth paths using **Adaptive Instance Normalization (AdaIN)**.
+- This normalization aligns the relative depth distribution to that of the LR depth map, ensuring compatibility and improving fusion quality.
+
+#### - **Decoder**
+- Reconstructs the final **super-resolution (SR) depth map** by leveraging the fused features, with **skip connections** providing additional contextual information.
+
+---
 
 <figure>
   <div style="text-align:center">
-    <!-- Example placeholder -->
-    <img src="images/unet_structure.png" alt="U-Net Architecture" style="width:70%;">
+    <img src="\fpost\rga\depth_img\fig2.png" alt="Model Pipeline" style="width:70%;">
   </div>
-  <figcaption style="text-align:center">Fig 2. U-Net structure with dual input streams and a fusion module.</figcaption>
+  <figcaption style="text-align:center">**Fig 2. Model pipeline integrating Depth Anything and U-Net-like structure.**</figcaption>
 </figure>
+
+---
+
+### • Detailed Architecture
+- The encoder performs four stages of downsampling, extracting progressively finer features from both the relative depth and LR depth inputs. At each stage:
+  - The extracted features are normalized and combined in the **Fusion Module**.
+  - The **decoder** then upscales the fused features stage by stage, restoring them to the target resolution.
+
+<figure>
+  <div style="text-align:center">
+    <img src="\fpost\rga\depth_img\fig3.png" alt="Detailed U-Net Structure" style="width:70%;">
+  </div>
+  <figcaption style="text-align:center">**Fig 3. Detailed architecture showing encoder, fusion module, and decoder.**</figcaption>
+</figure>
+
+---
+
+### • Summary
+By tailoring the U-Net architecture to integrate relative depth as an additional guide, and employing **NAFNet blocks** and **ADAIN-based normalization**, the model effectively addresses the challenges of degraded low-resolution depth maps. This approach combines the strengths of the U-Net framework with task-specific enhancements, achieving superior depth super-resolution performance.
+
 
 <br/>
 
-### 3. Implementation & Training
+## 3. Implementation & Training
 
-#### • Loss Functions
-- **L1 Loss**: Primary objective minimizing pixel-wise error.  
-- **Sobel-based Edge Loss**: Preserves and accentuates edge details in depth predictions.
+### • Loss Function
+Our loss function is designed to optimize both pixel-level accuracy and edge sharpness in the depth prediction:
+\[
+\mathcal{L}_{\text{total}} = \| D_{\text{SR}} - D_{\text{GT}} \| + \| \text{Sobel}(D_{\text{SR}}) - \text{Sobel}(D_{\text{GT}}) \|
+\]
+- **First Term**: L1 Loss minimizes pixel-wise error between the super-resolved depth map (\(D_{\text{SR}}\)) and the ground truth depth map (\(D_{\text{GT}}\)).
+- **Second Term**: Sobel-based Edge Loss emphasizes and preserves edge details by aligning the edge structures of the predicted and ground truth depth maps.
 
-#### • Dataset & Pre-Training
-- **MVS-Synthetic Dataset**: Utilized for initial pre-training before finalizing with the challenge dataset.  
-- **Depth Range Clipping**: Challenge dataset depths were capped at 300.
+---
 
-#### • Training Settings
-- **Batch Size**: 8  
-- **GPU**: Single A6000, ~3 days of training  
-- **Inference Speed**: ~24 FPS on an RTX 3090
+### • Dataset & Pre-Training
+To ensure robust model performance, the training process involves carefully curated datasets:
+- **Pretrained Model**: Pre-trained on the **MVS-Synthetic Dataset** for initialization.
+- **Depth Map Range**: Both HR and LR depth maps are normalized to the range \([0, 1]\).
+- **Depth Clipping**: Maximum depth values of HR and LR depth maps are clipped to 300 to maintain consistency with the challenge dataset.
+- **Validation Set**: The last 100 samples of the training dataset are reserved for validation.
 
-<figure>
-  <div style="text-align:center">
-    <!-- Example placeholder -->
-    <img src="images/training_process.png" alt="Training pipeline" style="width:60%;">
-  </div>
-  <figcaption style="text-align:center">Fig 3. Overview of the training pipeline with depth clipping and pre-training.</figcaption>
-</figure>
+---
+
+### • Training Settings
+- **Batch Size**: 8
+- **Learning Rate**:
+  - Depth Anything model: \(2 \times 10^{-6}\)
+  - U-Net: \(2 \times 10^{-4}\)
+- **Epochs**: 500 epochs
+- **Hardware**: Single NVIDIA A6000 GPU, requiring approximately 3 days of training.
+- **Inference Speed**: The model achieves an inference speed of approximately **24 FPS** on an RTX 3090.
+- **Number of Parameters**: 29 million
+
+---
+
+### • Summary
+The proposed model is rigorously trained and evaluated on synthetic and real-world datasets, employing an efficient loss function to optimize both pixel accuracy and edge preservation. By leveraging high-performance hardware and robust datasets, the model delivers high-quality depth super-resolution with real-time inference capability.
+
 
 <br/>
 
