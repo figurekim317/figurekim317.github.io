@@ -30,7 +30,10 @@ tags:
   $$
   where $I$ is the input image and $F_{\text{RADIOv2}}$ is the feature embedding.
 
+
+
 #### 1.2 Test-Time Adaptation (Face Recognition)
+
 - **Motivation**: Achieve stable, adaptive face recognition under domain shifts (lighting, pose, occlusions).
 - **Approach**:  
   - Researched **test-time adaptation** methods to fine-tune model parameters during inference:
@@ -84,6 +87,8 @@ flowchart LR
     F --> H(Downstream\nTasks: e.g., Expression)
 ```
 Fig 1. Proposed architecture combining ArcFace (face recognition) and SimCLR (representation learning). The same backbone is shared.
+
+---
 
 ### 3. Training & Optimization
 
