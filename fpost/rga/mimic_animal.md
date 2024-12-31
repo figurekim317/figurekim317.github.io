@@ -50,14 +50,9 @@ Each 3D point $X \in \mathbb{R}^3$ is associated with properties predicted by ML
 $$
 (d, c_t) = \text{MLP}_{\text{SDF}}(X, \beta, \omega_a),
 $$
+where $d \in \mathbb{R}$ is the signed distance for surface representation, $c_t \in \mathbb{R}^3$ is the color conditioned on appearance $\omega_a$, $\beta \in \mathbb{R}^{32}$ is the morphology code, and $\omega_a \in \mathbb{R}^{64}$ represents frame-specific appearance (e.g., shadows).
 
-where:
-- $d \in \mathbb{R}$: Signed distance for surface representation.
-- $c_t \in \mathbb{R}^3$: Color conditioned on appearance $\omega_a$.
-- $\beta \in \mathbb{R}^{32}$: Morphology code.
-- $\omega_a \in \mathbb{R}^{64}$: Frame-specific appearance (e.g., shadows).
-
-An additional canonical feature vector $\psi \in \mathbb{R}^{16}$ is computed:
+An additional canonical feature vector $\psi \in \mathbb{R}^{16}$ is computed as:
 
 $$
 \psi = \text{MLP}_{\psi}(X).
@@ -71,9 +66,7 @@ $$
 J = \text{MLP}_{J}(\beta) \in \mathbb{R}^{3 \times B},
 $$
 
-where:
-- $B$: Number of bones.
-- $J$: Instance-specific joint positions.
+where $B$ is the number of bones, and $J$ represents the instance-specific joint positions.
 
 #### 2.3 Skinning Field
 
@@ -83,9 +76,7 @@ $$
 W = \sigma_{\text{softmax}} \big(d_{\sigma}(X, \beta, \theta) + \text{MLP}_{W}(X, \beta, \theta)\big),
 $$
 
-where:
-- $\theta$: Articulation vector.
-- $d_{\sigma}$: Mahalanobis distance from Gaussian bones.
+where $\theta$ is the articulation vector, and $d_{\sigma}$ is the Mahalanobis distance from Gaussian bones.
 
 #### 2.4 Stretchable Bone Deformation
 
@@ -95,10 +86,7 @@ $$
 T_{\beta}^{s} = W_{\beta} G_{\beta} T_{\beta},
 $$
 
-where:
-- $T_{\beta}$: Canonical shape.
-- $G_{\beta}$: Bone transformations.
-- $W_{\beta}$: Skinning weights.
+where $T_{\beta}$ represents the canonical shape, $G_{\beta}$ is the bone transformations, and $W_{\beta}$ refers to the skinning weights.
 
 ---
 
@@ -126,7 +114,7 @@ $$
 D(\beta, \theta, \omega_d) = D(D(\beta, \theta), \omega_d),
 $$
 
-where $\omega_d \in \mathbb{R}^{64}$ encodes frame-specific deformations. A **real-NVP** framework ensures invertibility of deformation fields.
+where $\omega_d \in \mathbb{R}^{64}$ encodes frame-specific deformations, and a **real-NVP framework** ensures invertibility of deformation fields.
 
 ---
 
@@ -138,9 +126,7 @@ $$
 (\sigma, c_t) = \text{MLP}_{\text{bg}}(X, v, \gamma),
 $$
 
-where:
-- $\sigma$: Density of the background.
-- $c_t$: Color of the background conditioned on the viewing direction $v$.
+where $\sigma$ represents the density of the background, $c_t$ is the color of the background conditioned on the viewing direction $v$, and $\gamma$ is the video-specific code.
 
 Foreground and background are rendered jointly for robust segmentation refinement.
 
@@ -189,8 +175,8 @@ where $\text{SD}$ measures the divergence between the canonical surface and join
     <tr>
       <th>Method</th>
       <th>CD (cm) ↓</th>
-      <th>F @2% ↑</th>
-      <th>F @5% ↑</th>
+      <th>F-score @ 2% ↑</th>
+      <th>F-score @ 5% ↑</th>
     </tr>
   </thead>
   <tbody>
