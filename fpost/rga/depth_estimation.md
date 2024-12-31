@@ -18,9 +18,9 @@ tags:
 
 ---
 
-## 1. Problem Definition & Dataset Analysis
+### 1. Problem Definition & Dataset Analysis
 
-### • Context of the Challenge
+#### • Context of the Challenge
 - Low-resolution (LR) depth maps suffer from degradation and noise, making them unreliable for upsampling:
   - Given a low-resolution depth map $D_{\text{LR}}$ and a corresponding RGB input $I$, the goal is to reconstruct a high-resolution depth map $D_{\text{SR}}$ such that:
     $$
@@ -28,7 +28,7 @@ tags:
     $$
     where $D_{\text{GT}}$ is the ground truth depth map.
 
-### • Key Observations
+#### • Key Observations
 - **Resolution Degradation**: $D_{\text{LR}}$ suffers from downsampling artifacts and spatial corruption:
   $$
   D_{\text{LR}} = \downarrow (D_{\text{GT}}) + \eta
@@ -38,16 +38,16 @@ tags:
 
 <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\depth_img\fig1.png" alt="Degraded LR Depth Map" style="width:70%;">
+    <img src="\fpost\rga\depth_img\fig1.png" alt="Degraded LR Depth Map" style="width:60%;">
   </div>
-  <figcaption style="text-align:center">**Fig 1. Visual comparison showing noise and resolution loss in the LR depth map.**</figcaption>
+  <figcaption style="text-align:center">Fig 1. Visual comparison showing noise and resolution loss in the LR depth map.</figcaption>
 </figure>
 
 ---
 
-## 2. Proposed Model & Approach
+### 2. Proposed Model & Approach
 
-### • Utilizing **Relative Depth (Depth Anything)**
+#### • Utilizing **Relative Depth (Depth Anything)**
 - The **pre-trained ‘Depth Anything’** model extracts **relative depth**, used as a supplementary guide for depth super-resolution:
   $$
   D_{\text{Rel}} = f_{\text{DepthAnything}}(I)
@@ -60,7 +60,7 @@ tags:
 
 ---
 
-### • U-Net-like Structure with Tailored Design
+#### • U-Net-like Structure with Tailored Design
 Our architecture is based on a **U-Net-inspired framework**, retaining its characteristic **encoder-decoder structure** and **skip connections**, with significant enhancements to address the unique challenges of noisy LR depth maps.
 
 #### **Encoder**
@@ -96,12 +96,12 @@ Our architecture is based on a **U-Net-inspired framework**, retaining its chara
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig2.png" alt="Model Pipeline" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">**Fig 2. Model pipeline integrating Depth Anything and U-Net-like structure.**</figcaption>
+  <figcaption style="text-align:center">Fig 2. Model pipeline integrating Depth Anything and U-Net-like structure.</figcaption>
 </figure>
 
 ---
 
-### • Detailed Architecture
+#### • Detailed Architecture
 - The encoder performs **four stages of downsampling**, progressively extracting finer features from the input.
 - At each stage, the **Fusion Module** normalizes and combines features from the two encoder paths.
 - The decoder restores the fused features to the target resolution via upsampling, integrating skip connections for enhanced reconstruction quality.
@@ -110,14 +110,14 @@ Our architecture is based on a **U-Net-inspired framework**, retaining its chara
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig3.png" alt="Detailed U-Net Structure" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">**Fig 3. Detailed architecture showing encoder, fusion module, and decoder.**</figcaption>
+  <figcaption style="text-align:center">Fig 3. Detailed architecture showing encoder, fusion module, and decoder.</figcaption>
 </figure>
 
 ---
 
-## 3. Implementation & Training
+### 3. Implementation & Training
 
-### • Loss Function
+#### • Loss Function
 The total loss function consists of a pixel-level reconstruction term and an edge preservation term:
 $$
 \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{pixel}} + \mathcal{L}_{\text{edge}}
@@ -133,7 +133,7 @@ $$
 
 ---
 
-### • Dataset & Pre-Training
+#### • Dataset & Pre-Training
 - **Pretrained Model**: Initialized on the **MVS-Synthetic Dataset**:
   $$
   D_{\text{LR}}, D_{\text{GT}} \in [0, 1]
@@ -146,7 +146,7 @@ $$
 
 ---
 
-### • Training Settings
+#### • Training Settings
 - **Batch Size**: 8  
 - **Learning Rate**:
   $$
@@ -159,9 +159,9 @@ $$
 
 ---
 
-## 4. Results & Conclusion
+### 4. Results & Conclusion
 
-### • Enhanced Detail
+#### • Enhanced Detail
 - Achieves finer edge and detail reconstruction compared to the baseline:
   $$
   D_{\text{SR}}^{\text{Ours}} \approx D_{\text{GT}}, \quad D_{\text{SR}}^{\text{Baseline}} \ll D_{\text{GT}}
@@ -169,14 +169,14 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\depth_img\fig4.png" alt="Enhanced Details" style="width:70%;">
+    <img src="\fpost\rga\depth_img\fig4.png" alt="Enhanced Details" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">**Fig 4. Depth reconstruction showing enhanced detail compared to the baseline.**</figcaption>
+  <figcaption style="text-align:center">Fig 4. Depth reconstruction showing enhanced detail compared to the baseline.</figcaption>
 </figure>
 
 ---
 
-### • Noise Robustness
+#### • Noise Robustness
 - Effectively mitigates noise from $D_{\text{LR}}$, retaining high accuracy:
   $$
   \| D_{\text{SR}} - D_{\text{GT}} \| < \| D_{\text{LR}} - D_{\text{GT}} \|
@@ -184,14 +184,14 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\depth_img\fig5.png" alt="Noise Robustness" style="width:70%;">
+    <img src="\fpost\rga\depth_img\fig5.png" alt="Noise Robustness" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">**Fig 5. Robust depth reconstruction under noisy LR input.**</figcaption>
+  <figcaption style="text-align:center">Fig 5. Robust depth reconstruction under noisy LR input.</figcaption>
 </figure>
 
 ---
 
-### • Real-Time Feasibility
+#### • Real-Time Feasibility
 - Operates efficiently at ~24 FPS on an RTX 3090, enabling real-time applications:
   $$
   \text{Speed}_{\text{Ours}} = 24 \, \text{FPS}
@@ -199,5 +199,5 @@ $$
 
 ---
 
-### • Summary
+#### • Summary
 By leveraging $D_{\text{Rel}}$ from the Depth Anything model and integrating a tailored U-Net architecture, our approach achieves robust super-resolution. It effectively handles noise, reconstructs fine details, and operates in real-time, making it highly suitable for practical deployment.
