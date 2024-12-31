@@ -97,9 +97,10 @@ By tailoring the U-Net architecture to integrate relative depth as an additional
 
 ### • Loss Function
 Our loss function is designed to optimize both pixel-level accuracy and edge sharpness in the depth prediction:
-\[
+$$
 \mathcal{L}_{\text{total}} = \| D_{\text{SR}} - D_{\text{GT}} \| + \| \text{Sobel}(D_{\text{SR}}) - \text{Sobel}(D_{\text{GT}}) \|
-\]
+$$
+
 - **First Term**: L1 Loss minimizes pixel-wise error between the super-resolved depth map (\(D_{\text{SR}}\)) and the ground truth depth map (\(D_{\text{GT}}\)).
 - **Second Term**: Sobel-based Edge Loss emphasizes and preserves edge details by aligning the edge structures of the predicted and ground truth depth maps.
 
