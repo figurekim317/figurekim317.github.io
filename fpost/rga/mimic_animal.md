@@ -1,184 +1,139 @@
 ---
 layout: fpost
-title: "Project 8"
+title: "Learning Agile Locomotion by Imitating Animals for Quadruped Robots"
 permalink: /fpost/rga/mimic_animal/
 author: Dohyeong Kim
 tags:   
-  - Autonomy driving
-  - Object detection
-  - Segmentation
-  - Model Compression
-  - Optimization
+  - Animal Locomotion
+  - RAC
+  - Reinforcement Learning
+  - Motion Retargeting
+  - Domain Adaptation
+  - 3D Reconstruction
+  - Robotics
+  - Sim-to-Real Transfer
 ---
 
-### • Goal
-- Combine ideas from **“Learning Agile Robotic Locomotion Skills by Imitating Animals”** with **“RAC: Reconstructing Animatable Categories from Videos”**  
-- Develop a pipeline that converts **YouTube or monocular videos** of animals (e.g., dogs) into **3D skeletal motion**, retargets the motion to a **robot**, and trains it via **reinforcement learning**  
-- Verify that **domain adaptation** strategies enable **real-time, real-world** deployment of such motion on physical quadruped robots
-
-<br/>
+## Goal
+- Combine ideas from **"Learning Agile Robotic Locomotion Skills by Imitating Animals"** and **"RAC: Reconstructing Animatable Categories from Videos"**.
+- Develop a pipeline to extract **3D skeletal motion** from monocular or YouTube videos of animals and retarget it to a **quadruped robot** for training via **reinforcement learning (RL)**.
+- Achieve **real-time deployment** on physical robots by addressing sim-to-real challenges through **domain adaptation**.
 
 ---
 
-## 1. Problem Definition & Dataset Analysis
+### 1. Problem Definition & Dataset Analysis
 
-- **Context**  
-  - Traditionally, motion capture (mocap) data from real animals (e.g., dogs) is used to learn agile and dynamic locomotion skills. However, mocap often requires specialized equipment and setups.  
-  - **RAC** enables per-video, **3D reconstructions** of animals captured in casual, in-the-wild videos (e.g., on YouTube).  
-  - By combining **RAC**’s ability to reconstruct animatable 3D models with the **motion imitation** approach from [Peng et al.], we aim to replicate lifelike animal gaits on a **quadruped robot**.
+#### **Context**
+- Traditional approaches rely on specialized **motion capture (mocap)** setups to record animal locomotion, which are resource-intensive.
+- **RAC** enables **3D reconstruction** of animals directly from casual, in-the-wild videos.
+- This project aims to combine RAC's capabilities with RL-based motion imitation to replicate naturalistic animal movements on robots, such as dogs’ gaits.
 
-- **Key Observations**  
-  1. **Between-Instance Variation**: Different dog breeds (or animals) exhibit diverse body proportions (limb lengths, ear shapes, etc.).  
-  2. **Within-Instance Variation**: Each dog’s motion over time includes skeletal articulation and soft deformation (e.g., muscles, fur).  
-  3. **Sim-to-Real Gap**: Policies trained in simulation often fail on real hardware without **domain adaptation** due to unmodeled dynamics (friction, motor torques, etc.).
+#### **Key Observations**
+1. **Between-Instance Variation**: Diverse animal breeds differ significantly in morphology (e.g., limb length, tail movement).
+2. **Within-Instance Variation**: Individual movements vary dynamically over time (e.g., joint articulation, fur deformation).
+3. **Sim-to-Real Gap**: Discrepancies in simulation and real-world conditions (e.g., motor torques, friction) often hinder direct deployment.
 
 <figure>
   <div style="text-align:center">
     <img src="images/dog_motion_example.png" alt="Dog Locomotion Example" style="width:70%;">
   </div>
-  <figcaption style="text-align:center">Fig 1. Example of a dog’s gait extracted from a casual YouTube video (conceptual).</figcaption>
+  <figcaption style="text-align:center">Fig 1. Example of a dog’s gait extracted from a casual YouTube video.</figcaption>
 </figure>
-
-<br/>
 
 ---
 
-## 2. Proposed Model & Approach
+### 2. Proposed Model & Approach
 
-### • Using **RAC** for 3D Reconstruction
-- **RAC (Reconstructing Animatable Categories)**:  
-  - Learns a **category-level** skeleton (e.g., for dogs) with a **morphology code** $ \beta $ per instance/video.  
-  - Decomposes motion into **articulation** (joint rotations) and **soft deformation** (non-rigid warping).  
-  - Incorporates a **background model** (NeRF) for robust rendering and better silhouette refinement.
+#### **Using RAC for 3D Reconstruction**
+- **RAC (Reconstructing Animatable Categories)**:
+  - Learns a category-level skeletal structure with a **morphology code** $ \beta $ for each instance.
+  - Decomposes motion into:
+    - **Articulations** $ \theta $: Joint rotations.
+    - **Soft Deformations** $ \Delta J_{\beta} $: Non-rigid body warping.
+  - Utilizes NeRF for background rendering and improved silhouette refinement.
 
-### • From Video to Robot
-1. **Video Input**: Collect single-view or multi-view videos of dog locomotion.  
-2. **RAC Reconstruction**: Obtain a **3D canonical model** + per-frame articulations $ \theta $ + morphological differences ($ \Delta J_\beta $).  
-3. **Retargeting**: Map the resulting 3D joint trajectories to the **robot** via **Inverse Kinematics** (IK).  
-4. **Motion Imitation**: Use reinforcement learning (RL) to train the robot’s policy $ \pi_\theta $ in simulation, imitating the retargeted reference motions.  
-5. **Domain Adaptation**: Transfer the learned policy to the physical quadruped robot, mitigating the sim-to-real gap.
+#### **Pipeline**
+1. **Video Input**: Collect single-view or multi-view locomotion videos.
+2. **RAC Reconstruction**:
+   - Generate a canonical 3D model, per-frame articulations $ \theta $, and morphology differences $ \Delta J_{\beta} $.
+3. **Motion Retargeting**:
+   - Map the extracted joint trajectories to a quadruped robot using **Inverse Kinematics (IK)**:
+   $$ \min_{q_{0:T}} \sum_t \sum_i \| \hat{x}_i(t) - x_i(q_t) \|^2 + (\bar{q} - q_t)^T W (\bar{q} - q_t). $$
+4. **Motion Imitation (RL)**:
+   - Train a policy $ \pi_\theta $ in simulation to mimic reference motions.
+5. **Domain Adaptation**:
+   - Transfer learned policies to the real robot while mitigating dynamics mismatches.
 
 <figure>
   <div style="text-align:center">
     <img src="images/dog_rac_pipeline.png" alt="RAC Pipeline" style="width:70%;">
   </div>
-  <figcaption style="text-align:center">Fig 2. Simplified pipeline: (1) Videos → (2) RAC reconstruction → (3) IK retargeting → (4) RL-based motion imitation → (5) Domain adaptation and real-world deployment.</figcaption>
+  <figcaption style="text-align:center">Fig 2. Pipeline: From videos to RAC reconstruction, retargeting, RL imitation, and domain adaptation.</figcaption>
 </figure>
 
-<br/>
+---
+
+### 3. Implementation & Training
+
+#### **Step-by-Step Process**
+
+1. **RAC Reconstruction**:
+   - Capture instance-level differences via $ \beta $.
+   - Optimize articulation $ \theta $ and soft deformations $ \Delta J_{\beta} $ for accurate 3D modeling.
+
+2. **Motion Retargeting**:
+   - Map time-varying joint positions $ \hat{x}_i(t) $ to robot joint angles $ q_t $ using the IK optimization problem.
+
+3. **Motion Imitation (RL)**:
+   - Define a reward function $ r_t $ to incentivize close matching of reference poses:
+     $$ r_t = w_p r_t^p + w_v r_t^v + w_e r_t^e + w_{rp} r_t^{rp} + w_{rv} r_t^{rv}, $$
+     where $ r_t^p $ measures pose accuracy, $ r_t^v $ measures velocity consistency, etc.
+
+4. **Domain Adaptation**:
+   - Apply **domain randomization** to bridge the sim-to-real gap by varying parameters (e.g., friction, mass):
+     $$ \mathbf{z}^* = \arg\max_{\mathbf{z}} J(\pi_\theta, \mathbf{z}). $$
+
+#### **Training Settings**
+- **Simulation**: Use PyBullet or MuJoCo for efficient training over millions of steps.
+- **Hardware**: Deploy optimized policies on Unitree or MIT mini-cheetah robots.
 
 ---
 
-## 3. Implementation & Training
+### 4. Challenges & Solutions
 
-### • Step-by-Step Process
+#### 1. **Unstable Reconstruction**
+- **Challenge**: Single-view inputs introduce ambiguities.
+- **Solution**: Incorporate priors or multi-view data to enhance stability.
 
-1. **RAC Reconstruction**  
-   - **Between-Instance** Variation: A morphology code $ \beta $ adjusts bone length, shape, and appearance.  
-   - **Within-Instance** Variation: Per-frame articulation $ \theta $ and invertible soft-deformation fields.  
-   - **Differentiable Rendering**: Uses silhouettes, RGB, and optical flow to optimize the 3D model and background NeRF end-to-end.
+#### 2. **Overfitting Deformations**
+- **Challenge**: Excessive soft deformation modeling can cause overfitting.
+- **Solution**: Regularize deformation parameters to balance rigidity and flexibility.
 
-2. **Motion Retargeting**  
-   - After we obtain time-varying joint positions $ \hat{x}_i(t) $ from the RAC output, we solve the IK problem to match them to the robot’s joint variables $ q_t $.  
-   - Formally ([Peng et al.], Eq. (1)):
+#### 3. **Sim-to-Real Gap**
+- **Challenge**: Simulation-trained policies may fail in real environments.
+- **Solution**: Employ domain randomization and train latent embeddings to adapt dynamics.
 
-   $$
-   \min_{q_{0:T}}
-   \sum_{t} \sum_{i}
-   \|\hat{x}_i(t) - x_i(q_t)\|^2
-   + (\bar{q} - q_t)^T W (\bar{q} - q_t).
-   $$
-
-3. **Motion Imitation (RL)**  
-   - In simulation (e.g., PyBullet, Mujoco), define a reward function that measures how closely the robot tracks the reference joint angles, velocities, and end-effector trajectories.  
-   - Example reward ([Peng et al.], Eqs. (4)–(9)) could be:
-
-   $$
-   r_t = w_p \, r_t^p + w_v \, r_t^v + w_e \, r_t^e + w_{rp} \, r_t^{rp} + w_{rv} \, r_t^{rv},
-   $$
-
-   where $ r_t^p $ focuses on pose accuracy, $ r_t^v $ on velocity matching, etc.
-
-4. **Domain Adaptation**  
-   - **Domain Randomization**: Randomize friction, mass, motor parameters during training.  
-   - **Latent Embedding** ($ \mathbf{z} $): Learned representation of environment dynamics that can be adjusted for real hardware.  
-   - During real-robot trials, refine $ \mathbf{z} $ or the policy to handle physical discrepancies (motor torque limits, real friction, sensor noise).
-
-<br/>
-
-### • Training Settings
-
-- **Simulation**: Typically trained with tens or hundreds of millions of timesteps using PPO or SAC.  
-- **Hardware**: The final policy is deployed on a **quadruped robot** (e.g., Unitree, MIT mini-cheetah, or similar).  
-- **Time Horizons**: Usually 5–10 seconds per episode for locomotion tasks.
-
-<br/>
+#### 4. **Real-Time Constraints**
+- **Challenge**: Policies may be computationally intensive.
+- **Solution**: Optimize for low-latency inference using TensorRT.
 
 ---
 
-## 4. Key Challenges & Solutions
+### 5. Results & Conclusion
 
-1. **Unstable Single-View Reconstruction**  
-   - **Challenge**: Monocular videos can cause ambiguities in 3D shape or skeleton inference.  
-   - **Solution**: Use additional priors (category skeleton, shape regularization) or, if possible, multi-view data to improve reliability.
-
-2. **Overly Complex Deformation**  
-   - **Challenge**: Overfitting can occur if the soft deformation field tries to “explain everything.”  
-   - **Solution**: Regularize the bone-based articulation vs. soft deformation boundaries, ensuring stable shape and motion.
-
-3. **Sim-to-Real Gap**  
-   - **Challenge**: Policies that work in simulation might fail when friction, sensor noise, or motor torque differ in reality.  
-   - **Solution**: Domain randomization + policy adaptation. For instance, searching for an optimal latent vector $ \mathbf{z}^* $ that maximizes performance on the real robot.
-
-4. **Real-Time Control**  
-   - **Challenge**: High-dimensional policies or large neural nets might be slow to run on embedded hardware.  
-   - **Solution**: Optimize network size, use TensorRT or similar acceleration, or offload to a compact controller.
-
-<br/>
+- **Enhanced Locomotion Quality**:
+  - Integrates RAC for lifelike 3D motion capture and RL for efficient policy learning.
+- **Robust Deployment**:
+  - Combines domain randomization and adaptation for real-world robustness.
+- **Scalable Data**:
+  - Exploits casual video sources (e.g., YouTube) to build diverse locomotion datasets.
+- **Real-Time Capability**:
+  - Ensures fast, responsive control suitable for embedded robotic systems.
 
 ---
 
-## 5. Potential Extensions & Future Directions
-
-1. **Complex Motions**  
-   - Expand beyond straightforward walking/trotting to include **jumping**, **obstacle avoidance**, or **spinning** behaviors.  
-   - Gather additional YouTube videos capturing more dynamic dog or cat movements.
-
-2. **Multi-Camera or Improved 3D Keypoint Systems**  
-   - If single-view reconstructions remain noisy, consider multi-camera setups or advanced pose-estimation techniques to refine 3D data quality.
-
-3. **Online Adaptation**  
-   - Continually update the policy on the real robot using real-time feedback (IMU, foot contacts) for improved robustness and fast domain adaptation.
-
-4. **Safety & Energy Efficiency**  
-   - Integrate constraints to reduce risk of falls or hardware damage.  
-   - Investigate gait patterns that minimize energy consumption or motor heat.
-
-<figure>
-  <div style="text-align:center">
-    <img src="images/real_robot_deployment.png" alt="Robot Deployment" style="width:70%;">
-  </div>
-  <figcaption style="text-align:center">Fig 3. Conceptual depiction of a quadruped robot performing dog-like gaits extracted from YouTube footage.</figcaption>
-</figure>
-
-<br/>
-
----
-
-## 6. Results & Conclusion
-
-- **Enhanced Motion Quality**  
-  - Combines **RAC** (which captures realistic animal shapes and articulations) with **motion imitation** RL to achieve **lifelike gaits** on quadruped robots.  
-
-- **Robustness via Domain Adaptation**  
-  - Policies become resilient to real-world discrepancies (friction, sensor noise) thanks to domain randomization and latent embedding adjustments.
-
-- **Scalable Data Source**  
-  - Bypasses specialized mocap setups by leveraging **YouTube** or casually captured videos, greatly expanding the variety of reference motions.
-
-- **Real-Time Possibility**  
-  - With optimized model sizes and efficient inference frameworks, near real-time control (tens to hundreds of Hz) is feasible on modern robotic platforms.
-
-<br/>
-
-**In summary**, by integrating **RAC**’s video-based 3D reconstruction with the motion imitation pipeline from [Peng et al.]—including retargeting, RL training, and domain adaptation—we can empower quadruped robots to learn agile, animal-like behaviors purely from ordinary videos. This paves the way for more flexible, data-driven robotic locomotion, unbound by heavy motion capture equipment or specialized lab environments.
+### References
+1. Peng et al., *Learning Agile Robotic Locomotion Skills by Imitating Animals*.
+2. RAC: *Reconstructing Animatable Categories from Videos*.
+3. NVIDIA TensorRT Documentation.
+4. MuJoCo and PyBullet for RL Training.
