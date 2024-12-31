@@ -34,13 +34,48 @@ tags:
 - Achieves state-of-the-art mAP (46.5) with 20M parameters and 60B FLOPs, outperforming YOLO models in real-time scenarios.
 
 #### **Performance Comparison**
-| Model       | mAP  | Parameters | FLOPs   |
-|-------------|-------|------------|---------|
-| RT-DETR     | 46.5  | 20M        | 60B     |
-| Ours-v3     | 48.0  | 17M        | 23B     |
-| Ours-v2     | 44.4  | 13M        | 20B     |
-| Ours-v1     | 43.7  | 13M        | 20B     |
-| Ours-v0     | 41.2  | 5.2M       | 6.4B    |
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>mAP</th>
+      <th>Parameters</th>
+      <th>FLOPs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RT-DETR</td>
+      <td>46.5</td>
+      <td>20M</td>
+      <td>60B</td>
+    </tr>
+    <tr>
+      <td>Ours-v3</td>
+      <td>48.0</td>
+      <td>17M</td>
+      <td>23B</td>
+    </tr>
+    <tr>
+      <td>Ours-v2</td>
+      <td>44.4</td>
+      <td>13M</td>
+      <td>20B</td>
+    </tr>
+    <tr>
+      <td>Ours-v1</td>
+      <td>43.7</td>
+      <td>13M</td>
+      <td>20B</td>
+    </tr>
+    <tr>
+      <td>Ours-v0</td>
+      <td>41.2</td>
+      <td>5.2M</td>
+      <td>6.4B</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -54,13 +89,48 @@ tags:
    - Reduced parameters from $20M$ (RT-DETR) to $5.2M$ (Ours-v0), significantly decreasing computation costs.
 
 #### **Comparative Model Performance**
-| Model       | mAP    | Parameters | FLOPs  |
-|-------------|--------|------------|--------|
-| RT-DETR     | 46.5   | 20M        | 60B    |
-| Ours-v3     | 48.0   | 17M        | 23B    |
-| Ours-v2     | 44.4   | 13M        | 20B    |
-| Ours-v1     | 43.7   | 13M        | 20B    |
-| Ours-v0     | 41.2   | 5.2M       | 6.4B   |
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>mAP</th>
+      <th>Parameters</th>
+      <th>FLOPs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RT-DETR</td>
+      <td>46.5</td>
+      <td>20M</td>
+      <td>60B</td>
+    </tr>
+    <tr>
+      <td>Ours-v3</td>
+      <td>48.0</td>
+      <td>17M</td>
+      <td>23B</td>
+    </tr>
+    <tr>
+      <td>Ours-v2</td>
+      <td>44.4</td>
+      <td>13M</td>
+      <td>20B</td>
+    </tr>
+    <tr>
+      <td>Ours-v1</td>
+      <td>43.7</td>
+      <td>13M</td>
+      <td>20B</td>
+    </tr>
+    <tr>
+      <td>Ours-v0</td>
+      <td>41.2</td>
+      <td>5.2M</td>
+      <td>6.4B</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
