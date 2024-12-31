@@ -1,139 +1,239 @@
 ---
 layout: fpost
-title: "Learning Agile Locomotion by Imitating Animals for Quadruped Robots"
+title: "Advanced Reconstruction with RAC: Animatable Categories from Videos"
 permalink: /fpost/rga/mimic_animal/
 author: Dohyeong Kim
 tags:   
-  - Animal Locomotion
-  - RAC
-  - Reinforcement Learning
-  - Motion Retargeting
-  - Domain Adaptation
   - 3D Reconstruction
+  - RAC
+  - Neural Rendering
+  - Animatable Models
+  - Differentiable Rendering
+  - Morphology Code
+  - Soft Deformation
   - Robotics
-  - Sim-to-Real Transfer
 ---
 
 ## Goal
-- Combine ideas from **"Learning Agile Robotic Locomotion Skills by Imitating Animals"** and **"RAC: Reconstructing Animatable Categories from Videos"**.
-- Develop a pipeline to extract **3D skeletal motion** from monocular or YouTube videos of animals and retarget it to a **quadruped robot** for training via **reinforcement learning (RL)**.
-- Achieve **real-time deployment** on physical robots by addressing sim-to-real challenges through **domain adaptation**.
+- Present a comprehensive analysis of RAC (Reconstructing Animatable Categories), incorporating detailed mathematical modeling.
+- Highlight its potential for reconstructing and animating 3D models of animals from in-the-wild videos.
+- Showcase its application for robotics, especially quadrupeds, and emphasize the inclusion of morphology variations and deformable models.
 
 ---
 
-### 1. Problem Definition & Dataset Analysis
+## 1. Method Overview
 
-#### **Context**
-- Traditional approaches rely on specialized **motion capture (mocap)** setups to record animal locomotion, which are resource-intensive.
-- **RAC** enables **3D reconstruction** of animals directly from casual, in-the-wild videos.
-- This project aims to combine RAC's capabilities with RL-based motion imitation to replicate naturalistic animal movements on robots, such as dogs’ gaits.
+Given monocular video recordings, RAC constructs **animatable 3D models** that encode:
+1. **Instance-specific Morphology** (e.g., body size, shape).
+2. **Time-varying Articulations and Deformations** (e.g., skeletal motion, soft tissue movement).
+3. **Video-specific 3D Background Models** (e.g., environmental context).
 
-#### **Key Observations**
-1. **Between-Instance Variation**: Diverse animal breeds differ significantly in morphology (e.g., limb length, tail movement).
-2. **Within-Instance Variation**: Individual movements vary dynamically over time (e.g., joint articulation, fur deformation).
-3. **Sim-to-Real Gap**: Discrepancies in simulation and real-world conditions (e.g., motor torques, friction) often hinder direct deployment.
+The optimization leverages **differentiable rendering**, allowing seamless integration of 3D modeling with observed image data.
+
+### Figure 1: Workflow Overview
 
 <figure>
   <div style="text-align:center">
-    <img src="images/dog_motion_example.png" alt="Dog Locomotion Example" style="width:70%;">
+    <img src="images/rac_workflow.png" alt="RAC Workflow" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 1. Example of a dog’s gait extracted from a casual YouTube video.</figcaption>
+  <figcaption style="text-align:center">Fig 1. RAC pipeline for generating animatable 3D models from monocular videos.</figcaption>
 </figure>
 
 ---
 
-### 2. Proposed Model & Approach
+## 2. Between-Instance Variation
 
-#### **Using RAC for 3D Reconstruction**
-- **RAC (Reconstructing Animatable Categories)**:
-  - Learns a category-level skeletal structure with a **morphology code** $ \beta $ for each instance.
-  - Decomposes motion into:
-    - **Articulations** $ \theta $: Joint rotations.
-    - **Soft Deformations** $ \Delta J_{\beta} $: Non-rigid body warping.
-  - Utilizes NeRF for background rendering and improved silhouette refinement.
+To capture morphological diversity across instances, RAC introduces the **morphology code** $ \beta $, which encodes both **shape** and **skeleton** variations.
 
-#### **Pipeline**
-1. **Video Input**: Collect single-view or multi-view locomotion videos.
-2. **RAC Reconstruction**:
-   - Generate a canonical 3D model, per-frame articulations $ \theta $, and morphology differences $ \Delta J_{\beta} $.
-3. **Motion Retargeting**:
-   - Map the extracted joint trajectories to a quadruped robot using **Inverse Kinematics (IK)**:
-   $$ \min_{q_{0:T}} \sum_t \sum_i \| \hat{x}_i(t) - x_i(q_t) \|^2 + (\bar{q} - q_t)^T W (\bar{q} - q_t). $$
-4. **Motion Imitation (RL)**:
-   - Train a policy $ \pi_\theta $ in simulation to mimic reference motions.
-5. **Domain Adaptation**:
-   - Transfer learned policies to the real robot while mitigating dynamics mismatches.
+### 2.1 Canonical Shape Representation
+
+Each 3D point $ X \in \mathbb{R}^3 $ is associated with properties predicted by MLPs:
+
+$$
+(d, c_t) = \text{MLP}_{\text{SDF}}(X, \beta, \omega_a),
+$$
+
+where:
+- $ d \in \mathbb{R} $: Signed distance for surface representation.
+- $ c_t \in \mathbb{R}^3 $: Color conditioned on appearance $ \omega_a $.
+- $ \beta \in \mathbb{R}^{32} $: Morphology code.
+- $ \omega_a \in \mathbb{R}^{64} $: Frame-specific appearance (e.g., shadows).
+
+An additional canonical feature vector $ \psi \in \mathbb{R}^{16} $ is computed:
+
+$$
+\psi = \text{MLP}_{\psi}(X).
+$$
+
+### 2.2 Skeleton Representation
+
+Skeletons are defined with fixed **category-level topology** and video-specific joint locations:
+
+$$
+J = \text{MLP}_{J}(\beta) \in \mathbb{R}^{3 \times B},
+$$
+
+where:
+- $ B $: Number of bones.
+- $ J $: Instance-specific joint positions.
+
+### 2.3 Skinning Field
+
+The skinning weights $ W \in \mathbb{R}^{B+1} $ are defined as:
+
+$$
+W = \sigma_{\text{softmax}} \big(d_{\sigma}(X, \beta, \theta) + \text{MLP}_{W}(X, \beta, \theta)\big),
+$$
+
+where:
+- $ \theta $: Articulation vector.
+- $ d_{\sigma} $: Mahalanobis distance from Gaussian bones.
+
+### 2.4 Stretchable Bone Deformation
+
+Morphological variations (e.g., limb elongation) are modeled by stretching canonical shapes:
+
+$$
+T_{\beta}^{s} = W_{\beta} G_{\beta} T_{\beta},
+$$
+
+where:
+- $ T_{\beta} $: Canonical shape.
+- $ G_{\beta} $: Bone transformations.
+- $ W_{\beta} $: Skinning weights.
+
+---
+
+## 3. Within-Instance Variation
+
+### 3.1 Time-Varying Articulation
+
+Joint rotations $ Q $ are computed via an MLP:
+
+$$
+Q = \text{MLP}_{A}(\theta) \in \mathbb{R}^{3 \times B},
+$$
+
+where $ \theta \in \mathbb{R}^{16} $ encodes skeletal articulation. Bone transformations $ G $ are derived through **forward kinematics** and applied with dual quaternion blend skinning (DQB):
+
+$$
+D(\beta, \theta) = (W_{\beta} G) T_{\beta}^s.
+$$
+
+### 3.2 Time-Varying Soft Deformation
+
+To account for dynamic deformations (e.g., fur, muscles):
+
+$$
+D(\beta, \theta, \omega_d) = D(D(\beta, \theta), \omega_d),
+$$
+
+where $ \omega_d \in \mathbb{R}^{64} $ encodes frame-specific deformations. A **real-NVP** framework ensures invertibility of deformation fields.
+
+---
+
+## 4. Scene Model and Background Reconstruction
+
+To handle segmentation inaccuracies, RAC integrates a **background NeRF** conditioned on a video-specific code $ \gamma $:
+
+$$
+(\sigma, c_t) = \text{MLP}_{\text{bg}}(X, v, \gamma),
+$$
+
+where:
+- $ \sigma $: Density of the background.
+- $ c_t $: Color of the background conditioned on the viewing direction $ v $.
+
+Foreground and background are rendered jointly for robust segmentation refinement.
+
+---
+
+## 5. Loss Functions
+
+### 5.1 Reconstruction Loss
+
+The primary loss compares rendered and observed images:
+
+$$
+\mathcal{L}_{\text{recon}} = \mathcal{L}_{\text{sil}} + \mathcal{L}_{\text{rgb}} + \mathcal{L}_{\text{flow}} + \mathcal{L}_{\text{feat}}.
+$$
+
+### 5.2 Regularization Terms
+
+1. **Morphology Code Regularization**:
+
+$$
+\mathcal{L}_{\beta} = \| D(\beta_1, \theta_1, \omega_{d1}) - D(\beta_2, \theta_2, \omega_{d2}) \|^2.
+$$
+
+2. **Soft Deformation Regularization**:
+
+$$
+\mathcal{L}_{\text{soft}} = \| D(\beta, \theta, \omega_d) - D(\beta, \theta) \|^2.
+$$
+
+3. **Sinkhorn Divergence for Joint Alignment**:
+
+$$
+\mathcal{L}_{\text{sinkhorn}} = \text{SD}(T_{\beta}, J_{\beta}),
+$$
+
+where $ \text{SD} $ measures the divergence between the canonical surface and joint positions.
+
+---
+
+## 6. Results and Experiments
+
+### **Comparative Model Performance**
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>CD (cm) ↓</th>
+      <th>F@2% ↑</th>
+      <th>F@5% ↑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HuMoR</td>
+      <td>9.8</td>
+      <td>47.5</td>
+      <td>83.7</td>
+    </tr>
+    <tr>
+      <td>ICON</td>
+      <td>10.1</td>
+      <td>39.9</td>
+      <td>85.2</td>
+    </tr>
+    <tr>
+      <td>BANMo</td>
+      <td>9.3</td>
+      <td>54.4</td>
+      <td>85.5</td>
+    </tr>
+    <tr>
+      <td><b>RAC</b></td>
+      <td><b>6.0</b></td>
+      <td><b>72.5</b></td>
+      <td><b>94.4</b></td>
+    </tr>
+  </tbody>
+</table>
+
+### Figure 2: Qualitative Results
 
 <figure>
   <div style="text-align:center">
-    <img src="images/dog_rac_pipeline.png" alt="RAC Pipeline" style="width:70%;">
+    <img src="images/rac_results.png" alt="RAC Results" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 2. Pipeline: From videos to RAC reconstruction, retargeting, RL imitation, and domain adaptation.</figcaption>
+  <figcaption style="text-align:center">Fig 2. RAC outperforms baselines in both coarse and fine detail reconstruction.</figcaption>
 </figure>
 
 ---
 
-### 3. Implementation & Training
+## Conclusion
 
-#### **Step-by-Step Process**
-
-1. **RAC Reconstruction**:
-   - Capture instance-level differences via $ \beta $.
-   - Optimize articulation $ \theta $ and soft deformations $ \Delta J_{\beta} $ for accurate 3D modeling.
-
-2. **Motion Retargeting**:
-   - Map time-varying joint positions $ \hat{x}_i(t) $ to robot joint angles $ q_t $ using the IK optimization problem.
-
-3. **Motion Imitation (RL)**:
-   - Define a reward function $ r_t $ to incentivize close matching of reference poses:
-     $$ r_t = w_p r_t^p + w_v r_t^v + w_e r_t^e + w_{rp} r_t^{rp} + w_{rv} r_t^{rv}, $$
-     where $ r_t^p $ measures pose accuracy, $ r_t^v $ measures velocity consistency, etc.
-
-4. **Domain Adaptation**:
-   - Apply **domain randomization** to bridge the sim-to-real gap by varying parameters (e.g., friction, mass):
-     $$ \mathbf{z}^* = \arg\max_{\mathbf{z}} J(\pi_\theta, \mathbf{z}). $$
-
-#### **Training Settings**
-- **Simulation**: Use PyBullet or MuJoCo for efficient training over millions of steps.
-- **Hardware**: Deploy optimized policies on Unitree or MIT mini-cheetah robots.
-
----
-
-### 4. Challenges & Solutions
-
-#### 1. **Unstable Reconstruction**
-- **Challenge**: Single-view inputs introduce ambiguities.
-- **Solution**: Incorporate priors or multi-view data to enhance stability.
-
-#### 2. **Overfitting Deformations**
-- **Challenge**: Excessive soft deformation modeling can cause overfitting.
-- **Solution**: Regularize deformation parameters to balance rigidity and flexibility.
-
-#### 3. **Sim-to-Real Gap**
-- **Challenge**: Simulation-trained policies may fail in real environments.
-- **Solution**: Employ domain randomization and train latent embeddings to adapt dynamics.
-
-#### 4. **Real-Time Constraints**
-- **Challenge**: Policies may be computationally intensive.
-- **Solution**: Optimize for low-latency inference using TensorRT.
-
----
-
-### 5. Results & Conclusion
-
-- **Enhanced Locomotion Quality**:
-  - Integrates RAC for lifelike 3D motion capture and RL for efficient policy learning.
-- **Robust Deployment**:
-  - Combines domain randomization and adaptation for real-world robustness.
-- **Scalable Data**:
-  - Exploits casual video sources (e.g., YouTube) to build diverse locomotion datasets.
-- **Real-Time Capability**:
-  - Ensures fast, responsive control suitable for embedded robotic systems.
-
----
-
-### References
-1. Peng et al., *Learning Agile Robotic Locomotion Skills by Imitating Animals*.
-2. RAC: *Reconstructing Animatable Categories from Videos*.
-3. NVIDIA TensorRT Documentation.
-4. MuJoCo and PyBullet for RL Training.
+RAC achieves state-of-the-art performance in animatable 3D reconstruction by combining morphological modeling, soft deformations, and differentiable rendering. Its ability to extract lifelike motion from videos unlocks new possibilities for robotics and virtual reality applications.

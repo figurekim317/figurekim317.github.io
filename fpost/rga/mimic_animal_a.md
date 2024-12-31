@@ -1,7 +1,7 @@
 ---
 layout: fpost
 title: "Project 8"
-permalink: /fpost/rga/mimic_animal/
+permalink: /fpost/rga/mimic_animal_a/
 author: Dohyeong Kim
 tags:   
   - Autonomy driving
