@@ -47,7 +47,7 @@ tags:
 
 ### 2. Proposed Model & Approach
 
-#### • Utilizing **Relative Depth (Depth Anything)**
+#### • Utilizing Relative Depth (Depth Anything)
 - The **pre-trained ‘Depth Anything’** model extracts **relative depth**, used as a supplementary guide for depth super-resolution:
   $$
   D_{\text{Rel}} = f_{\text{DepthAnything}}(I)
