@@ -21,12 +21,20 @@ tags:
 ## 1. Problem Definition & Dataset Analysis
 
 ### • Context of the Challenge
-- Low-resolution (LR) depth maps suffer from severe degradation and noise, making them unreliable for high-resolution depth reconstruction.
-- Sole reliance on LR depth maps and input images fails to produce accurate depth predictions.
+- Low-resolution (LR) depth maps suffer from degradation and noise, making them unreliable for upsampling:
+  - Given a low-resolution depth map $D_{\text{LR}}$ and a corresponding RGB input $I$, the goal is to reconstruct a high-resolution depth map $D_{\text{SR}}$ such that:
+    $$
+    D_{\text{SR}} \approx D_{\text{GT}}
+    $$
+    where $D_{\text{GT}}$ is the ground truth depth map.
 
 ### • Key Observations
-- **HR vs. LR Depth Comparison**: LR depth maps show both resolution loss and significant corruption.  
-- **Noise Impact**: High levels of noise in LR depth maps significantly affect depth reconstruction accuracy.
+- **Resolution Degradation**: $D_{\text{LR}}$ suffers from downsampling artifacts and spatial corruption:
+  $$
+  D_{\text{LR}} = \downarrow (D_{\text{GT}}) + \eta
+  $$
+  where $\downarrow$ denotes downsampling and $\eta$ is additive noise.
+- **Noise Impact**: The added noise $\eta$ significantly disrupts depth reconstruction quality.
 
 <figure>
   <div style="text-align:center">
@@ -40,26 +48,49 @@ tags:
 ## 2. Proposed Model & Approach
 
 ### • Utilizing **Relative Depth (Depth Anything)**
-- The **pre-trained ‘Depth Anything’** model extracts **relative depth**, used as a supplementary guide for depth super-resolution.
-- Inputs include the **relative depth map**, **low-resolution (LR) depth map**, and the **input image**, which are concatenated to form a multi-channel input for the network.
+- Extract relative depth $D_{\text{Rel}}$ using the pre-trained Depth Anything model:
+  $$
+  D_{\text{Rel}} = f_{\text{DepthAnything}}(I)
+  $$
+- Construct a multi-channel input:
+  $$
+  X = [D_{\text{Rel}}, D_{\text{LR}}, I]
+  $$
+  where $[\cdot]$ denotes concatenation.
 
 ---
 
 ### • U-Net-like Structure with Tailored Design
-Our architecture is based on a **U-Net-inspired framework**, retaining its characteristic **encoder-decoder structure** and **skip connections**, with significant enhancements to address the unique challenges of noisy LR depth maps.
+Our architecture builds upon the U-Net framework, designed to address $D_{\text{LR}}$'s unique challenges.
 
 #### **Encoder**
-- The encoder features **two parallel paths**:
-  - **Relative Depth Path**: Processes features from the relative depth map.
-  - **LR Depth Path**: Extracts features from the noisy LR depth map.
-- Both paths employ **NAFNet blocks** instead of conventional convolutional blocks, enhancing feature extraction.
+- The encoder processes the input $X$ via two parallel paths:
+  - **Relative Depth Path**:
+    $$
+    F_{\text{Rel}} = \text{NAFNet}(D_{\text{Rel}})
+    $$
+  - **LR Depth Path**:
+    $$
+    F_{\text{LR}} = \text{NAFNet}(D_{\text{LR}})
+    $$
+- Features $F_{\text{Rel}}$ and $F_{\text{LR}}$ are progressively downsampled at multiple levels.
 
 #### **Fusion Module**
-- Features from both paths are fused using **Adaptive Instance Normalization (AdaIN)**:
-  - The relative depth features are normalized to align with the distribution of the LR depth map, improving feature compatibility.
+- Combine $F_{\text{Rel}}$ and $F_{\text{LR}}$ using Adaptive Instance Normalization (AdaIN):
+  $$
+  F_{\text{Fusion}} = \text{AdaIN}(F_{\text{Rel}}, F_{\text{LR}})
+  $$
+  where:
+  $$
+  \text{AdaIN}(F_{\text{Rel}}, F_{\text{LR}}) = \sigma_{\text{LR}} \cdot \frac{F_{\text{Rel}} - \mu_{\text{Rel}}}{\sigma_{\text{Rel}}} + \mu_{\text{LR}}
+  $$
+  $\mu$ and $\sigma$ denote feature mean and variance.
 
 #### **Decoder**
-- The decoder reconstructs the high-resolution (HR) depth map by leveraging fused features, with skip connections providing contextual information.
+- The decoder reconstructs $D_{\text{SR}}$ by progressively upsampling $F_{\text{Fusion}}$:
+  $$
+  D_{\text{SR}} = \text{Decoder}(F_{\text{Fusion}})
+  $$
 
 <figure>
   <div style="text-align:center">
@@ -70,45 +101,43 @@ Our architecture is based on a **U-Net-inspired framework**, retaining its chara
 
 ---
 
-### • Detailed Architecture
-- The encoder performs four stages of downsampling, extracting progressively finer features.
-- At each stage, the **Fusion Module** combines and normalizes features from both encoder paths.
-- The decoder restores the fused features to the target resolution through upsampling.
-
-<figure>
-  <div style="text-align:center">
-    <img src="\fpost\rga\depth_img\fig3.png" alt="Detailed U-Net Structure" style="width:90%;">
-  </div>
-  <figcaption style="text-align:center">**Fig 3. Detailed architecture showing encoder, fusion module, and decoder.**</figcaption>
-</figure>
-
----
-
 ## 3. Implementation & Training
 
 ### • Loss Function
-The total loss function is designed to optimize both pixel-level accuracy and edge sharpness:
+The total loss function consists of a pixel-level reconstruction term and an edge preservation term:
 $$
-\mathcal{L}_{\text{total}} = \| D_{\text{SR}} - D_{\text{GT}} \| + \| \text{Sobel}(D_{\text{SR}}) - \text{Sobel}(D_{\text{GT}}) \|
+\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{pixel}} + \mathcal{L}_{\text{edge}}
 $$
-- **First Term**: Minimizes pixel-wise error between the super-resolved depth map ($D_{\text{SR}}$) and the ground truth depth map ($D_{\text{GT}}$).
-- **Second Term**: Emphasizes edge preservation using the Sobel operator to align edge structures between the prediction and ground truth.
+- **Pixel Reconstruction Loss**:
+  $$
+  \mathcal{L}_{\text{pixel}} = \| D_{\text{SR}} - D_{\text{GT}} \|_1
+  $$
+- **Edge Preservation Loss**:
+  $$
+  \mathcal{L}_{\text{edge}} = \| \text{Sobel}(D_{\text{SR}}) - \text{Sobel}(D_{\text{GT}}) \|_1
+  $$
 
 ---
 
 ### • Dataset & Pre-Training
-- **Pretrained Model**: Initialized on the **MVS-Synthetic Dataset**.
-- **Depth Map Range**: HR and LR depth maps are normalized to $[0, 1]$.
-- **Depth Clipping**: Depth values are capped at 300 for consistency.
-- **Validation Set**: The last 100 samples of the training set are reserved for validation.
+- **Pretrained Model**: Initialized on the **MVS-Synthetic Dataset**:
+  $$
+  D_{\text{LR}}, D_{\text{GT}} \in [0, 1]
+  $$
+- **Depth Clipping**: Depth values are clipped to:
+  $$
+  D_{\text{GT, max}} = 300
+  $$
+- **Validation Set**: Last 100 samples reserved for validation.
 
 ---
 
 ### • Training Settings
 - **Batch Size**: 8  
-- **Learning Rate**:  
-  - Depth Anything model: $2 \cdot 10^{-6}$  
-  - U-Net: $2 \cdot 10^{-4}$  
+- **Learning Rate**:
+  $$
+  \alpha_{\text{DepthAnything}} = 2 \cdot 10^{-6}, \quad \alpha_{\text{U-Net}} = 2 \cdot 10^{-4}
+  $$
 - **Epochs**: 500  
 - **Hardware**: Single NVIDIA A6000 GPU (~3 days).  
 - **Inference Speed**: ~24 FPS on RTX 3090.  
@@ -119,7 +148,11 @@ $$
 ## 4. Results & Conclusion
 
 ### • Enhanced Detail
-- The model outperforms the Depth Anything baseline by reconstructing finer depth edges and sharper details.
+- Achieves finer edge and detail reconstruction compared to the baseline:
+  $$
+  D_{\text{SR}}^{\text{Ours}} \approx D_{\text{GT}}, \quad D_{\text{SR}}^{\text{Baseline}} \ll D_{\text{GT}}
+  $$
+
 <figure>
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig4.png" alt="Enhanced Details" style="width:70%;">
@@ -130,7 +163,11 @@ $$
 ---
 
 ### • Noise Robustness
-- Maintains strong accuracy even when the LR input contains heavy noise, demonstrating its robustness.
+- Effectively mitigates noise from $D_{\text{LR}}$, retaining high accuracy:
+  $$
+  \| D_{\text{SR}} - D_{\text{GT}} \| < \| D_{\text{LR}} - D_{\text{GT}} \|
+  $$
+
 <figure>
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig5.png" alt="Noise Robustness" style="width:70%;">
@@ -141,9 +178,12 @@ $$
 ---
 
 ### • Real-Time Feasibility
-- Operates efficiently at ~24 FPS on an RTX 3090, ensuring suitability for near real-time applications.
+- Operates efficiently at ~24 FPS on an RTX 3090, enabling real-time applications:
+  $$
+  \text{Speed}_{\text{Ours}} = 24 \, \text{FPS}
+  $$
 
 ---
 
 ### • Summary
-By integrating the strengths of the Depth Anything model with a tailored U-Net-like architecture, our model achieves exceptional depth super-resolution performance. It demonstrates robustness to noise, high-resolution detail recovery, and real-time feasibility, making it a compelling solution for both academic and practical applications.
+By leveraging $D_{\text{Rel}}$ from the Depth Anything model and integrating a tailored U-Net architecture, our approach achieves robust super-resolution. It effectively handles noise, reconstructs fine details, and operates in real-time, making it highly suitable for practical deployment.
