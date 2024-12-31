@@ -30,7 +30,6 @@ Given monocular video recordings, RAC constructs **animatable 3D models** that e
 
 The optimization leverages **differentiable rendering**, allowing seamless integration of 3D modeling with observed image data.
 
-
 <figure>
   <div style="text-align:center">
     <img src="images/rac_workflow.png" alt="RAC Workflow" style="width:90%;">
@@ -42,23 +41,23 @@ The optimization leverages **differentiable rendering**, allowing seamless integ
 
 ### 2. Between-Instance Variation
 
-To capture morphological diversity across instances, RAC introduces the **morphology code** $ \beta $, which encodes both **shape** and **skeleton** variations.
+To capture morphological diversity across instances, RAC introduces the **morphology code** $\beta$, which encodes both **shape** and **skeleton** variations.
 
 #### 2.1 Canonical Shape Representation
 
-Each 3D point $ X \in \mathbb{R}^3 $ is associated with properties predicted by MLPs:
+Each 3D point $X \in \mathbb{R}^3$ is associated with properties predicted by MLPs:
 
 $$
 (d, c_t) = \text{MLP}_{\text{SDF}}(X, \beta, \omega_a),
 $$
 
 where:
-- $ d \in \mathbb{R} $: Signed distance for surface representation.
-- $ c_t \in \mathbb{R}^3 $: Color conditioned on appearance $ \omega_a $.
-- $ \beta \in \mathbb{R}^{32} $: Morphology code.
-- $ \omega_a \in \mathbb{R}^{64} $: Frame-specific appearance (e.g., shadows).
+- $d \in \mathbb{R}$: Signed distance for surface representation.
+- $c_t \in \mathbb{R}^3$: Color conditioned on appearance $\omega_a$.
+- $\beta \in \mathbb{R}^{32}$: Morphology code.
+- $\omega_a \in \mathbb{R}^{64}$: Frame-specific appearance (e.g., shadows).
 
-An additional canonical feature vector $ \psi \in \mathbb{R}^{16} $ is computed:
+An additional canonical feature vector $\psi \in \mathbb{R}^{16}$ is computed:
 
 $$
 \psi = \text{MLP}_{\psi}(X).
@@ -73,20 +72,20 @@ J = \text{MLP}_{J}(\beta) \in \mathbb{R}^{3 \times B},
 $$
 
 where:
-- $ B $: Number of bones.
-- $ J $: Instance-specific joint positions.
+- $B$: Number of bones.
+- $J$: Instance-specific joint positions.
 
 #### 2.3 Skinning Field
 
-The skinning weights $ W \in \mathbb{R}^{B+1} $ are defined as:
+The skinning weights $W \in \mathbb{R}^{B+1}$ are defined as:
 
 $$
 W = \sigma_{\text{softmax}} \big(d_{\sigma}(X, \beta, \theta) + \text{MLP}_{W}(X, \beta, \theta)\big),
 $$
 
 where:
-- $ \theta $: Articulation vector.
-- $ d_{\sigma} $: Mahalanobis distance from Gaussian bones.
+- $\theta$: Articulation vector.
+- $d_{\sigma}$: Mahalanobis distance from Gaussian bones.
 
 #### 2.4 Stretchable Bone Deformation
 
@@ -97,9 +96,9 @@ T_{\beta}^{s} = W_{\beta} G_{\beta} T_{\beta},
 $$
 
 where:
-- $ T_{\beta} $: Canonical shape.
-- $ G_{\beta} $: Bone transformations.
-- $ W_{\beta} $: Skinning weights.
+- $T_{\beta}$: Canonical shape.
+- $G_{\beta}$: Bone transformations.
+- $W_{\beta}$: Skinning weights.
 
 ---
 
@@ -107,13 +106,13 @@ where:
 
 #### 3.1 Time-Varying Articulation
 
-Joint rotations $ Q $ are computed via an MLP:
+Joint rotations $Q$ are computed via an MLP:
 
 $$
 Q = \text{MLP}_{A}(\theta) \in \mathbb{R}^{3 \times B},
 $$
 
-where $ \theta \in \mathbb{R}^{16} $ encodes skeletal articulation. Bone transformations $ G $ are derived through **forward kinematics** and applied with dual quaternion blend skinning (DQB):
+where $\theta \in \mathbb{R}^{16}$ encodes skeletal articulation. Bone transformations $G$ are derived through **forward kinematics** and applied with dual quaternion blend skinning (DQB):
 
 $$
 D(\beta, \theta) = (W_{\beta} G) T_{\beta}^s.
@@ -127,21 +126,21 @@ $$
 D(\beta, \theta, \omega_d) = D(D(\beta, \theta), \omega_d),
 $$
 
-where $ \omega_d \in \mathbb{R}^{64} $ encodes frame-specific deformations. A **real-NVP** framework ensures invertibility of deformation fields.
+where $\omega_d \in \mathbb{R}^{64}$ encodes frame-specific deformations. A **real-NVP** framework ensures invertibility of deformation fields.
 
 ---
 
 ### 4. Scene Model and Background Reconstruction
 
-To handle segmentation inaccuracies, RAC integrates a **background NeRF** conditioned on a video-specific code $ \gamma $:
+To handle segmentation inaccuracies, RAC integrates a **background NeRF** conditioned on a video-specific code $\gamma$:
 
 $$
 (\sigma, c_t) = \text{MLP}_{\text{bg}}(X, v, \gamma),
 $$
 
 where:
-- $ \sigma $: Density of the background.
-- $ c_t $: Color of the background conditioned on the viewing direction $ v $.
+- $\sigma$: Density of the background.
+- $c_t$: Color of the background conditioned on the viewing direction $v$.
 
 Foreground and background are rendered jointly for robust segmentation refinement.
 
@@ -177,7 +176,7 @@ $$
 \mathcal{L}_{\text{sinkhorn}} = \text{SD}(T_{\beta}, J_{\beta}),
 $$
 
-where $ \text{SD} $ measures the divergence between the canonical surface and joint positions.
+where $\text{SD}$ measures the divergence between the canonical surface and joint positions.
 
 ---
 
@@ -190,8 +189,8 @@ where $ \text{SD} $ measures the divergence between the canonical surface and jo
     <tr>
       <th>Method</th>
       <th>CD (cm) ↓</th>
-      <th>F@2% ↑</th>
-      <th>F@5% ↑</th>
+      <th>F @2% ↑</th>
+      <th>F @5% ↑</th>
     </tr>
   </thead>
   <tbody>
@@ -221,7 +220,6 @@ where $ \text{SD} $ measures the divergence between the canonical surface and jo
     </tr>
   </tbody>
 </table>
-
 
 <figure>
   <div style="text-align:center">

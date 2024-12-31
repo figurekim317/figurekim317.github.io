@@ -11,7 +11,7 @@ tags:
   - Optimization
 ---
 
-### • Goal
+## • Goal
 - Combine ideas from **“Learning Agile Robotic Locomotion Skills by Imitating Animals”** with **“RAC: Reconstructing Animatable Categories from Videos”**  
 - Develop a pipeline that converts **YouTube or monocular videos** of animals (e.g., dogs) into **3D skeletal motion**, retargets the motion to a **robot**, and trains it via **reinforcement learning**  
 - Verify that **domain adaptation** strategies enable **real-time, real-world** deployment of such motion on physical quadruped robots
@@ -20,7 +20,7 @@ tags:
 
 ---
 
-## 1. Problem Definition & Dataset Analysis
+### 1. Problem Definition & Dataset Analysis
 
 - **Context**  
   - Traditionally, motion capture (mocap) data from real animals (e.g., dogs) is used to learn agile and dynamic locomotion skills. However, mocap often requires specialized equipment and setups.  
@@ -43,15 +43,15 @@ tags:
 
 ---
 
-## 2. Proposed Model & Approach
+### 2. Proposed Model & Approach
 
-### • Using **RAC** for 3D Reconstruction
+#### • Using **RAC** for 3D Reconstruction
 - **RAC (Reconstructing Animatable Categories)**:  
   - Learns a **category-level** skeleton (e.g., for dogs) with a **morphology code** $ \beta $ per instance/video.  
   - Decomposes motion into **articulation** (joint rotations) and **soft deformation** (non-rigid warping).  
   - Incorporates a **background model** (NeRF) for robust rendering and better silhouette refinement.
 
-### • From Video to Robot
+#### • From Video to Robot
 1. **Video Input**: Collect single-view or multi-view videos of dog locomotion.  
 2. **RAC Reconstruction**: Obtain a **3D canonical model** + per-frame articulations $ \theta $ + morphological differences ($ \Delta J_\beta $).  
 3. **Retargeting**: Map the resulting 3D joint trajectories to the **robot** via **Inverse Kinematics** (IK).  
