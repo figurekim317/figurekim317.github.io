@@ -31,9 +31,9 @@ tags:
 <figure>
   <div style="text-align:center">
     <!-- Example placeholder -->
-    <img src="images/depth_challenge_example1.png" alt="Degraded LR Depth Map" style="width:70%;">
+    <img src="\fpost\rga\depth_img\fig1.png" alt="Degraded LR Depth Map" style="width:70%;">
   </div>
-  <figcaption style="text-align:center">Fig 1. Visual comparison showing noise and resolution loss in the LR depth map.</figcaption>
+  <figcaption style="text-align:center">Fig 1. Visual comparison showing noise and resolution loss in the LR depth map</figcaption>
 </figure>
 
 <br/>
