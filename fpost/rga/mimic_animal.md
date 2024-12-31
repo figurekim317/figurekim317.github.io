@@ -21,7 +21,7 @@ tags:
 
 ---
 
-## 1. Method Overview
+### 1. Method Overview
 
 Given monocular video recordings, RAC constructs **animatable 3D models** that encode:
 1. **Instance-specific Morphology** (e.g., body size, shape).
@@ -30,7 +30,6 @@ Given monocular video recordings, RAC constructs **animatable 3D models** that e
 
 The optimization leverages **differentiable rendering**, allowing seamless integration of 3D modeling with observed image data.
 
-### Figure 1: Workflow Overview
 
 <figure>
   <div style="text-align:center">
@@ -41,11 +40,11 @@ The optimization leverages **differentiable rendering**, allowing seamless integ
 
 ---
 
-## 2. Between-Instance Variation
+### 2. Between-Instance Variation
 
 To capture morphological diversity across instances, RAC introduces the **morphology code** $ \beta $, which encodes both **shape** and **skeleton** variations.
 
-### 2.1 Canonical Shape Representation
+#### 2.1 Canonical Shape Representation
 
 Each 3D point $ X \in \mathbb{R}^3 $ is associated with properties predicted by MLPs:
 
@@ -65,7 +64,7 @@ $$
 \psi = \text{MLP}_{\psi}(X).
 $$
 
-### 2.2 Skeleton Representation
+#### 2.2 Skeleton Representation
 
 Skeletons are defined with fixed **category-level topology** and video-specific joint locations:
 
@@ -77,7 +76,7 @@ where:
 - $ B $: Number of bones.
 - $ J $: Instance-specific joint positions.
 
-### 2.3 Skinning Field
+#### 2.3 Skinning Field
 
 The skinning weights $ W \in \mathbb{R}^{B+1} $ are defined as:
 
@@ -89,7 +88,7 @@ where:
 - $ \theta $: Articulation vector.
 - $ d_{\sigma} $: Mahalanobis distance from Gaussian bones.
 
-### 2.4 Stretchable Bone Deformation
+#### 2.4 Stretchable Bone Deformation
 
 Morphological variations (e.g., limb elongation) are modeled by stretching canonical shapes:
 
@@ -104,9 +103,9 @@ where:
 
 ---
 
-## 3. Within-Instance Variation
+### 3. Within-Instance Variation
 
-### 3.1 Time-Varying Articulation
+#### 3.1 Time-Varying Articulation
 
 Joint rotations $ Q $ are computed via an MLP:
 
@@ -120,7 +119,7 @@ $$
 D(\beta, \theta) = (W_{\beta} G) T_{\beta}^s.
 $$
 
-### 3.2 Time-Varying Soft Deformation
+#### 3.2 Time-Varying Soft Deformation
 
 To account for dynamic deformations (e.g., fur, muscles):
 
@@ -132,7 +131,7 @@ where $ \omega_d \in \mathbb{R}^{64} $ encodes frame-specific deformations. A **
 
 ---
 
-## 4. Scene Model and Background Reconstruction
+### 4. Scene Model and Background Reconstruction
 
 To handle segmentation inaccuracies, RAC integrates a **background NeRF** conditioned on a video-specific code $ \gamma $:
 
@@ -148,9 +147,9 @@ Foreground and background are rendered jointly for robust segmentation refinemen
 
 ---
 
-## 5. Loss Functions
+### 5. Loss Functions
 
-### 5.1 Reconstruction Loss
+#### 5.1 Reconstruction Loss
 
 The primary loss compares rendered and observed images:
 
@@ -158,7 +157,7 @@ $$
 \mathcal{L}_{\text{recon}} = \mathcal{L}_{\text{sil}} + \mathcal{L}_{\text{rgb}} + \mathcal{L}_{\text{flow}} + \mathcal{L}_{\text{feat}}.
 $$
 
-### 5.2 Regularization Terms
+#### 5.2 Regularization Terms
 
 1. **Morphology Code Regularization**:
 
@@ -182,9 +181,9 @@ where $ \text{SD} $ measures the divergence between the canonical surface and jo
 
 ---
 
-## 6. Results and Experiments
+### 6. Results and Experiments
 
-### **Comparative Model Performance**
+#### **Comparative Model Performance**
 
 <table>
   <thead>
@@ -223,7 +222,6 @@ where $ \text{SD} $ measures the divergence between the canonical surface and jo
   </tbody>
 </table>
 
-### Figure 2: Qualitative Results
 
 <figure>
   <div style="text-align:center">
@@ -234,6 +232,6 @@ where $ \text{SD} $ measures the divergence between the canonical surface and jo
 
 ---
 
-## Conclusion
+### Conclusion
 
 RAC achieves state-of-the-art performance in animatable 3D reconstruction by combining morphological modeling, soft deformations, and differentiable rendering. Its ability to extract lifelike motion from videos unlocks new possibilities for robotics and virtual reality applications.
