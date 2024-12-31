@@ -48,11 +48,11 @@ tags:
 ## 2. Proposed Model & Approach
 
 ### • Utilizing **Relative Depth (Depth Anything)**
-- Extract relative depth $D_{\text{Rel}}$ using the pre-trained Depth Anything model:
+- The **pre-trained ‘Depth Anything’** model extracts **relative depth**, used as a supplementary guide for depth super-resolution:
   $$
   D_{\text{Rel}} = f_{\text{DepthAnything}}(I)
   $$
-- Construct a multi-channel input:
+- Inputs include the **relative depth map**, **low-resolution (LR) depth map**, and the **input image**, which are concatenated to form a multi-channel input:
   $$
   X = [D_{\text{Rel}}, D_{\text{LR}}, I]
   $$
@@ -61,10 +61,10 @@ tags:
 ---
 
 ### • U-Net-like Structure with Tailored Design
-Our architecture builds upon the U-Net framework, designed to address $D_{\text{LR}}$'s unique challenges.
+Our architecture is based on a **U-Net-inspired framework**, retaining its characteristic **encoder-decoder structure** and **skip connections**, with significant enhancements to address the unique challenges of noisy LR depth maps.
 
 #### **Encoder**
-- The encoder processes the input $X$ via two parallel paths:
+- The encoder processes the multi-channel input $X$ through **two parallel paths**:
   - **Relative Depth Path**:
     $$
     F_{\text{Rel}} = \text{NAFNet}(D_{\text{Rel}})
@@ -73,10 +73,10 @@ Our architecture builds upon the U-Net framework, designed to address $D_{\text{
     $$
     F_{\text{LR}} = \text{NAFNet}(D_{\text{LR}})
     $$
-- Features $F_{\text{Rel}}$ and $F_{\text{LR}}$ are progressively downsampled at multiple levels.
+- Features $F_{\text{Rel}}$ and $F_{\text{LR}}$ are progressively downsampled across multiple levels using **NAFNet blocks**, enhancing feature extraction and representation.
 
 #### **Fusion Module**
-- Combine $F_{\text{Rel}}$ and $F_{\text{LR}}$ using Adaptive Instance Normalization (AdaIN):
+- Features from the relative depth and LR depth paths are fused using **Adaptive Instance Normalization (AdaIN)** to align their distributions:
   $$
   F_{\text{Fusion}} = \text{AdaIN}(F_{\text{Rel}}, F_{\text{LR}})
   $$
@@ -84,10 +84,10 @@ Our architecture builds upon the U-Net framework, designed to address $D_{\text{
   $$
   \text{AdaIN}(F_{\text{Rel}}, F_{\text{LR}}) = \sigma_{\text{LR}} \cdot \frac{F_{\text{Rel}} - \mu_{\text{Rel}}}{\sigma_{\text{Rel}}} + \mu_{\text{LR}}
   $$
-  $\mu$ and $\sigma$ denote feature mean and variance.
+  $\mu$ and $\sigma$ denote the mean and variance of the features, respectively.
 
 #### **Decoder**
-- The decoder reconstructs $D_{\text{SR}}$ by progressively upsampling $F_{\text{Fusion}}$:
+- The decoder reconstructs the high-resolution (HR) depth map by progressively upsampling the fused features $F_{\text{Fusion}}$, while utilizing skip connections from the encoder:
   $$
   D_{\text{SR}} = \text{Decoder}(F_{\text{Fusion}})
   $$
@@ -97,6 +97,20 @@ Our architecture builds upon the U-Net framework, designed to address $D_{\text{
     <img src="\fpost\rga\depth_img\fig2.png" alt="Model Pipeline" style="width:90%;">
   </div>
   <figcaption style="text-align:center">**Fig 2. Model pipeline integrating Depth Anything and U-Net-like structure.**</figcaption>
+</figure>
+
+---
+
+### • Detailed Architecture
+- The encoder performs **four stages of downsampling**, progressively extracting finer features from the input.
+- At each stage, the **Fusion Module** normalizes and combines features from the two encoder paths.
+- The decoder restores the fused features to the target resolution via upsampling, integrating skip connections for enhanced reconstruction quality.
+
+<figure>
+  <div style="text-align:center">
+    <img src="\fpost\rga\depth_img\fig3.png" alt="Detailed U-Net Structure" style="width:90%;">
+  </div>
+  <figcaption style="text-align:center">**Fig 3. Detailed architecture showing encoder, fusion module, and decoder.**</figcaption>
 </figure>
 
 ---
