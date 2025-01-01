@@ -39,7 +39,7 @@ The pipeline integrates the RAC reconstruction output into a quadruped robot's l
 
 <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\mimic_img\fig1.png" alt="RAC Workflow" style="width:90%;">
+    <img src="\fpost\rga\mimic_img\fig1.png" alt="RAC Workflow" style="width:100%;">
   </div>
   <figcaption style="text-align:center">Fig 1. RAC pipeline for generating animatable 3D models from monocular videos and retargeting motion to a quadruped robot.</figcaption>
 </figure>
@@ -202,6 +202,7 @@ To address the sim-to-real gap:
   </tbody>
 </table>
 
+<br><br>
 
 <figure>
   <div style="text-align:center">
