@@ -99,13 +99,6 @@ where $T_{\beta}$ represents the canonical shape, $G_{\beta}$ is the bone transf
 
 ### 3. From Video to Robot
 
-<figure>
-  <div style="text-align:center">
-    <img src="fpost/rga/mimic_img/fig2_pipeline.png" alt="Implementation Pipeline" style="width:90%;">
-  </div>
-  <figcaption style="text-align:center">Fig 2. RAC-generated data implementation pipeline for robotic control. This workflow demonstrates how 3D skeletal motion extracted from videos is processed through inverse kinematics, reinforcement learning, and domain adaptation to achieve real-world deployment on quadruped robots.</figcaption>
-</figure>
-
 #### 3.1 Video Input
 - Collect single-view or multi-view videos of animal locomotion (e.g., dogs).
 
@@ -128,7 +121,30 @@ $$
 r_t = w_p r_t^p + w_v r_t^v + w_e r_t^e + w_{rp} r_t^{rp} + w_{rv} r_t^{rv},
 $$
 
-where $r_t^p$, $r_t^v$, and $r_t^e$ evaluate pose, velocity, and end-effector accuracy, respectively.
+where $r_t^p$, $r_t^v$, and $r_t^e$ evaluate pose, velocity, and end-effector accuracy, respectively:
+
+- Pose Reward:
+$$
+r_t^p = \exp \left(-5 \sum_j \| \hat{q}_j(t) - q_j(t) \|^2 \right).
+$$
+
+- Velocity Reward:
+$$
+r_t^v = \exp \left(-0.1 \sum_j \| \dot{\hat{q}}_j(t) - \dot{q}_j(t) \|^2 \right).
+$$
+
+- End-Effector Reward:
+$$
+r_t^e = \exp \left(-40 \sum_e \| \hat{x}_e(t) - x_e(t) \|^2 \right).
+$$
+
+- Root Pose and Velocity Rewards:
+$$
+r_t^{rp} = \exp \left(-20 \| \hat{x}_{\text{root}}(t) - x_{\text{root}}(t) \|^2 \right),
+$$
+$$
+r_t^{rv} = \exp \left(-2 \| \dot{\hat{x}}_{\text{root}}(t) - \dot{x}_{\text{root}}(t) \|^2 \right).
+$$
 
 #### 3.5 Domain Adaptation
 To address the sim-to-real gap:
@@ -139,7 +155,7 @@ To address the sim-to-real gap:
   <div style="text-align:center">
     <img src="images/dog_rac_pipeline.png" alt="RAC Pipeline" style="width:70%;">
   </div>
-  <figcaption style="text-align:center">Fig 2. Simplified pipeline: (1) Videos → (2) RAC reconstruction → (3) IK retargeting → (4) RL-based motion imitation → (5) Domain adaptation and real-world deployment.</figcaption>
+  <figcaption style="text-align:center">Fig 2. Pipeline illustrating how RAC-generated data is processed and implemented for robotic control. The workflow includes generating animatable 3D models from monocular videos, retargeting the motion using inverse kinematics, and training control policies for deployment on quadruped robots.</figcaption>
 </figure>
 
 ---
@@ -196,4 +212,9 @@ To address the sim-to-real gap:
 
 ### Conclusion
 
-By integrating RAC's video-based 3D reconstruction with motion imitation, IK retargeting, and reinforcement learning, we enable quadruped robots to replicate lifelike animal gaits. This approach bypasses the need for intrusive motion capture setups by extracting natural motion data from videos, ensuring scalability and accessibility. Domain adaptation techniques ensure robust real-world deployment, demonstrating the versatility of data-driven robotic locomotion methods. 
+By integrating RAC's video-based 3D reconstruction with motion imitation, IK retargeting, and reinforcement learning, we enable quadruped robots to replicate lifelike animal gaits. This approach bypasses the need for intrusive motion capture setups by extracting natural motion data from videos, ensuring scalability and accessibility. Domain adaptation techniques ensure robust real-world deployment, demonstrating the versatility of data-driven robotic locomotion methods.
+
+
+
+Laikago robot performing locomotion skills learned by imitating motion data recorded from a real dog. Top: Motion capture data recorded from a
+dog. Middle: Simulated Laikago robot imitating reference motions. Bottom: Real Laikago robot imitating reference motions.
