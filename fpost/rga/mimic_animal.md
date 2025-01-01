@@ -101,7 +101,7 @@ where $T_{\beta}$ represents the canonical shape, $G_{\beta}$ is the bone transf
 
 <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\mimic_img\fig2.png" alt="RAC Pipeline" style="width:70%;">
+    <img src="\fpost\rga\mimic_img\framework.png" alt="RAC Pipeline" style="width:70%;">
   </div>
   <figcaption style="text-align:center">Fig 2. The framework consists of three stages: motion retargeting, motion imitation, and domain adaptation. It receives as input motion data recorded from an animal, and outputs a control policy that enables a real robot to reproduce the motion.</figcaption>
 </figure>
@@ -159,13 +159,6 @@ To address the sim-to-real gap:
 1. **Domain Randomization**: Randomize environmental factors (e.g., friction, mass).
 2. **Latent Embedding Adjustment**: Refine latent dynamics $\mathbf{z}$ during real-robot deployment.
 
-<figure>
-  <div style="text-align:center">
-    <img src="images/dog_rac_pipeline.png" alt="RAC Pipeline" style="width:70%;">
-  </div>
-  <figcaption style="text-align:center">Fig 2. Pipeline illustrating how RAC-generated data is processed and implemented for robotic control. The workflow includes generating animatable 3D models from monocular videos, retargeting the motion using inverse kinematics, and training control policies for deployment on quadruped robots.</figcaption>
-</figure>
-
 ---
 
 ### 4. Results and Experiments
@@ -208,6 +201,7 @@ To address the sim-to-real gap:
     </tr>
   </tbody>
 </table>
+
 
 <figure>
   <div style="text-align:center">
