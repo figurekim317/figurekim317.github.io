@@ -22,7 +22,7 @@ tags:
 ---
 <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\face_img\fig1.png" alt="Degraded LR Depth Map" style="width:60%;">
+    <img src="\fpost\rga\face_img\fig1.png" alt="Degraded LR Depth Map" style="width:80%;">
   </div>
   <figcaption style="text-align:center">Fig 1. Examples of diverse facial expressions and emotions from the FERV39k dataset.</figcaption>
 </figure>
@@ -170,14 +170,15 @@ The TensorRT-optimized model was deployed on **NVIDIA Orin**, achieving real-tim
 
 <figure>
   <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="\fpost\rga\face_img\gif1.gif\" alt="Real-Time Face Recognition 1" style="width:40%;">
-    <img src="\fpost\rga\face_img\gif2.gif\" alt="Real-Time Face Recognition 2" style="width:40%;">
-    <img src="\fpost\rga\face_img\gif3.gif\" alt="Real-Time Face Recognition 3" style="width:40%;">
+    <img src="/fpost/rga/face_img/gif1.gif" alt="Real-Time Face Recognition 1" style="width:30%;">
+    <img src="/fpost/rga/face_img/gif2.gif" alt="Real-Time Face Recognition 2" style="width:30%;">
+    <img src="/fpost/rga/face_img/gif3.gif" alt="Real-Time Face Recognition 3" style="width:30%;">
   </div>
   <figcaption style="text-align:center; margin-top: 10px;">
     Fig 2. Real-time face and emotion recognition system with three scenarios: face detection at a distance, emotion recognition, and tracking multiple individuals with unique IDs.
   </figcaption>
 </figure>
+
 
 
 ---
