@@ -20,8 +20,14 @@ tags:
 - Utilize **RADIOv2**, a foundation model, to extract robust facial features for downstream tasks.
 
 ---
+<figure>
+  <div style="text-align:center">
+    <img src="\fpost\rga\face_img\fig1.png" alt="Degraded LR Depth Map" style="width:60%;">
+  </div>
+  <figcaption style="text-align:center">Fig 1. Examples of diverse facial expressions and emotions from the FERV39k dataset.</figcaption>
+</figure>
+ 
 
-### 1. Project Overview
 
 #### 1.1 Feature Extraction with RADIOv2
 - **Foundation Model**: Leveraged **RADIOv2**, a pre-trained vision transformer, to extract high-quality facial features:
@@ -39,6 +45,13 @@ tags:
     W_{\text{new}} = W_{\text{old}} + \eta \cdot \nabla \mathcal{L}_{\text{TTA}},
     $$
     where $W_{\text{new}}$ denotes the updated weights, $W_{\text{old}}$ is the original weight, $\eta$ is the adaptation step size, and $\mathcal{L}_{\text{TTA}}$ is the test-time adaptation loss function.
+
+<figure>  
+  <div style="text-align:center">
+    <img src="\fpost\rga\depth_img\fig2.png" alt="Model Pipeline" style="width:90%;">
+  </div>
+  <figcaption style="text-align:center">Fig. 2. Model pipeline integrating Depth Anything and U-Net-like structure.** The pipeline is designed to integrate multiple components for robust feature extraction and domain-specific adaptations.</figcaption>
+</figure>
 
 ---
 
@@ -152,6 +165,20 @@ The TensorRT-optimized model was deployed on **NVIDIA Orin**, achieving real-tim
   \mathcal{L}_{\text{Spatial}} = \alpha \mathcal{L}_{\text{Cos}} + \beta \mathcal{L}_{\text{Smooth-L1}},
   $$
   where $\alpha = 0.9$ and $\beta = 0.1$ prioritize cosine similarity.
+
+---
+
+<figure>
+  <div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="\fpost\rga\face_img\gif1.gif\" alt="Real-Time Face Recognition 1" style="width:40%;">
+    <img src="\fpost\rga\face_img\gif2.gif\" alt="Real-Time Face Recognition 2" style="width:40%;">
+    <img src="\fpost\rga\face_img\gif3.gif\" alt="Real-Time Face Recognition 3" style="width:40%;">
+  </div>
+  <figcaption style="text-align:center; margin-top: 10px;">
+    Fig 2. Real-time face and emotion recognition system with three scenarios: face detection at a distance, emotion recognition, and tracking multiple individuals with unique IDs.
+  </figcaption>
+</figure>
+
 
 ---
 
