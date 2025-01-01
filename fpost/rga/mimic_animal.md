@@ -1,6 +1,6 @@
 ---
 layout: fpost
-title: "Advanced Reconstruction with RAC: Animatable Categories from Videos"
+title: "Data-Driven Quadruped Locomotion with RAC: From Videos to Robots"
 permalink: /fpost/rga/mimic_animal/
 author: Dohyeong Kim
 tags:   
@@ -12,12 +12,19 @@ tags:
   - Morphology Code
   - Soft Deformation
   - Robotics
+  - Reinforcement Learning
+  - Domain Adaptation
+  - Quadruped Robots
+  - Data-Driven Locomotion
+
 ---
 
 ## Goal
 - Present a comprehensive analysis of RAC (Reconstructing Animatable Categories), incorporating detailed mathematical modeling.
 - Highlight its potential for reconstructing and animating 3D models of animals from in-the-wild videos.
-- Showcase its application for robotics, especially quadrupeds, and emphasize the inclusion of morphology variations and deformable models.
+- Showcase its application for robotics, especially quadrupeds, emphasizing the inclusion of morphology variations, deformable models, and sim-to-real adaptation.
+- Emphasize a data-driven approach to obtaining locomotion data directly from videos, bypassing traditional motion capture setups.
+- Bridge video-based motion data with reinforcement learning for robust quadruped locomotion.
 
 ---
 
@@ -28,13 +35,13 @@ Given monocular video recordings, RAC constructs **animatable 3D models** that e
 2. **Time-varying Articulations and Deformations** (e.g., skeletal motion, soft tissue movement).
 3. **Video-specific 3D Background Models** (e.g., environmental context).
 
-The optimization leverages **differentiable rendering**, allowing seamless integration of 3D modeling with observed image data.
+The pipeline integrates the RAC reconstruction output into a quadruped robot's locomotion control system through **inverse kinematics (IK)** and **reinforcement learning (RL)**. This approach leverages video-based joint motion extraction instead of traditional motion capture methods to achieve natural and agile locomotion policies.
 
 <figure>
   <div style="text-align:center">
-    <img src="images/rac_workflow.png" alt="RAC Workflow" style="width:90%;">
+    <img src="fpost/rga/mimic_img/fig1.png" alt="RAC Workflow" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 1. RAC pipeline for generating animatable 3D models from monocular videos.</figcaption>
+  <figcaption style="text-align:center">Fig 1. RAC pipeline for generating animatable 3D models from monocular videos and retargeting motion to a quadruped robot.</figcaption>
 </figure>
 
 ---
@@ -90,83 +97,54 @@ where $T_{\beta}$ represents the canonical shape, $G_{\beta}$ is the bone transf
 
 ---
 
-### 3. Within-Instance Variation
+### 3. From Video to Robot
 
-#### 3.1 Time-Varying Articulation
+<figure>
+  <div style="text-align:center">
+    <img src="fpost/rga/mimic_img/fig2_pipeline.png" alt="Implementation Pipeline" style="width:90%;">
+  </div>
+  <figcaption style="text-align:center">Fig 2. RAC-generated data implementation pipeline for robotic control. This workflow demonstrates how 3D skeletal motion extracted from videos is processed through inverse kinematics, reinforcement learning, and domain adaptation to achieve real-world deployment on quadruped robots.</figcaption>
+</figure>
 
-Joint rotations $Q$ are computed via an MLP:
+#### 3.1 Video Input
+- Collect single-view or multi-view videos of animal locomotion (e.g., dogs).
 
-$$
-Q = \text{MLP}_{A}(\theta) \in \mathbb{R}^{3 \times B},
-$$
+#### 3.2 RAC Reconstruction
+- Obtain a **3D canonical model**, per-frame articulations $\theta$, and morphological differences $\Delta J_\beta$.
 
-where $\theta \in \mathbb{R}^{16}$ encodes skeletal articulation. Bone transformations $G$ are derived through **forward kinematics** and applied with dual quaternion blend skinning (DQB):
-
-$$
-D(\beta, \theta) = (W_{\beta} G) T_{\beta}^s.
-$$
-
-#### 3.2 Time-Varying Soft Deformation
-
-To account for dynamic deformations (e.g., fur, muscles):
+#### 3.3 Motion Retargeting
+The output motion is mapped to the robot using inverse kinematics (IK):
 
 $$
-D(\beta, \theta, \omega_d) = D(D(\beta, \theta), \omega_d),
+\min_{q_{0:T}} \sum_t \sum_i \| \hat{x}_i(t) - x_i(q_t) \|^2 + (\bar{q} - q_t)^T W (\bar{q} - q_t),
 $$
 
-where $\omega_d \in \mathbb{R}^{64}$ encodes frame-specific deformations, and a **real-NVP framework** ensures invertibility of deformation fields.
+where $\hat{x}_i(t)$ are target positions, $q_t$ are robot joint variables, and $W$ is a weighting matrix for joint constraints.
+
+#### 3.4 Motion Imitation (RL)
+In simulation (e.g., PyBullet, Mujoco), define a reward function to guide policy learning:
+
+$$
+r_t = w_p r_t^p + w_v r_t^v + w_e r_t^e + w_{rp} r_t^{rp} + w_{rv} r_t^{rv},
+$$
+
+where $r_t^p$, $r_t^v$, and $r_t^e$ evaluate pose, velocity, and end-effector accuracy, respectively.
+
+#### 3.5 Domain Adaptation
+To address the sim-to-real gap:
+1. **Domain Randomization**: Randomize environmental factors (e.g., friction, mass).
+2. **Latent Embedding Adjustment**: Refine latent dynamics $\mathbf{z}$ during real-robot deployment.
+
+<figure>
+  <div style="text-align:center">
+    <img src="images/dog_rac_pipeline.png" alt="RAC Pipeline" style="width:70%;">
+  </div>
+  <figcaption style="text-align:center">Fig 2. Simplified pipeline: (1) Videos → (2) RAC reconstruction → (3) IK retargeting → (4) RL-based motion imitation → (5) Domain adaptation and real-world deployment.</figcaption>
+</figure>
 
 ---
 
-### 4. Scene Model and Background Reconstruction
-
-To handle segmentation inaccuracies, RAC integrates a **background NeRF** conditioned on a video-specific code $\gamma$:
-
-$$
-(\sigma, c_t) = \text{MLP}_{\text{bg}}(X, v, \gamma),
-$$
-
-where $\sigma$ represents the density of the background, $c_t$ is the color of the background conditioned on the viewing direction $v$, and $\gamma$ is the video-specific code.
-
-Foreground and background are rendered jointly for robust segmentation refinement.
-
----
-
-### 5. Loss Functions
-
-#### 5.1 Reconstruction Loss
-
-The primary loss compares rendered and observed images:
-
-$$
-\mathcal{L}_{\text{recon}} = \mathcal{L}_{\text{sil}} + \mathcal{L}_{\text{rgb}} + \mathcal{L}_{\text{flow}} + \mathcal{L}_{\text{feat}}.
-$$
-
-#### 5.2 Regularization Terms
-
-1. **Morphology Code Regularization**:
-
-$$
-\mathcal{L}_{\beta} = \| D(\beta_1, \theta_1, \omega_{d1}) - D(\beta_2, \theta_2, \omega_{d2}) \|^2.
-$$
-
-2. **Soft Deformation Regularization**:
-
-$$
-\mathcal{L}_{\text{soft}} = \| D(\beta, \theta, \omega_d) - D(\beta, \theta) \|^2.
-$$
-
-3. **Sinkhorn Divergence for Joint Alignment**:
-
-$$
-\mathcal{L}_{\text{sinkhorn}} = \text{SD}(T_{\beta}, J_{\beta}),
-$$
-
-where $\text{SD}$ measures the divergence between the canonical surface and joint positions.
-
----
-
-### 6. Results and Experiments
+### 4. Results and Experiments
 
 #### **Comparative Model Performance**
 
@@ -211,11 +189,11 @@ where $\text{SD}$ measures the divergence between the canonical surface and join
   <div style="text-align:center">
     <img src="images/rac_results.png" alt="RAC Results" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 2. RAC outperforms baselines in both coarse and fine detail reconstruction.</figcaption>
+  <figcaption style="text-align:center">Fig 3. RAC outperforms baselines in both coarse and fine detail reconstruction.</figcaption>
 </figure>
 
 ---
 
 ### Conclusion
 
-RAC achieves state-of-the-art performance in animatable 3D reconstruction by combining morphological modeling, soft deformations, and differentiable rendering. Its ability to extract lifelike motion from videos unlocks new possibilities for robotics and virtual reality applications.
+By integrating RAC's video-based 3D reconstruction with motion imitation, IK retargeting, and reinforcement learning, we enable quadruped robots to replicate lifelike animal gaits. This approach bypasses the need for intrusive motion capture setups by extracting natural motion data from videos, ensuring scalability and accessibility. Domain adaptation techniques ensure robust real-world deployment, demonstrating the versatility of data-driven robotic locomotion methods. 
