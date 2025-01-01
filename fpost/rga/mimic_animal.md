@@ -99,6 +99,14 @@ where $T_{\beta}$ represents the canonical shape, $G_{\beta}$ is the bone transf
 
 ### 3. From Video to Robot
 
+<figure>
+  <div style="text-align:center">
+    <img src="\fpost\rga\mimic_img\fig2.png" alt="RAC Pipeline" style="width:70%;">
+  </div>
+  <figcaption style="text-align:center">Fig 2. The framework consists of three stages: motion retargeting, motion imitation, and domain adaptation. It receives as input motion data recorded from an animal, and outputs a control policy that enables a real robot to reproduce the motion.</figcaption>
+</figure>
+
+
 #### 3.1 Video Input
 - Collect single-view or multi-view videos of animal locomotion (e.g., dogs).
 
@@ -203,18 +211,16 @@ To address the sim-to-real gap:
 
 <figure>
   <div style="text-align:center">
-    <img src="images/rac_results.png" alt="RAC Results" style="width:90%;">
+    <img src="\fpost\rga\mimic_img\fig3.png" alt="Reconstruction to Robot Pipeline" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 3. RAC outperforms baselines in both coarse and fine detail reconstruction.</figcaption>
+  <figcaption style="text-align:center">
+    Fig 3. The pipeline consists of three stages: The first row demonstrates the reconstruction of animal morphology and motion using RAC from real-world dog locomotion videos. The second row depicts the simulation of learned gaits in a virtual environment to refine policies. The third row illustrates the deployment of these policies on a physical quadruped robot, achieving realistic motion.
+  </figcaption>
 </figure>
+
 
 ---
 
 ### Conclusion
 
 By integrating RAC's video-based 3D reconstruction with motion imitation, IK retargeting, and reinforcement learning, we enable quadruped robots to replicate lifelike animal gaits. This approach bypasses the need for intrusive motion capture setups by extracting natural motion data from videos, ensuring scalability and accessibility. Domain adaptation techniques ensure robust real-world deployment, demonstrating the versatility of data-driven robotic locomotion methods.
-
-
-
-Laikago robot performing locomotion skills learned by imitating motion data recorded from a real dog. Top: Motion capture data recorded from a
-dog. Middle: Simulated Laikago robot imitating reference motions. Bottom: Real Laikago robot imitating reference motions.
