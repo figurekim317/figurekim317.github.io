@@ -175,7 +175,7 @@ The TensorRT-optimized model was deployed on **NVIDIA Orin**, achieving real-tim
     <img src="/fpost/rga/face_img/gif3.gif" alt="Real-Time Face Recognition 3" style="width:30%;">
   </div>
   <figcaption style="text-align:center; margin-top: 10px;">
-    Fig 2. Real-time face and emotion recognition system with three scenarios: face detection at a distance, emotion recognition, and tracking multiple individuals with unique IDs.
+    Fig 3. Real-time face and emotion recognition system with three scenarios: face detection at a distance, emotion recognition, and tracking multiple individuals with unique IDs.
   </figcaption>
 </figure>
 
