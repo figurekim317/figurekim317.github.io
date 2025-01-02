@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[논문리뷰] Scaling Rectified Flow Transformers for High-Resolution Image Synthesis (Stable Diffusion 3)"
 last_modified_at: 2024-12-24
 categories:
@@ -21,14 +24,18 @@ classes: wide
 > Stability AI  
 > 5 Mar 2024  
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig1.webp" | relative_url}}' width="100%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig1.webp" alt="Stable Diffusion 3 Fig 1" style="width:90%;">
+  </div>
+</figure>
 
 ## Introduction
 최근 몇 년 동안 diffusion model은 인상적인 일반화 능력을 갖추고 텍스트 입력에서 고해상도 이미지와 동영상을 생성하는 사실상의 접근 방식이 되었다. 반복적인 특성과 관련된 계산 비용, inference 중 긴 샘플링 시간으로 인해 diffusion model의 보다 효율적인 학습 및 더 빠른 샘플링을 위한 연구가 증가했다.
 
 데이터에서 noise로의 forward 경로를 지정하면 효율적인 학습이 가능하지만, 어떤 경로를 선택해야 할지에 대한 의문도 제기된다. 이러한 선택은 샘플링에 중요한 영향을 미칠 수 있다. 예를 들어, 데이터에서 모든 noise를 제거하지 못하는 forward process는 학습 분포와 테스트 분포의 불일치를 초래하고 아티팩트를 생성할 수 있다. 중요한 점은 forward process의 선택이 학습된 backward process와 샘플링 효율성에도 영향을 미친다는 것이다. 곡선 경로는 프로세스를 시뮬레이션하기 위해 많은 step이 필요한 반면, 직선 경로는 하나의 step으로 시뮬레이션할 수 있으며 오차가 누적될 가능성이 적다. 각 step은 신경망 평가에 해당하므로 샘플링 속도에 직접적인 영향을 미친다.
 
-본 논문은 forward 경로로 데이터와 noise를 직선으로 연결하는 [Rectified Flow](https://kimjy99.github.io/논문리뷰/rectified-flow)를 선택하였다. 이 rectified flow는 더 나은 이론적 속성을 가지고 있지만 아직 명확하게 확립되지 않았다. 지금까지 소규모 실험에서 몇 가지 장점이 경험적으로 입증되었지만 이는 대부분 클래스 조건부 모델에 국한되었다. 본 논문에서는 noise를 예측하는 diffusion model과 유사하게 rectified flow 모델에서 noise scale의 가중치를 재조정하였다. 대규모 연구를 통해 새로운 공식을 기존 diffusion model과 비교하고 그 이점을 보여주었다.
+본 논문은 forward 경로로 데이터와 noise를 직선으로 연결하는 Rectified Flow를 선택하였다. 이 rectified flow는 더 나은 이론적 속성을 가지고 있지만 아직 명확하게 확립되지 않았다. 지금까지 소규모 실험에서 몇 가지 장점이 경험적으로 입증되었지만 이는 대부분 클래스 조건부 모델에 국한되었다. 본 논문에서는 noise를 예측하는 diffusion model과 유사하게 rectified flow 모델에서 noise scale의 가중치를 재조정하였다. 대규모 연구를 통해 새로운 공식을 기존 diffusion model과 비교하고 그 이점을 보여주었다.
 
 저자들은 고정된 텍스트 표현을 cross-attention을 통해 모델에 직접 공급하는 text-to-image 합성에 널리 사용되는 접근 방식이 이상적이지 않다는 것을 보여주고, 이미지와 텍스트 토큰 모두에 대한 학습 가능한 스트림을 통합하는 새로운 아키텍처를 제시하여 두 토큰 간의 양방향 정보 흐름을 가능하게 한다. 저자들은 이것을 개선된 rectified flow 공식과 결합하여 확장성을 조사하였으며, 예측 가능한 확장 추세가 있음을 보여주었다. 
 
@@ -280,7 +287,12 @@ $$
 $$
 
 ## Text-to-Image Architecture
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig2.webp" | relative_url}}' width="100%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig2.webp" alt="Stable Diffusion 3 Fig 2" style="width:90%;">
+  </div>
+</figure>
+
 <br>
 텍스트를 조건으로 이미지를 샘플링 하기 위해, 모델은 텍스트와 이미지라는 두 가지 모달리티를 모두 고려해야 한다. 일반적인 설정은 LDM을 따라 사전 학습된 오토인코더의 latent space에서 text-to-image 모델을 학습시킨다. 텍스트 컨디셔닝 $c$는 사전 학습된 텍스트 모델을 사용하여 인코딩된다. 
 
@@ -297,37 +309,62 @@ $$
 ### 1. Improving Rectified Flows
 저자들은 61개의 서로 다른 구성을 가진 모델을 학습시켰다. 다음은 학습된 모델들에 대한 (왼쪽) 평균 순위와 (오른쪽) metric을 비교한 표이다. 
 
-<div style="display: flex; align-items: end; justify-content: center">
-  <img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table1.webp" | relative_url}}' width="40%">
-  <div style="flex-grow: 0; width: 3%;"></div>
-  <img src='{{"//_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table2.webp" | relative_url}}' width="45%">
-</div>
+<figure>
+  <div style="display: flex; align-items: end; justify-content: center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table1.webp" alt="Comparison Table 1" style="width:40%;">
+    <div style="flex-grow: 0; width: 3%;"></div>
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table2.webp" alt="Comparison Table 2" style="width:45%;">
+  </div>
+</figure>
 <br>
+
 다음은 샘플링 step 수에 대한 FID를 비교한 그래프이다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig3.webp" | relative_url}}' width="55%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig3.webp" alt="Stable Diffusion 3 Fig 3" style="width:90%;">
+  </div>
+</figure>
 
 ### 2. Improving Modality Specific Representations
 다음은 오토인코더의 채널 수에 대한 ablation 결과이다. 
 
-<center><img src='{{"_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table3.webp" | relative_url}}' width="40%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig4.webp" alt="Stable Diffusion 3 Fig 4" style="width:90%;">
+  </div>
+</figure>
 <br>
 다음은 원래 캡션을 사용하였을 때와 원래 캡션과 [CogVLM](https://arxiv.org/abs/2311.03079)으로 생성된 캡션을 반반 섞어서 사용하였을 때의 결과이다.
 
-<center><img src='{{"_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table4.webp" | relative_url}}' width="40%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table4.webp" alt="Table 4" style="width:40%;">
+  </div>
+</figure>
 <br>
+
 다음은 모델 backbone에 대한 ablation 결과이다. (MM-DiT가 본 논문에서 제안된 아키텍처)
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig4.webp" | relative_url}}' width="67%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig4.webp" alt="Figure 4" style="width:67%;">
+  </div>
+</figure>
 
 ### 3. Training at Scale
 ##### QK 정규화
 저자들은 모든 모델을 256$\times$256 크기의 저해상도 이미지에서 사전 학습시킨 다음, 혼합된 종횡비를 가진 더 높은 해상도에서 모델을 fine-tuning하였다. 고해상도로 이동하면 mixed precision 학습이 불안정해지고 loss가 발산할 수 있다. 이는 full precision 학습으로 전환하면 해결할 수 있지만 mixed precision 학습에 비해 성능이 약 2배 떨어진다. 
 
-[ViT-22B](https://arxiv.org/abs/2302.05442) 논문에서는 attention 엔트로피가 통제 불가능하게 증가하기 때문에 대형 ViT의 학습이 발산한다는 것을 관찰했으며, 이를 방지하기 위해 attention 연산 전에 query와 key를 정규화할 것을 제안하였다. 저자들은 이 접근 방식을 따르고 MMDiT 아키텍처의 두 스트림 모두에서 학습 가능한 RMSNorm을 모델에 사용한다. 
+ViT-22B 논문에서는 attention 엔트로피가 통제 불가능하게 증가하기 때문에 대형 ViT의 학습이 발산한다는 것을 관찰했으며, 이를 방지하기 위해 attention 연산 전에 query와 key를 정규화할 것을 제안하였다. 저자들은 이 접근 방식을 따르고 MMDiT 아키텍처의 두 스트림 모두에서 학습 가능한 RMSNorm을 모델에 사용한다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig5.webp" | relative_url}}' width="65%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig5.webp" alt="Figure 5" style="width:65%;">
+  </div>
+</figure>
 <br>
+
 위 그림에서 볼 수 있듯이, 추가적인 정규화는 attention logit 성장의 불안정성을 방지하며, bf16 mixed precision에서 효율적인 학습을 가능하게 한다. 이 기술은 사전 학습 중에 정규화를 사용하지 않은 모델에도 적용할 수 있다. 모델은 추가 정규화 레이어에 빠르게 적응하고 보다 안정적으로 학습한다. 
 
 ##### 다양한 종횡비를 위한 위치 임베딩
@@ -366,24 +403,48 @@ $$
 
 다음은 timestep schedule shifting 결과이다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig6.webp" | relative_url}}' width="90%"></center>
-<br>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig6.webp" alt="Timestep Schedule Shifting" style="width:90%;">
+  </div>
+</figure>
+
 다음은 SOTA 이미지 생성 모델들과의 인간 선호도 평가 결과이다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig7.webp" | relative_url}}' width="44%"></center>
-<br>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig7.webp" alt="SOTA Model Human Evaluation" style="width:44%;">
+  </div>
+</figure>
+
 다음은 기존 방법들과의 GenEval 비교 결과이다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table5.webp" | relative_url}}' width="65%"></center>
-<br>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table5.webp" alt="GenEval Comparison" style="width:65%;">
+  </div>
+</figure>
+
 다음은 모델 크기에 따른 샘플링 효율성을 비교한 표이다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table6.webp" | relative_url}}' width="47%"></center>
-<br>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table6.webp" alt="Sampling Efficiency by Model Size" style="width:47%;">
+  </div>
+</figure>
+
 다음은 스케일링의 정량적 효과를 비교한 그래프들이다. 
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig8.webp" | relative_url}}' width="100%"></center>
-<br>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig8.webp" alt="Quantitative Effects of Scaling" style="width:100%;">
+  </div>
+</figure>
+
 다음은 T5 유무에 따른 결과를 비교한 것이다. T5를 제거해도 미적 품질 평가에는 영향이 없고 (승률 50%), 프롬프트 준수에도 영향이 미미한 반면 (승률 46%), 텍스트 생성 능력에 대한 기여도는 더 크다 (승률 38%).
 
-<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig9.webp" | relative_url}}' width="80%"></center>
+<figure>
+  <div style="text-align:center">
+    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig9.webp" alt="Comparison of T5 Usage" style="width:80%;">
+  </div>
+</figure>
