@@ -71,7 +71,7 @@ blurb-btn-name: know more
 skills-title: Skills
 skills:
   - { name: Computer Vision & Robotics, color: "#B2A4FF", value: "90%" }
-  - { name: Lightweight Model Deployment, color: "#B2A4FF", value: "90%" }
+  - { name: Model Compression & Deployment, color: "#B2A4FF", value: "90%" }
   - { name: Reinforcement Learning, color: "#B2A4FF", value: "80%" }
   - { name: LLM & Foundation Models, color: "#B2A4FF", value: "85%" }
 
