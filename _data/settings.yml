@@ -50,42 +50,62 @@ blurb-btn-name: know more
 #-------------------------------
 # Skills Section
 
+#skills-title: Skills
+#skills:
+#  - { name: Model Compression, color: "#B2A4FF", value: "80%" }
+#  - { name: Computer Vision, color: "#B2A4FF", value: "80%" }
+#  - { name: Optimization, color: "#B2A4FF", value: "80%" }
+#  - { name: Generative model, color: "#B2A4FF", value: "70%" }
+
+#  - { name: PYTHON, color: "#FFB4B4", value: "70%" }
+#  - { name: C++, color: "#FFB4B4", value: "70%" }
+#  - { name: OpenCV, color: "#FFB4B4", value: "60%" }
+#  - { name: ROS, color: "#FFB4B4", value: "60%" }
+
+#  - { name: Github, color: "#FFDEB4", value: "90%" }
+#  - { name: Confluence & JIRA, color: "#FFDEB4", value: "90%" }
+#  - { name: Gstreamer, color: "#FFDEB4", value: "50%" }
+#  - { name: Adobe, color: "#FFDEB4", value: "80%" }
+
 skills-title: Skills
 skills:
-  - { name: Model Compression, color: "#B2A4FF", value: "80%" }
-  - { name: Computer Vision, color: "#B2A4FF", value: "80%" }
-  - { name: Optimization, color: "#B2A4FF", value: "80%" }
-  - { name: Generative model, color: "#B2A4FF", value: "70%" }
+  - { name: Deep Learning Optimization, color: "#B2A4FF", value: "90%" }
+  - { name: Computer Vision & Robotics, color: "#B2A4FF", value: "90%" }
+  - { name: Lightweight Model Deployment, color: "#B2A4FF", value: "90%" }
+  - { name: Reinforcement Learning, color: "#B2A4FF", value: "80%" }
 
-  - { name: PYTHON, color: "#FFB4B4", value: "70%" }
-  - { name: C++, color: "#FFB4B4", value: "70%" }
-  - { name: OpenCV, color: "#FFB4B4", value: "60%" }
-  - { name: ROS, color: "#FFB4B4", value: "60%" }
+  - { name: Docker & TensorRT, color: "#FFDEB4", value: "90%" }
+  - { name: Backend, color: "#FFDEB4", value: "85%" }
+  - { name: Frontend, color: "#FFDEB4", value: "80%" }
+  - { name: CI/CD, color: "#FFDEB4", value: "85%" }
 
-  - { name: Github, color: "#FFDEB4", value: "90%" }
-  - { name: Confluence & JIRA, color: "#FFDEB4", value: "90%" }
-  - { name: Gstreamer, color: "#FFDEB4", value: "50%" }
-  - { name: Adobe, color: "#FFDEB4", value: "80%" }
+  - { name: PYTHON, color: "#FFB4B4", value: "85%" }
+  - { name: C++, color: "#FFB4B4", value: "80%" }
+  - { name: OpenCV, color: "#FFB4B4", value: "75%" }
+  - { name: ROS, color: "#FFB4B4", value: "70%" }
+
+
+
 
 #-------------------------------
 # Research Section
 
-research-title: Research Area
-researches:
-  - { name: Model Compression, color: "#B2A4FF", value: "80%" }
-  - { name: Computer Vision, color: "#B2A4FF", value: "80%" }
-  - { name: Optimization, color: "#B2A4FF", value: "80%" }
-  - { name: Generative model, color: "#B2A4FF", value: "70%" }
+#research-title: Research Area
+#researches:
+#  - { name: Model Compression, color: "#B2A4FF", value: "80%" }
+#  - { name: Computer Vision, color: "#B2A4FF", value: "80%" }
+#  - { name: Optimization, color: "#B2A4FF", value: "80%" }
+#  - { name: Generative model, color: "#B2A4FF", value: "70%" }
 
-  - { name: PYTHON, color: "#FFB4B4", value: "70%" }
-  - { name: C++, color: "#FFB4B4", value: "70%" }
-  - { name: OpenCV, color: "#FFB4B4", value: "60%" }
-  - { name: ROS, color: "#FFB4B4", value: "60%" }
+#  - { name: PYTHON, color: "#FFB4B4", value: "70%" }
+#  - { name: C++, color: "#FFB4B4", value: "70%" }
+#  - { name: OpenCV, color: "#FFB4B4", value: "60%" }
+#  - { name: ROS, color: "#FFB4B4", value: "60%" }
 
-  - { name: Github, color: "#FFDEB4", value: "90%" }
-  - { name: Confluence & JIRA, color: "#FFDEB4", value: "90%" }
-  - { name: Gstreamer, color: "#FFDEB4", value: "50%" }
-  - { name: Adobe, color: "#FFDEB4", value: "80%" }
+#  - { name: Github, color: "#FFDEB4", value: "90%" }
+#  - { name: Confluence & JIRA, color: "#FFDEB4", value: "90%" }
+#  - { name: Gstreamer, color: "#FFDEB4", value: "50%" }
+#  - { name: Adobe, color: "#FFDEB4", value: "80%" }
 
 #-------------------------------
 # Exprerience Section
