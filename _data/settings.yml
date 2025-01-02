@@ -153,31 +153,31 @@ education:
 
 # Portfolio Home Section
 portfolio-home-items:
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/depth.png"
     url: "/fpost/rga/depth_estimation/"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/face.png"
     url: "/fpost/rga/face_recognition/"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/mimic.png"
     url: "/fpost/rga/mimic_animal/"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/object.png"
     url: "/fpost/rga/object_detection/"
 
-  - image: "assets/images/portfolio/item-3.png"
+  - image: "fpost/neubility/preview_img/object.png"
     url: "/fpost/neubility/object_detection/"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/snn.png"
     url: "/fpost/snu/snn/"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/snn.png"
     url: "/fpost/snu/snn_project/"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/battery.png"
     url: "/fpost/snu/battery/"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/anomaly.png"
     url: "/fpost/snu/anomaly_detection/"
 
 # Portfolio Page
