@@ -75,10 +75,10 @@ skills:
   - { name: Reinforcement Learning, color: "#B2A4FF", value: "80%" }
   - { name: LLM & Foundation Models, color: "#B2A4FF", value: "85%" }
 
-  - { name: Docker & TensorRT, color: "#FFDEB4", value: "90%" }
-  - { name: Backend, color: "#FFDEB4", value: "85%" }
-  - { name: Frontend, color: "#FFDEB4", value: "80%" }
+  - { name: Docker, color: "#FFDEB4", value: "90%" }
+  - { name: TensorRT, color: "#FFDEB4", value: "85%" }
   - { name: CI/CD, color: "#FFDEB4", value: "85%" }
+  - { name: Backend & Frontend, color: "#FFDEB4", value: "85%" }
 
   - { name: PYTHON, color: "#FFB4B4", value: "85%" }
   - { name: C++, color: "#FFB4B4", value: "80%" }
