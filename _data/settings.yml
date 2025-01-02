@@ -32,7 +32,7 @@ hero:
 
 social:
   - { icon: "ti-github", link: "https://github.com/figurekim317" }
-#  - { icon: "ti-likedin", link: "#" }
+  - { icon: "ti-likedin", link: "https://www.linkedin.com/in/figure317" }
 #  - { icon: "ti-dribbble", link: "#" }
 #  - { icon: "ti-twitter", link: "#" }
 
