@@ -21,7 +21,7 @@ classes: wide
 > Stability AI  
 > 5 Mar 2024  
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig1.webp" | relative_url}}' width="100%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig1.webp" | relative_url}}' width="100%"></center>
 
 ## Introduction
 최근 몇 년 동안 diffusion model은 인상적인 일반화 능력을 갖추고 텍스트 입력에서 고해상도 이미지와 동영상을 생성하는 사실상의 접근 방식이 되었다. 반복적인 특성과 관련된 계산 비용, inference 중 긴 샘플링 시간으로 인해 diffusion model의 보다 효율적인 학습 및 더 빠른 샘플링을 위한 연구가 증가했다.
@@ -143,7 +143,7 @@ $$
 저자들은 위의 식에 대한 다양한 변형을 고려하였다. 
 
 #### Rectified Flow
-[Rectified Flow (RF)](https://kimjy99.github.io/논문리뷰/rectified-flow)는 데이터 분포와 정규 분포 사이의 직선 경로로 forward process를 정의한다.
+Rectified Flow (RF)는 데이터 분포와 정규 분포 사이의 직선 경로로 forward process를 정의한다.
 
 $$
 \begin{equation}
@@ -179,7 +179,7 @@ w_t^\textrm{EDM} = \mathcal{N}(\lambda_t \vert -2 P_m, (2P_s)^2) (e^{-\lambda_t}
 $$
 
 #### Cosine
-[Improved DDPM](https://kimjy99.github.io/논문리뷰/iddpm)은 다음과 같은 형태의 forward process를 제안했다.
+Improved DDPM은 다음과 같은 형태의 forward process를 제안했다.
 
 $$
 \begin{equation}
@@ -190,7 +190,7 @@ $$
 이는 $\epsilon$-prediction loss와 결합하면 가중치는 $$w_t = \textrm{sech}(\frac{\lambda_t}{2})$$이며, $v$-prediction loss와 결합하면 가중치는 $$w_t = \exp(\frac{\lambda_t}{2})$$이다. 
 
 #### (LDM-)Linear
-[LDM](https://kimjy99.github.io/논문리뷰/ldm)은 [DDPM](https://kimjy99.github.io/논문리뷰/ddpm) schedule을 수정하여 사용한다. 둘 다 variance preserving schedule, 즉 $$b_t = \sqrt{1 - a_t^2}$$이고, diffusion 계수 $$\beta_t$$에 따라 $a_t$를 다음과 같이 정의한다. 
+LDM은 DDPM schedule을 수정하여 사용한다. 둘 다 variance preserving schedule, 즉 $$b_t = \sqrt{1 - a_t^2}$$이고, diffusion 계수 $$\beta_t$$에 따라 $a_t$를 다음과 같이 정의한다. 
 
 $$
 \begin{equation}
@@ -280,12 +280,12 @@ $$
 $$
 
 ## Text-to-Image Architecture
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig2.webp" | relative_url}}' width="100%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig2.webp" | relative_url}}' width="100%"></center>
 <br>
-텍스트를 조건으로 이미지를 샘플링 하기 위해, 모델은 텍스트와 이미지라는 두 가지 모달리티를 모두 고려해야 한다. 일반적인 설정은 [LDM](https://kimjy99.github.io/논문리뷰/ldm)을 따라 사전 학습된 오토인코더의 latent space에서 text-to-image 모델을 학습시킨다. 텍스트 컨디셔닝 $c$는 사전 학습된 텍스트 모델을 사용하여 인코딩된다. 
+텍스트를 조건으로 이미지를 샘플링 하기 위해, 모델은 텍스트와 이미지라는 두 가지 모달리티를 모두 고려해야 한다. 일반적인 설정은 LDM을 따라 사전 학습된 오토인코더의 latent space에서 text-to-image 모델을 학습시킨다. 텍스트 컨디셔닝 $c$는 사전 학습된 텍스트 모델을 사용하여 인코딩된다. 
 
 #### Multimodal Diffusion Backbone
-아키텍처는 [DiT](https://kimjy99.github.io/논문리뷰/dit)를 기반으로 한다. DiT는 클래스 조건부 이미지 생성만을 고려하고 변조 메커니즘을 사용하여 diffusion process의 timestep과 클래스 레이블을 컨디셔닝한다. 이와 마찬가지로 timestep $t$와 $$c_\textrm{vec}$$의 임베딩을 modulation 메커니즘의 입력으로 사용한다. 그러나 pooling된 텍스트 표현은 텍스트 입력에 대한 대략적인 정보만 유지하므로 네트워크는 시퀀스 표현 $$c_\textrm{ctxt}$$의 정보도 필요로 한다.
+아키텍처는 DiT를 기반으로 한다. DiT는 클래스 조건부 이미지 생성만을 고려하고 변조 메커니즘을 사용하여 diffusion process의 timestep과 클래스 레이블을 컨디셔닝한다. 이와 마찬가지로 timestep $t$와 $$c_\textrm{vec}$$의 임베딩을 modulation 메커니즘의 입력으로 사용한다. 그러나 pooling된 텍스트 표현은 텍스트 입력에 대한 대략적인 정보만 유지하므로 네트워크는 시퀀스 표현 $$c_\textrm{ctxt}$$의 정보도 필요로 한다.
 
 텍스트와 이미지 입력의 임베딩으로 구성된 시퀀스를 구성한다. 구체적으로, 위치 인코딩을 추가하고 latent 픽셀 표현 $x \in \mathbb{R}^{h \times w \times c}$의 2$\times$2 패치를 길이가 $\frac{hw}{4}$인 패치 인코딩 시퀀스로 flatten한다. 이 패치 인코딩과 텍스트 인코딩 $$c_\textrm{ctxt}$$를 공통 차원에 임베딩한 후, 두 시퀀스를 concat한다. 그런 다음 DiT를 따르고 modulated attention과 MLP의 시퀀스를 적용한다.
 
@@ -298,27 +298,27 @@ $$
 저자들은 61개의 서로 다른 구성을 가진 모델을 학습시켰다. 다음은 학습된 모델들에 대한 (왼쪽) 평균 순위와 (오른쪽) metric을 비교한 표이다. 
 
 <div style="display: flex; align-items: end; justify-content: center">
-  <img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-table1.webp" | relative_url}}' width="40%">
+  <img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table1.webp" | relative_url}}' width="40%">
   <div style="flex-grow: 0; width: 3%;"></div>
-  <img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-table2.webp" | relative_url}}' width="45%">
+  <img src='{{"//_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table2.webp" | relative_url}}' width="45%">
 </div>
 <br>
 다음은 샘플링 step 수에 대한 FID를 비교한 그래프이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig3.webp" | relative_url}}' width="55%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig3.webp" | relative_url}}' width="55%"></center>
 
 ### 2. Improving Modality Specific Representations
 다음은 오토인코더의 채널 수에 대한 ablation 결과이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-table3.webp" | relative_url}}' width="40%"></center>
+<center><img src='{{"_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table3.webp" | relative_url}}' width="40%"></center>
 <br>
 다음은 원래 캡션을 사용하였을 때와 원래 캡션과 [CogVLM](https://arxiv.org/abs/2311.03079)으로 생성된 캡션을 반반 섞어서 사용하였을 때의 결과이다.
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-table4.webp" | relative_url}}' width="40%"></center>
+<center><img src='{{"_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table4.webp" | relative_url}}' width="40%"></center>
 <br>
 다음은 모델 backbone에 대한 ablation 결과이다. (MM-DiT가 본 논문에서 제안된 아키텍처)
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig4.webp" | relative_url}}' width="67%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig4.webp" | relative_url}}' width="67%"></center>
 
 ### 3. Training at Scale
 ##### QK 정규화
@@ -326,7 +326,7 @@ $$
 
 [ViT-22B](https://arxiv.org/abs/2302.05442) 논문에서는 attention 엔트로피가 통제 불가능하게 증가하기 때문에 대형 ViT의 학습이 발산한다는 것을 관찰했으며, 이를 방지하기 위해 attention 연산 전에 query와 key를 정규화할 것을 제안하였다. 저자들은 이 접근 방식을 따르고 MMDiT 아키텍처의 두 스트림 모두에서 학습 가능한 RMSNorm을 모델에 사용한다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig5.webp" | relative_url}}' width="65%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig5.webp" | relative_url}}' width="65%"></center>
 <br>
 위 그림에서 볼 수 있듯이, 추가적인 정규화는 attention logit 성장의 불안정성을 방지하며, bf16 mixed precision에서 효율적인 학습을 가능하게 한다. 이 기술은 사전 학습 중에 정규화를 사용하지 않은 모델에도 적용할 수 있다. 모델은 추가 정규화 레이어에 빠르게 적응하고 보다 안정적으로 학습한다. 
 
@@ -366,24 +366,24 @@ $$
 
 다음은 timestep schedule shifting 결과이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig6.webp" | relative_url}}' width="90%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig6.webp" | relative_url}}' width="90%"></center>
 <br>
 다음은 SOTA 이미지 생성 모델들과의 인간 선호도 평가 결과이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig7.webp" | relative_url}}' width="44%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig7.webp" | relative_url}}' width="44%"></center>
 <br>
 다음은 기존 방법들과의 GenEval 비교 결과이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-table5.webp" | relative_url}}' width="65%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table5.webp" | relative_url}}' width="65%"></center>
 <br>
 다음은 모델 크기에 따른 샘플링 효율성을 비교한 표이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-table6.webp" | relative_url}}' width="47%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table6.webp" | relative_url}}' width="47%"></center>
 <br>
 다음은 스케일링의 정량적 효과를 비교한 그래프들이다. 
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig8.webp" | relative_url}}' width="100%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig8.webp" | relative_url}}' width="100%"></center>
 <br>
 다음은 T5 유무에 따른 결과를 비교한 것이다. T5를 제거해도 미적 품질 평가에는 영향이 없고 (승률 50%), 프롬프트 준수에도 영향이 미미한 반면 (승률 46%), 텍스트 생성 능력에 대한 기여도는 더 크다 (승률 38%).
 
-<center><img src='{{"/assets/img/stable-diffusion-3/stable-diffusion-3-fig9.webp" | relative_url}}' width="80%"></center>
+<center><img src='{{"/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig9.webp" | relative_url}}' width="80%"></center>
