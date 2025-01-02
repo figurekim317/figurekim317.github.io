@@ -193,7 +193,7 @@ portfolio-label:
   - { title: "LLM", type: "LLM"}
 
 portfolio-items:
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/depth.png"
     url: "/fpost/rga/depth_estimation/"
     portfolio-type:
       - type: "Detection"
@@ -201,7 +201,7 @@ portfolio-items:
       - type: "Depth"
       - type: "RGA"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/face.png"
     url: "/fpost/rga/face_recognition/"
     portfolio-type:
       - type: "RGA"
@@ -209,20 +209,20 @@ portfolio-items:
       - type: "Foundation"
       - type: "Compression"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/mimic.png"
     url: "/fpost/rga/mimic_animal/"
     portfolio-type:
       - type: "RGA"
       - type: "RL"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "fpost/rga/preview_img/object.png"
     url: "/fpost/rga/object_detection/"
     portfolio-type:
       - type: "RGA"
       - type: "Detection"
       - type: "Compression"
 
-  - image: "assets/images/portfolio/item-3.png"
+  - image: "fpost/neubility/preview_img/object.png"
     url: "/fpost/neubility/object_detection/"
     portfolio-type:
       - type: "Neubility"
@@ -230,27 +230,27 @@ portfolio-items:
       - type: "Compression"
       - type: "Depth"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/snn.png"
     url: "/fpost/snu_snn/"
     portfolio-type:
       - type: "Compression"
       - type: "SNU"
       - type: "Detection"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/snn.png"
     url: "/fpost/snu/snn_project/"
     portfolio-type:
       - type: "SNU"
       - type: "Detection"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/anomaly.png"
     url: "/fpost/snu/anomaly_detection/"
     portfolio-type:
       - type: "Detection"
       - type: "Compression"
       - type: "SNU"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "fpost/snu/preview_img/battery.png"
     url: "/fpost/snu/battery/"
     portfolio-type:
       - type: "SNU"
