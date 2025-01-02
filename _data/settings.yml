@@ -32,7 +32,7 @@ hero:
 
 social:
   - { icon: "ti-github", link: "https://github.com/figurekim317" }
-  - { icon: "ti-likedin", link: "https://www.linkedin.com/in/figure317" }
+  - { icon: "fa fa-likedin", link: "https://www.linkedin.com/in/figure317" }
 #  - { icon: "ti-dribbble", link: "#" }
 #  - { icon: "ti-twitter", link: "#" }
 
@@ -69,10 +69,10 @@ blurb-btn-name: know more
 
 skills-title: Skills
 skills:
-  - { name: Deep Learning Optimization, color: "#B2A4FF", value: "90%" }
   - { name: Computer Vision & Robotics, color: "#B2A4FF", value: "90%" }
   - { name: Lightweight Model Deployment, color: "#B2A4FF", value: "90%" }
   - { name: Reinforcement Learning, color: "#B2A4FF", value: "80%" }
+  - { name: LLM & Foundation Models, color: "#B2A4FF", value: "85%" }
 
   - { name: Docker & TensorRT, color: "#FFDEB4", value: "90%" }
   - { name: Backend, color: "#FFDEB4", value: "85%" }
@@ -81,8 +81,9 @@ skills:
 
   - { name: PYTHON, color: "#FFB4B4", value: "85%" }
   - { name: C++, color: "#FFB4B4", value: "80%" }
-  - { name: OpenCV, color: "#FFB4B4", value: "75%" }
+  - { name: GitHub Actions, color: "#FFB4B4", value: "80%" }
   - { name: ROS, color: "#FFB4B4", value: "70%" }
+
 
 
 
