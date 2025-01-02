@@ -31,8 +31,9 @@ hero:
   hero-title: Hi! I’m Dohyeong Kim<br> ML/DL Engineer
 
 social:
-  - { icon: "ti-github", link: "https://github.com/figurekim317" }
-  - { icon: "fa fa-likedin", link: "https://www.linkedin.com/in/figure317" }
+  - { icon: "fa-brands fa-github", link: "https://github.com/figurekim317" }
+  - { icon: "fa-brands fa-linkedin", link: "https://www.linkedin.com/in/figure317" }
+
 #  - { icon: "ti-dribbble", link: "#" }
 #  - { icon: "ti-twitter", link: "#" }
 
