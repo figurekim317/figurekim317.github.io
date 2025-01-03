@@ -2,7 +2,7 @@
 layout: post
 mathjax: true
 image:  /assets/images/blog/post-5.jpg
-title: "[논문리뷰] Scaling Rectified Flow Transformers for High-Resolution Image Synthesis (Stable Diffusion 3)"
+title: "[Paper review] Scaling Rectified Flow Transformers for High-Resolution Image Synthesis (Stable Diffusion 3)"
 last_modified_at: 2024-12-24
 categories:
   - 논문리뷰
