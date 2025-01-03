@@ -26,7 +26,7 @@ classes: wide
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig1.webp" alt="Stable Diffusion 3 Fig 1" style="width:90%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig1.webp" alt="Stable Diffusion 3 Fig 1" style="width:90%;">
   </div>
 </figure>
 
@@ -289,7 +289,7 @@ $$
 ## Text-to-Image Architecture
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig2.webp" alt="Stable Diffusion 3 Fig 2" style="width:90%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig2.webp" alt="Stable Diffusion 3 Fig 2" style="width:90%;">
   </div>
 </figure>
 
@@ -311,9 +311,9 @@ $$
 
 <figure>
   <div style="display: flex; align-items: end; justify-content: center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table1.webp" alt="Comparison Table 1" style="width:40%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-table1.webp" alt="Comparison Table 1" style="width:40%;">
     <div style="flex-grow: 0; width: 3%;"></div>
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table2.webp" alt="Comparison Table 2" style="width:45%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-table2.webp" alt="Comparison Table 2" style="width:45%;">
   </div>
 </figure>
 <br>
@@ -322,7 +322,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig3.webp" alt="Stable Diffusion 3 Fig 3" style="width:90%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig3.webp" alt="Stable Diffusion 3 Fig 3" style="width:90%;">
   </div>
 </figure>
 
@@ -331,7 +331,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig4.webp" alt="Stable Diffusion 3 Fig 4" style="width:90%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig4.webp" alt="Stable Diffusion 3 Fig 4" style="width:90%;">
   </div>
 </figure>
 <br>
@@ -339,7 +339,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table4.webp" alt="Table 4" style="width:40%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-table4.webp" alt="Table 4" style="width:40%;">
   </div>
 </figure>
 <br>
@@ -348,7 +348,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig4.webp" alt="Figure 4" style="width:67%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig4.webp" alt="Figure 4" style="width:67%;">
   </div>
 </figure>
 
@@ -360,7 +360,7 @@ ViT-22B 논문에서는 attention 엔트로피가 통제 불가능하게 증가�
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig5.webp" alt="Figure 5" style="width:65%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig5.webp" alt="Figure 5" style="width:65%;">
   </div>
 </figure>
 <br>
@@ -405,7 +405,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig6.webp" alt="Timestep Schedule Shifting" style="width:90%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig6.webp" alt="Timestep Schedule Shifting" style="width:90%;">
   </div>
 </figure>
 
@@ -413,7 +413,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig7.webp" alt="SOTA Model Human Evaluation" style="width:44%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig7.webp" alt="SOTA Model Human Evaluation" style="width:44%;">
   </div>
 </figure>
 
@@ -421,7 +421,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table5.webp" alt="GenEval Comparison" style="width:65%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-table5.webp" alt="GenEval Comparison" style="width:65%;">
   </div>
 </figure>
 
@@ -429,7 +429,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-table6.webp" alt="Sampling Efficiency by Model Size" style="width:47%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-table6.webp" alt="Sampling Efficiency by Model Size" style="width:47%;">
   </div>
 </figure>
 
@@ -437,7 +437,7 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig8.webp" alt="Quantitative Effects of Scaling" style="width:100%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig8.webp" alt="Quantitative Effects of Scaling" style="width:100%;">
   </div>
 </figure>
 
@@ -445,6 +445,6 @@ $$
 
 <figure>
   <div style="text-align:center">
-    <img src="/_posts/pr/Diffusion/2024-12-24-stable/stable-diffusion-3-fig9.webp" alt="Comparison of T5 Usage" style="width:80%;">
+    <img src="\_posts\pr\Diffusion\2024-12-24-stable\stable-diffusion-3-fig9.webp" alt="Comparison of T5 Usage" style="width:80%;">
   </div>
 </figure>
