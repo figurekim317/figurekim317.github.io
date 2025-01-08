@@ -222,6 +222,7 @@ portfolio-items:
       - type: "Compression"
       - type: "Depth"
       - type: "RGA"
+      - type: "Foundation"
 
   - image: "fpost/rga/preview_img/face.png"
     url: "/fpost/rga/face_recognition/"
