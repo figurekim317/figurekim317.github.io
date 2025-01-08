@@ -48,7 +48,7 @@ tags:
 ### 2. Proposed Model & Approach
 
 #### • Utilizing Relative Depth (Depth Anything)
-- The **pre-trained ‘Depth Anything’** model extracts **relative depth**, used as a supplementary guide for depth super-resolution:
+- The **pre-trained ‘[Depth Anything](https://depth-anything.github.io)’** model extracts **relative depth**, used as a supplementary guide for depth super-resolution:
   $$
   D_{\text{Rel}} = f_{\text{DepthAnything}}(I)
   $$
@@ -79,7 +79,7 @@ Our architecture is based on a **U-Net-inspired framework**, retaining its chara
     $$
     F_{\text{LR}} = \text{NAFNet}(D_{\text{LR}})
     $$
-- Features $F_{\text{Rel}}$ and $F_{\text{LR}}$ are progressively downsampled across multiple levels using **NAFNet blocks**, enhancing feature extraction and representation.
+- Features $F_{\text{Rel}}$ and $F_{\text{LR}}$ are progressively downsampled across multiple levels using [**NAFNet blocks**](https://arxiv.org/pdf/2204.04676), enhancing feature extraction and representation.
 
 #### **Fusion Module**
 - Features from the relative depth and LR depth paths are fused using **Adaptive Instance Normalization (AdaIN)** to align their distributions:
