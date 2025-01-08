@@ -102,7 +102,7 @@ Our architecture is based on a **U-Net-inspired framework**, retaining its chara
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig2.png" alt="Model Pipeline" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 2. Model pipeline integrating Depth Anything and U-Net-like structure.</figcaption>
+  <figcaption style="text-align:center">Fig 3. Model pipeline integrating Depth Anything and U-Net-like structure.</figcaption>
 </figure>
 
 ---
@@ -116,7 +116,7 @@ Our architecture is based on a **U-Net-inspired framework**, retaining its chara
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig3.png" alt="Detailed U-Net Structure" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 3. Detailed architecture showing encoder, fusion module, and decoder.</figcaption>
+  <figcaption style="text-align:center">Fig 4. Detailed architecture showing encoder, fusion module, and decoder.</figcaption>
 </figure>
 
 ---
