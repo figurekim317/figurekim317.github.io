@@ -59,7 +59,7 @@ tags:
   where $[\cdot]$ denotes concatenation.
   <figure>
   <div style="text-align:center">
-    <img src="\fpost\rga\depth_img\depthanything_pipeline.png" alt="Depth anything pipeline" style="width:60%;">
+    <img src="\fpost\rga\depth_img\depthanything_pipeline.png" alt="Depth anything pipeline" style="width:80%;">
   </div>
   <figcaption style="text-align:center">Fig 2. Depth anything pipeline.</figcaption>
 </figure>
