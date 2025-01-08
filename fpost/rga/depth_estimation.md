@@ -57,6 +57,12 @@ tags:
   X = [D_{\text{Rel}}, D_{\text{LR}}, I]
   $$
   where $[\cdot]$ denotes concatenation.
+  <figure>
+  <div style="text-align:center">
+    <img src="\fpost\rga\depth_img\depthanything_pipeline" alt="Depth anything pipeline" style="width:60%;">
+  </div>
+  <figcaption style="text-align:center">Fig 2. Depth anything pipeline.</figcaption>
+</figure>
 
 ---
 
