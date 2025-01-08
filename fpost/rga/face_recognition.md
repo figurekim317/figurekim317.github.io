@@ -57,7 +57,7 @@ tags:
   <div style="text-align:center">
     <img src="\fpost\rga\face_img\fig2.png" alt="Model Pipeline" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 3. Model pipeline integrating Depth Anything and U-Net-like structure.** The pipeline is designed to integrate multiple components for robust feature extraction and domain-specific adaptations.</figcaption>
+  <figcaption style="text-align:center">Fig 3. Model pipeline integrating Depth Anything and U-Net-like structure. The pipeline is designed to integrate multiple components for robust feature extraction and domain-specific adaptations.</figcaption>
 </figure>
 
 ---
