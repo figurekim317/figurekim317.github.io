@@ -30,11 +30,18 @@ tags:
 
 
 #### 1.1 Feature Extraction with RADIOv2
-- **Foundation Model**: Leveraged **RADIOv2**, a pre-trained vision transformer, to extract high-quality facial features:
+- **Foundation Model**: Leveraged [**RADIOv2**](https://arxiv.org/abs/2312.06709), a pre-trained vision transformer, to extract high-quality facial features:
   $$
   F_{\text{RADIOv2}} = f_{\text{RADIOv2}}(I),
   $$
   where $I$ represents the input image, and $F_{\text{RADIOv2}}$ is the resulting feature embedding.
+
+<figure>
+  <div style="text-align:center">
+    <img src="\fpost\rga\face_img\radiov2.png" alt="Degraded LR Depth Map" style="width:80%;">
+  </div>
+  <figcaption style="text-align:center">Fig 2. AM-RADIO is a framework to distill multiple pretrained vision foundation models, such as CLIP, DINOv2, SAM, into a single model called RADIO.</figcaption>
+</figure>
 
 #### 1.2 Test-Time Adaptation (Face Recognition)
 
@@ -50,7 +57,7 @@ tags:
   <div style="text-align:center">
     <img src="\fpost\rga\face_img\fig2.png" alt="Model Pipeline" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig. 2. Model pipeline integrating Depth Anything and U-Net-like structure.** The pipeline is designed to integrate multiple components for robust feature extraction and domain-specific adaptations.</figcaption>
+  <figcaption style="text-align:center">Fig 3. Model pipeline integrating Depth Anything and U-Net-like structure.** The pipeline is designed to integrate multiple components for robust feature extraction and domain-specific adaptations.</figcaption>
 </figure>
 
 ---
@@ -175,7 +182,7 @@ The TensorRT-optimized model was deployed on **NVIDIA Orin**, achieving real-tim
     <img src="/fpost/rga/face_img/gif3.gif" alt="Real-Time Face Recognition 3" style="width:30%;">
   </div>
   <figcaption style="text-align:center; margin-top: 10px;">
-    Fig 3. Real-time face and emotion recognition system with three scenarios: face detection at a distance, emotion recognition, and tracking multiple individuals with unique IDs.
+    Fig 4. Real-time face and emotion recognition system with three scenarios: face detection at a distance, emotion recognition, and tracking multiple individuals with unique IDs.
   </figcaption>
 </figure>
 
