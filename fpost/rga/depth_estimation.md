@@ -177,7 +177,7 @@ $$
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig4.png" alt="Enhanced Details" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 4. Depth reconstruction showing enhanced detail compared to the baseline.</figcaption>
+  <figcaption style="text-align:center">Fig 5. Depth reconstruction showing enhanced detail compared to the baseline.</figcaption>
 </figure>
 
 ---
@@ -192,7 +192,7 @@ $$
   <div style="text-align:center">
     <img src="\fpost\rga\depth_img\fig5.png" alt="Noise Robustness" style="width:90%;">
   </div>
-  <figcaption style="text-align:center">Fig 5. Robust depth reconstruction under noisy LR input.</figcaption>
+  <figcaption style="text-align:center">Fig 6. Robust depth reconstruction under noisy LR input.</figcaption>
 </figure>
 
 ---
