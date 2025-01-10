@@ -18,8 +18,13 @@ classes: wide
 > ML-Labs, Dublin City University 
 > 10 Oct 2020  
 
+---
+
+---
 Interview를 보았는데 Contrastive learning에 대한 질문을 받았다. SimCLR로 간접적으로 설명하긴 했는데 내가 생각해도 형편없는 답변을 했다. 대학원 시절 랩실에서 가장 먼저 읽어서 랩세미나 시간에 발표하기도 했는데 너무 당연하다고 생각해오고 모델을 가져다가 쓰기만 하다보니 정작 말로 설명을 못하는 느낌이 들어 이번 주는 Contrastive learning 분야를 파면서 대표 논문 review를 진행하려고 한다. 
 Facenet에서 triplet loss를 접하고 흥미 있는 분야로 생각했는데 self-supervised learning 분야에서 많이 발전을 이룬 것 같다. 
+
+---
 
 ## Introduction
 Contrastive Learning(CRL)이란 입력 샘플 간의 **비교**를 통해 학습을 하는 것이다. 
@@ -45,31 +50,20 @@ Representation Learning은 크게 2가지 접근법이 존재한다.
 
 CRL도 representation learning을 수행하기 위한 하나의 방법이다. CRL은 앞서 말했듯이 입력 샘플 간의 비교를 통해 학습한다. 따라서, 목적은 심플하다. **학습된 표현 공간 상에서 비슷한 데이터는 가깝게, 다른 데이터는 멀게 존재하도록 표현 공간을 학습**하는 것이다.
 
+여러 입력쌍에 대해서 유사도를 label로 판별 모델을 학습한다. 이때 유사함의 여부는 데이터 자체로부터 정의 될 수 있다. 즉 self-supervised learning이 가능하다.
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/contrastive_learning/fig2.png" alt="Fig 1" style="width:90%;">
   </div>
 </figure> 
 
-## Method
-$E$를 인코더, $G$를 StyleGAN generator라고 하면 주어진 이미지 $x$와 생성된 이미지 $\hat{Y} = G(E(x))$가 거의 같도록 학습하는 것이 기존의 인코더 기반 inversion 방법이다. 이 때 $\hat{y}$는 single forward pass로 $E$와 $G$를 통과한다. $E$를 학습할 때는 pixel-wise L2 loss와 feature를 추출하여 비교하는 perceptual loss를 사용하며 $G$는 고정된다.
+Contrastive 방법의 경우, 다른 task로 fine-tuning을 수행할 때에 모델 구조 수정 없이 이루어 질 수 있다는 점에서 훨씬 간편하다.
 
-ReStyle의 경우, inversion $w = E(x)$를 $N>1$ step에 걸쳐 예측한다. 여기서 하나의 step는 하나의 single forward pass로 정의된다. 즉, $N=1$이면 기존의 inverrsion 방법과 동일하다. 인코더 $E$를 학습하기 위해서 하나의 이미지 배치에 대한 $N$ step을 하나의 학습 interation으로 정의한다. 기존의 인코딩 방법과 동일한 loss가 학습에 사용되며 pre-trained generator $G$는 고정된다. Loss는 각 step마다 계산되며 매번 역전파를 수행한다. 즉, 각 배치다마 $N$번의 역전파가 수행된다. 
+---
 
-Inference를 할 때는 loss 계산만 하지 않고 동일한 multi-step 과정이 수행된다. 각 배치에 대해서 작은 수($N<10$)의 step이 수렴에 필요하다고 한다. 
 
-<center><img src='{{"/assets/img/restyle/restyle-structure.PNG" | relative_url}}' width="90%"></center>
 
-<br>
-ReStyle의 inversion 과정은 위 그림과 같다. 각 step $t$에서 ReStyle은 입력 이미지 $x$와 현재 reconstruction의 예측값인 $\hat{y}_t$를 concat하여 입력으로 받는다. 
 
-$$
-\begin{equation}
-x_t :=  x \; \| \; \hat{y}_t
-\end{equation}
-$$
-
-$x_t$는 채널이 6개이며 인코더 $E$는 $x_t$를 입력받아 residual code $\Delta_t$를 계산한다. latent code에 대한 새로운 code를 기존의 code에 residual code를 더하여 계산한다. 
 
 $$
 \begin{equation}
