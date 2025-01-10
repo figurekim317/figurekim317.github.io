@@ -109,86 +109,19 @@ $$
 e(\cdot) \rightarrow v = e(x), \quad v \in \mathbb{R}^d
 $$
 
-Encoder의 구조는 특정되지 않으며, 어떤 backbone network든 사용할 수 있습니다.  
-(참고로 InstDisc에서는 ResNet 18을 사용했습니다.)
+Encoder의 구조는 특정되지 않으며, 어떤 backbone network든 사용할 수 있습니다. 참고로 InstDisc에서는 ResNet 18을 사용했다.
 
 ---
 
 ### 3. Projection Head
 
 **projection head** $h(\cdot)$에서는 encoder에서 얻은 특징 벡터 $v$를 더 작은 차원으로 줄이는 작업을 수행한다.  
-(간혹 여러 representation을 결합하는 방식으로 projection을 수행하기도 하는데,  
-이 경우에는 *contextualization head*라고도 지칭합니다. 그러나 InstDisc에서의 projection head는  
-2048차원의 특징 벡터 $v$를 128차원의 metric embedding $z$로 projection하여,  
-즉 **차원 축소**를 수행하는 용도로 사용된다.)
+간혹 여러 representation을 결합하는 방식으로 projection을 수행하기도 하는데, 이 경우에는 contextualization head라고도 지칭한다. 그러나 InstDisc에서의 projection head는 2048차원의 특징 벡터 $v$를 128차원의 metric embedding $z$로 projection하여, 즉 차원 축소를 수행하는 용도로 사용된다.
 
-이때, projection head $h$는 다음과 같이 **metric embedding** $z$를 출력하는 함수로 표현될 수 있습니다.
+이때, projection head $h$는 다음과 같이 metric embedding $z$를 출력하는 함수로 표현될 수 있습니다.
 
 $$
-h(\cdot) \rightarrow z = h(v), \quad z \in \mathbb{R}^{128}
+h(\cdot) \rightarrow z = h(v), \quad z \in \mathbb{R}^{'}, \quad d' < d
 $$
 
 
-새로운 latent code $w_{t+1}$는 generator $G$를 통과하여 새로운 reconstruction의 예측값을 만든다. 
-
-$$
-\begin{equation}
-\hat{y}_{t+1} :=  G(w_{t+1})
-\end{equation}
-$$
-
-업데이트된 예측값 $\hat{y}_{t+1}$은 다시 입력 이미지 $x$와 concat되며 이 과정이 반복된다. 이 과정은 generator의 평균 style vector $w_0$와 generator로 합성한 대응되는 이미지 $\hat{y}_0$로 시작한다. 
-
-단일 step으로 주어진 이미지를 invert하도록 인코더를 제한하면 학습에 엄격한 제약이 부과된다. 반면, ReStyle은 어떤 의미에서 이 제약을 완화하는 것으로 볼 수 있다. 위 식에서 인코더는 $w_0$를 이전 step의 output으로 guide하여 latent space에서 여러 step을 가장 잘 수행하는 방법을 학습한다. 이런 완화된 제약 조건에 의해 인코더는 자체 수정 방식으로 원하는 latent code로의 inversion의 범위를 좁힐 수 있다. 이는 최적화 방식과 비슷한 데, 최적화 방식과의 큰 차이점은 inversion을 효율적으로 수행하기 위해 인코더에서 step을 학습한다는 것이다. 
-
-## Encoder Architecture
-
-저자들은 ReStyle의 방식이 기존의 다양한 인코더 구조에 적용할 수 있다는 것을 보여주기 위해 state-of-the-art 인코더인 pSp와 e4e를 사용하였다. 이 두 인코더는 ResNet backbone에 Feature Pyramid Network를 사용하고 있으며 style feature를 세 개의 중간 레벨에서 추출한다. 이러한 계층적 인코더는 style input을 세 가지 레벨로 나눌 수 있는 얼굴 domain과 같은 잘 구조화된 domain에 적합하다. 이를 통해 이러한 디자인이 덜 구조화된 multimodal domain에 미치는 영향이 무시할 수 있지만 overhead가 증가한다는 것을 발견했다. 또한, ReStyle이 복잡한 인코더 구조의 필요성을 완화한다는 사실을 발견했다.
-
-<center><img src='{{"/assets/img/restyle/restyle-encoder.PNG" | relative_url}}' width="60%"></center>
-
-따라서 저자들은 pSp와 e4e의 더 단순한 변형 버전을 설계하였다. 인코더를 따라 세 개의 중간 레벨에서 style을 추출하는 대신 마지막 16x16 feature map에서만 style vector를 추출된다. $k$개의 style input이 있는 StyleGAN generator가 주어진다면, pSp에 사용된 map2style 블록을 $k$개 사용하여 feature map을 down-sampling하여 대응하는 512차원 style input을 얻었다. 
-
-## Experiment
-- Dataset: FFHQ (train) + CelebA-HQ (eval), Standford Cars, LSUN Horse & Church, AFHQ Wild
-- Baseline: (인코더 기반) IDInvert encdoer, pSp, e4e / (최적화 기반) Karras / (Hybrid) 인코더 + 최적화
-- Loss와 training detail은 pSp와 e4e의 기존 연구와 동일하게 사용
-- $N=5$로 설정
-
-<center><img src='{{"/assets/img/restyle/restyle-fig1.PNG" | relative_url}}' width="90%"></center>
-
-<br>
-각 데이터 셋에 대한 정량적 평가는 아래와 같다. 
-
-<center><img src='{{"/assets/img/restyle/restyle-fig2.PNG" | relative_url}}' width="100%"></center>
-
-<br>
-다음은 각 step에서의 이미지 변화를 나타낸 그림이다.
-
-<center><img src='{{"/assets/img/restyle/restyle-fig3.PNG" | relative_url}}' width="50%"></center>
-<center><img src='{{"/assets/img/restyle/restyle-fig4.PNG" | relative_url}}' width="50%"></center>
-
-<br>
-위는 각 step에서 상대적으로 많이 변한 부분을 빨간색으로, 덜 변한 부분을 파란색으로 나타낸 것이다. 아래는 step 간의 상대적인 변화량을 나타낸 것이다. 
-
-Editability 비교는 다음과 같다. 
-
-<center><img src='{{"/assets/img/restyle/restyle-fig5.PNG" | relative_url}}' width="100%"></center>
-
-<br>
-다음은 입력 이미지에 대한 각 step의 output이다. 
-
-<center><img src='{{"/assets/img/restyle/restyle-fig6.PNG" | relative_url}}' width="50%"></center>
-
-## Encoder Bootstapping
-
-<center><img src='{{"/assets/img/restyle/restyle-bootstrapping.PNG" | relative_url}}' width="60%"></center>
-
-<br>
-논문에서는 Encoder bootstrapping이라는 새로운 개념을 제시되었다. 먼저 FFHQ로 학습한 인코더로 step을 한 번 수행하여 latent code $w_1$과 대응되는 이미지 $\hat{y}_1$을 계산한다. 그런 다음 나머지 step은 Toonify 인코더로 latent code와 이미지를 계산하여 최종적으로 입력 이미지와 비슷한 Toonify 이미지를 만들어낸다. 
-
-<p align="center">
-  <img src='{{"/assets/img/restyle/restyle-fig7.PNG" | relative_url}}' width="45%">
-  &nbsp;
-  <img src='{{"/assets/img/restyle/restyle-fig8.PNG" | relative_url}}' width="45%">
-</p>
