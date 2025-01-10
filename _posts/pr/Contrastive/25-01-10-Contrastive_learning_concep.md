@@ -52,7 +52,7 @@ CRL도 representation learning을 수행하기 위한 하나의 방법이다. CR
 여러 입력쌍에 대해서 유사도를 label로 판별 모델을 학습한다. 이때 유사함의 여부는 데이터 자체로부터 정의 될 수 있다. 즉 self-supervised learning이 가능하다.
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/contrastive_learning/fig2.png" alt="Fig 1" style="width:90%;">
+    <img src="/assets/img/contrastive_learning/fig2.png" alt="Fig 2" style="width:90%;">
   </div>
 </figure> 
 
@@ -60,16 +60,74 @@ Contrastive 방법의 경우, 다른 task로 fine-tuning을 수행할 때에 모
 
 ---
 
+CRL architecture의 하나인 Instance Discrimination Task (IDT)에 대해 설명을 하면 [Unsupervised Feature Learning via Non-Parametric Instance Discrimination(Zhirong Wu et al., 2018)](https://openaccess.thecvf.com/content_cvpr_2018/CameraReady/0801.pdf)에서 처음 제안되었다.
 
+IDT의 경우, Fig 3과 같이 네트웨크가 구성되고, 하나의 sample에서 두 가지의 view가 생성됨을 알 수 있다.
+이때, 같은 이미지에서 나온(같은 인덱스에 위치한) pair는 무조건 positive pair이고, 그를 제외한 다른 인덱스 내의 view와는 모두 negative이다. pair의 구성은 다음과 같이 이루어진다.
 
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/contrastive_learning/fig3.png" alt="Fig 3" style="width:80%;">
+  </div>
+  <figcaption style="text-align:center">Fig 3. Contrastive Learning의 pair 구성</figcaption>
+</figure>
 
+Instance discrimination을 위한 contrastive learning의 architecture는 다음과 같이 구성된다.
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/contrastive_learning/fig4.png" alt="Fig 4" style="width:80%;">
+  </div>
+  <figcaption style="text-align:center">Fig 4. Contrastive Learning의 architecture</figcaption>
+</figure>
+
+### 1. Data Augmentation을 통한 input pair 생성
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/contrastive_learning/fig5.png" alt="Fig 5" style="width:80%;">
+  </div>
+</figure>
+
+같은 이미지에서 생성되었다면 positive pair이고, pair 내 두 이미지가 다른 이미지로부터 나왔다면 negative pair이다.
+Positive pair를 구성할 때는 원본 이미지에서 image transformation을 적용한 augmented image를 구성하여 pair를 구성하게 된다. 이때, augmentation (transformation)은 random crop, resizing, blur, color distortion, perspective distortion 등을 포함한다.
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/contrastive_learning/fig6.png" alt="Fig 6" style="width:80%;">
+  </div>
+  <figcaption style="text-align:center">Fig 6. 다양한 augmentation 적용</figcaption>
+</figure>
+
+### 2. Generating Representation (= Feature Extraction)
+
+입력 이미지 쌍을 생성했다면, 해당 이미지 쌍으로 representation을 학습(즉, 특징 추출)해야 한다.  
+Contrastive learning network 내에서 이와 같은 부분을 **feature encoder** $e$라고 부르며,  
+$e$는 아래와 같이 **특징 벡터** $v$를 출력하는 함수로 표현할 수 있다.
 
 $$
-\begin{equation}
-\Delta_t := E(x_t) \\
-w_{t+1} \leftarrow  \Delta_t + w_t
-\end{equation}
+e(\cdot) \rightarrow v = e(x), \quad v \in \mathbb{R}^d
 $$
+
+Encoder의 구조는 특정되지 않으며, 어떤 backbone network든 사용할 수 있습니다.  
+(참고로 InstDisc에서는 ResNet 18을 사용했습니다.)
+
+---
+
+### 3. Projection Head
+
+**projection head** $h(\cdot)$에서는 encoder에서 얻은 특징 벡터 $v$를 더 작은 차원으로 줄이는 작업을 수행한다.  
+(간혹 여러 representation을 결합하는 방식으로 projection을 수행하기도 하는데,  
+이 경우에는 *contextualization head*라고도 지칭합니다. 그러나 InstDisc에서의 projection head는  
+2048차원의 특징 벡터 $v$를 128차원의 metric embedding $z$로 projection하여,  
+즉 **차원 축소**를 수행하는 용도로 사용된다.)
+
+이때, projection head $h$는 다음과 같이 **metric embedding** $z$를 출력하는 함수로 표현될 수 있습니다.
+
+$$
+h(\cdot) \rightarrow z = h(v), \quad z \in \mathbb{R}^{128}
+$$
+
 
 새로운 latent code $w_{t+1}$는 generator $G$를 통과하여 새로운 reconstruction의 예측값을 만든다. 
 
