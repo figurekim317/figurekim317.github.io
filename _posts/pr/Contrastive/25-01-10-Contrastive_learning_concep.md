@@ -20,7 +20,6 @@ classes: wide
 
 ---
 
----
 Interview를 보았는데 Contrastive learning에 대한 질문을 받았다. SimCLR로 간접적으로 설명하긴 했는데 내가 생각해도 형편없는 답변을 했다. 대학원 시절 랩실에서 가장 먼저 읽어서 랩세미나 시간에 발표하기도 했는데 너무 당연하다고 생각해오고 모델을 가져다가 쓰기만 하다보니 정작 말로 설명을 못하는 느낌이 들어 이번 주는 Contrastive learning 분야를 파면서 대표 논문 review를 진행하려고 한다. 
 Facenet에서 triplet loss를 접하고 흥미 있는 분야로 생각했는데 self-supervised learning 분야에서 많이 발전을 이룬 것 같다. 
 
