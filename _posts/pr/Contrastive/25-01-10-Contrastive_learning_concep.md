@@ -36,12 +36,20 @@ CRL의 경우에는 self-supervised learning에 사용되는 접근법 중 하�
   <figcaption style="text-align:center">Fig 1. Feature를 학습한 이후의 활용</figcaption>
 </figure>
 
-저자들은 single shot에서 정확한 inversion을 얻는 것이 어렵기 때문에 실제 이미지를 $\mathcal{W}+$ StyleGAN latent space로 인코딩하는 새로운 인코더를 도입하였다. 또한, 일반적인 인코더 기반 방법들이 single forward pass를 사용하는 것과 달리 iterative feedback mechanism을 사용한다. 즉, 원본 입력 이미지와 함께 이전의 출력 이미지를 인코더에 입력으로 주어 inversion이 수행된다. 이를 통해 인코더는 이전 iteration에서 학습한 지식을 사용하여 입력 이미지를 정확히 reconstruct하는 데 필요한 영역에 집중할 수 있다. Latent space 측면에서 보면 이러한 **residual encoder**는 각 단계에서 현재 latent code와 새로운 latent code 사이의 잔차를 예측하도록 훈련되며, 이를 통해 인코더가 inversion을 점진적으로 수렴할 수 있다. 또한 inversion은 최적화 과정 없이 인코더만을 사용한다. 
+## Contrastive Representation Learning
+Representation Learning은 크게 2가지 접근법이 존재한다.
+하나는 생성모델의 측면 나머지는 판별모델의 측면이다. 
+**생성모델**로 데이터의 표현을 학습하는 경우, **비지도 학습이기 때문에 데이터 구축 비용이 낮다는 장점**이 있다. 또한 저차원 표현을 학습하는 데 있어 **목적함수가 보다 일반적**이라는 장점이 있다.
 
+**판별모델**의 경우에는 **계산 비용이 적고, 학습이 용이**하다는 장점이 있다. 대부분 라벨링된 데이터에 의존하기 때문에 데이터 구축 비용이 크다는 단점이 있습니다. 판별 모델의 경우 데이터가 속한 클래스를 판별하는 목적을 지녔기 때문에, 보다 지엽적인 목적함수라고 할 수 있다. 실제로 판별모델을 학습하는 과정 중에 학습되는 representation은 texture에 보다 집중을 한다는 주장을 하는 [논문](https://arxiv.org/abs/1811.12231) 또한 발표되었다.
 
-저자들은 이 inversion 방법을 **ReStyle**이라 이름 붙였다. ReStyle은 pre-trained generator의 latent space 내에서 잔차 기반 형식으로 적은 수의 step(ex. 10)을 수행하는 방법을 학습하는 것으로 볼 수 있다. 또한 Restyle은 StyleGAN inversion을 위한 다양한 인코더 구조와 손실 함수에 적용할 수 있다. 
+CRL도 representation learning을 수행하기 위한 하나의 방법이다. CRL은 앞서 말했듯이 입력 샘플 간의 비교를 통해 학습한다. 따라서, 목적은 심플하다. **학습된 표현 공간 상에서 비슷한 데이터는 가깝게, 다른 데이터는 멀게 존재하도록 표현 공간을 학습**하는 것이다.
 
-저자들은 광범위한 실험을 진행하여 ReStyle이 기존의 feed-forward 인코더에 비해 reconstruction 품질이 크게 개선되었음을 보였다. 이는 infernce time의 큰 증가 없이 가능하며 시간이 오래 걸리는 최적화 기반 inversion보다 훨씬 빠르다. 또한 각 iterative 피드백 단계에서 어떤 이미지 영역이 수정되는 지 확인하였으며, coarse한 영역이 먼저 수정되고 fine한 영역이 나중에 수정되는 것을 확인하였다. 
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/contrastive_learning/fig2.png" alt="Fig 1" style="width:90%;">
+  </div>
+</figure> 
 
 ## Method
 $E$를 인코더, $G$를 StyleGAN generator라고 하면 주어진 이미지 $x$와 생성된 이미지 $\hat{Y} = G(E(x))$가 거의 같도록 학습하는 것이 기존의 인코더 기반 inversion 방법이다. 이 때 $\hat{y}$는 single forward pass로 $E$와 $G$를 통과한다. $E$를 학습할 때는 pixel-wise L2 loss와 feature를 추출하여 비교하는 perceptual loss를 사용하며 $G$는 고정된다.
