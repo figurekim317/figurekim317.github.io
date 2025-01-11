@@ -124,4 +124,19 @@ $$
 h(\cdot) \rightarrow z = h(v), \quad z \in \mathbb{R}^{'}, \quad d' < d
 $$
 
+Projection head의 경우엔 간단한 MLP 구조를 갖는다. 이후 unit vector로 정규화해준다.
 
+#### metric embedding
+Contrastive loss는 기본적으로 각 pair의 유사도를 측정한다. 이러한 유사도가 거리가 될 수도 있고, pair가 공유하는 entropy로 계산이 될 수도 있다. 즉, 유사도는 metric으로 나타낼 수 있고 이에 loss에 input으로 들어가는 z를 metric embedding이라고 표현하는 것이다. project head 내에서 feature representation space에서 metric representation space로 projection했다고 볼 수 있다.
+
+### 4. Loss 계산
+CRL의 목적(objective)은 positive pair의 embedding은 가깝게, negative pair의 embedding은 멀게하는 것이라고 말했는데 loss는 이러한 objective를 직접적으로 수행한다. 이를 contrastive loss로 부른다. Contrastive loss와 같은 경우에는 infoNCE, NTXent등이 많이 사용되고 있다.
+
+- $i$번째 입력쌍에 대한 Loss의 일반항
+$$
+L = -\log \frac{\exp(z_i^T z'_i / \tau)}{\sum_{j=0}^{K} \exp(z_i^T z'_j / \tau)}
+$$
+
+- $z_i^T z'_i$: 두 벡터 $z, z'$의 내적. 여기서 $z'$는 $z$의 변형(transformation; augmented $z$).
+- $\tau$: 하이퍼파라미터로, 두 벡터 간의 내적이 전체 loss에 어느 정도 영향을 미치는지 조절.
+- 분모의 합($\sum$): $z_i$에 대해 하나의 positive pair와 $K$개의 negative pair를 포함하여 계산.
