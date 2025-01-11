@@ -35,7 +35,7 @@ CRL의 경우에는 self-supervised learning에 사용되는 접근법 중 하�
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/contrastive_learning/fig1.png" alt="Fig 1" style="width:90%;">
+    <img src="/assets/img/contrastive_learning/fig1.png" alt="Fig 1" style="width:70%;">
   </div>
   <figcaption style="text-align:center">Fig 1. Feature를 학습한 이후의 활용</figcaption>
 </figure>
@@ -67,7 +67,7 @@ IDT의 경우, Fig 3과 같이 네트웨크가 구성되고, 하나의 sample에
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/contrastive_learning/fig3.png" alt="Fig 3" style="width:80%;">
+    <img src="/assets/img/contrastive_learning/fig3.png" alt="Fig 3" style="width:70%;">
   </div>
   <figcaption style="text-align:center">Fig 3. Contrastive Learning의 pair 구성</figcaption>
 </figure>
@@ -76,7 +76,7 @@ Instance discrimination을 위한 contrastive learning의 architecture는 다음
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/contrastive_learning/fig4.png" alt="Fig 4" style="width:80%;">
+    <img src="/assets/img/contrastive_learning/fig4.png" alt="Fig 4" style="width:90%;">
   </div>
   <figcaption style="text-align:center">Fig 4. Contrastive Learning의 architecture</figcaption>
 </figure>
@@ -85,7 +85,7 @@ Instance discrimination을 위한 contrastive learning의 architecture는 다음
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/contrastive_learning/fig5.png" alt="Fig 5" style="width:80%;">
+    <img src="/assets/img/contrastive_learning/fig5.png" alt="Fig 5" style="width:70%;">
   </div>
 </figure>
 
@@ -94,7 +94,7 @@ Positive pair를 구성할 때는 원본 이미지에서 image transformation을
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/contrastive_learning/fig6.png" alt="Fig 6" style="width:80%;">
+    <img src="/assets/img/contrastive_learning/fig6.png" alt="Fig 6" style="width:70%;">
   </div>
   <figcaption style="text-align:center">Fig 6. 다양한 augmentation 적용</figcaption>
 </figure>
@@ -171,7 +171,7 @@ $$
 p^+(q, k^+)
 $$
 
-key를 **similarity distribution**(query와 비슷한 샘플들의 분포)에서 뽑으면 \(k = k^+\), **dissimilarity distribution**(query와 비슷하지 않은 샘플들의 분포)에서 뽑으면 \(k = k^-\)가 됨.
+key를 **similarity distribution**(query와 비슷한 샘플들의 분포)에서 뽑으면 $k = k^+$, **dissimilarity distribution**(query와 비슷하지 않은 샘플들의 분포)에서 뽑으면 $k = k^-$가 됨.
 
 실제 학습에서는 distribution을 직접 가정한다기보다는 **input pair**를 어떻게 구성할지 결정하는 게 더 중요함. 예를 들어, InstDisc에서는 같은 이미지에서 augmented되면 **positive**, 다른 이미지에서 augmented되면 **negative**로 정의했음. 어떤 pair를 positive로, 어떤 pair를 negative로 구성할지 정하는 게 핵심임.
 
@@ -182,16 +182,16 @@ $$
 f(x; \theta) : X \rightarrow \mathbb{R}^{|Z|}
 $$
 
-input space \(X\)에서 metric embedding \(|Z|\) 차원의 실수 공간 \(\mathbb{R}^{|Z|}\)로 매핑하는 함수 \(f\)를 의미함. 보통 encoder랑 transform head로 나눠서 설명함.
+input space $X$에서 metric embedding $|Z|$ 차원의 실수 공간 $\mathbb{R}^{|Z|}$로 매핑하는 함수 $f$를 의미함. 보통 encoder랑 transform head로 나눠서 설명함.
 
 #### 4. Encoder
 입력 view를 representation vector로 매핑하는 부분임. encoder가 학습한 representation은 다른 모델의 입력으로 쓰거나(freeze), encoder 위에 layer를 추가해서 fine-tuning 할 때 활용하기도 함.
 
 #### 5. Transform Head
-feature embedding \(v\)를 metric embedding \(z\)로 변환하는 모듈임. 여러 representation을 결합하거나 contrastive loss에 넣기 전에 차원을 줄이는 데 씀.
+feature embedding $v$를 metric embedding $z$로 변환하는 모듈임. 여러 representation을 결합하거나 contrastive loss에 넣기 전에 차원을 줄이는 데 씀.
 
 #### 6. Contrastive Loss
-query, positive key, negative key로 구성된 metric embedding 쌍 \(\{(z, z^+), (z, z^-)\}\)에 적용됨.
+query, positive key, negative key로 구성된 metric embedding 쌍 ${(z, z^+), (z, z^-)}$에 적용됨.
 
 - embedding 간 유사도를 측정하고, positive pair의 유사도는 높이고, negative pair의 유사도는 낮추는 역할을 함.
 - 유사도를 측정하는 scoring function과 loss의 형태(cross entropy, distance-based loss 등)로 나눌 수 있음.
