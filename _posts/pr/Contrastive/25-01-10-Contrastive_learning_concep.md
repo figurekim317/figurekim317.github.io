@@ -129,6 +129,8 @@ Projection head의 경우엔 간단한 MLP 구조를 갖는다. 이후 unit vect
 #### metric embedding
 Contrastive loss는 기본적으로 각 pair의 유사도를 측정한다. 이러한 유사도가 거리가 될 수도 있고, pair가 공유하는 entropy로 계산이 될 수도 있다. 즉, 유사도는 metric으로 나타낼 수 있고 이에 loss에 input으로 들어가는 z를 metric embedding이라고 표현하는 것이다. project head 내에서 feature representation space에서 metric representation space로 projection했다고 볼 수 있다.
 
+---
+
 ### 4. Loss 계산
 CRL의 목적(objective)은 positive pair의 embedding은 가깝게, negative pair의 embedding은 멀게하는 것이라고 말했는데 loss는 이러한 objective를 직접적으로 수행한다. 이를 contrastive loss로 부른다. Contrastive loss와 같은 경우에는 infoNCE, NTXent등이 많이 사용되고 있다.
 
@@ -140,3 +142,58 @@ $$
 - $z_i^T z'_i$: 두 벡터 $z, z'$의 내적. 여기서 $z'$는 $z$의 변형(transformation; augmented $z$).
 - $\tau$: 하이퍼파라미터로, 두 벡터 간의 내적이 전체 loss에 어느 정도 영향을 미치는지 조절.
 - 분모의 합($\sum$): $z_i$에 대해 하나의 positive pair와 $K$개의 negative pair를 포함하여 계산.
+
+---
+
+### 5. 학습 완료 후
+네트워크가 학습이 완료된 후에는 projection head 이후부터는 버리고 encoder만 transfer learning을 위한 feature extactor로 사용된다. 이후 predictor를 뒤에 결합하여 새로운 task에 적용할 수 있도록 fine-tuning을 거치게 된다. pretext-downstream task 구조를 갖는다. Fig 4. 를 보면 알 수 있듯이 CRL은 어떤 augmentation을 적용하는냐가 모델 성능에 큰 영향을 미치게 된다. 색상, 형태, edge등 low-level의 시각적 단서에서만 네트워크가 의존하여 표현을 학습하지 않도록, 이미지 전체가 담고 있는 추상적인 의미(image semantic)를 잘 파악할 수 있도록 다양한, 그러나 image semantic을 변화시키지 않는 augmentation을 적용하여 입력 이미지 페어를 구성하는 것이 중요하다.
+
+---
+
+### 6. 용어 정리
+
+contrastive learning framework에서는 input pair 생성, encoder, projection head, loss 등 여러 모듈이 있음. 여기서 survey paper에서 사용되는 용어나 개념들을 정리해봄.
+
+#### 1. Query, Key
+기준 벡터와 비교 벡터를 **query, key**라고 부름. 벡터라는 표현은 이미지, representation, metric embedding을 모두 아우르는 말임.
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/contrastive_learning/fig7.png" alt="Fig 6" style="width:80%;">
+  </div>
+  <figcaption style="text-align:center">Fig 7. CRL에서의 query, key의 관계</figcaption>
+</figure>
+
+#### 2. Similarity Distribution
+입력 샘플 쌍의 결합 분포를 이렇게 표현함:
+
+$$
+p^+(q, k^+)
+$$
+
+key를 **similarity distribution**(query와 비슷한 샘플들의 분포)에서 뽑으면 \(k = k^+\), **dissimilarity distribution**(query와 비슷하지 않은 샘플들의 분포)에서 뽑으면 \(k = k^-\)가 됨.
+
+실제 학습에서는 distribution을 직접 가정한다기보다는 **input pair**를 어떻게 구성할지 결정하는 게 더 중요함. 예를 들어, InstDisc에서는 같은 이미지에서 augmented되면 **positive**, 다른 이미지에서 augmented되면 **negative**로 정의했음. 어떤 pair를 positive로, 어떤 pair를 negative로 구성할지 정하는 게 핵심임.
+
+#### 3. Model
+파라미터(네트워크 가중치 등)가 있는 모든 모듈을 통칭해서 모델이라고 부름. 이렇게 표현할 수 있음:
+
+$$
+f(x; \theta) : X \rightarrow \mathbb{R}^{|Z|}
+$$
+
+input space \(X\)에서 metric embedding \(|Z|\) 차원의 실수 공간 \(\mathbb{R}^{|Z|}\)로 매핑하는 함수 \(f\)를 의미함. 보통 encoder랑 transform head로 나눠서 설명함.
+
+#### 4. Encoder
+입력 view를 representation vector로 매핑하는 부분임. encoder가 학습한 representation은 다른 모델의 입력으로 쓰거나(freeze), encoder 위에 layer를 추가해서 fine-tuning 할 때 활용하기도 함.
+
+#### 5. Transform Head
+feature embedding \(v\)를 metric embedding \(z\)로 변환하는 모듈임. 여러 representation을 결합하거나 contrastive loss에 넣기 전에 차원을 줄이는 데 씀.
+
+#### 6. Contrastive Loss
+query, positive key, negative key로 구성된 metric embedding 쌍 \(\{(z, z^+), (z, z^-)\}\)에 적용됨.
+
+- embedding 간 유사도를 측정하고, positive pair의 유사도는 높이고, negative pair의 유사도는 낮추는 역할을 함.
+- 유사도를 측정하는 scoring function과 loss의 형태(cross entropy, distance-based loss 등)로 나눌 수 있음.
+
+학습된 representation은 **positive pairs에서 trivial noise에는 invariant**하고, **negative pair의 차이를 설명하는 covariant representation**을 잘 반영해야 함.
