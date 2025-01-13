@@ -28,9 +28,12 @@ classes: wide
   <figcaption style="text-align:center">Fig 1. Register tokens enable interpretable attention maps in all vision transformers, similar to the original DINO method</figcaption>
 </figure>
 
+
 ### Abstract
 - Attention map에서의 artifact를 정의하여 그 원인을 규명하고, 이러한 현상을 해석할 수 있는 가설 제시
 - Register token을 추가하여 ViT 아키텍처의 dense prediction task 성능 향상 (특히, DINOv2)
+
+---
 
 ### Introduction
 
@@ -59,6 +62,8 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - Dense prediction task 성능이 향상
 - Feature map이 smooth해짐
     - LOST를 활용한 object discovery 성능도 향상
+
+---
 
 ### 2. Problem Formulation
 
@@ -102,7 +107,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 #### High-norm tokens appear where patch information is redundant
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width:80%;">
+    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width:50%;">
   </div>
 </figure>
 
@@ -144,6 +149,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 이는 Artifact patch가 **local information 대신 global information을 더 많이 포함**하고 있음을 의미함.
 
+---
 
 ### 2.2 Hypothesis and Remediation
 
@@ -168,6 +174,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - Pretraining 방식 또한 영향을 미침: OpenCLIP 및 DeiT-III에서는 작은 모델 크기(B)와 큰 모델 크기(L)에서도 outliers가 관찰됨(Fig. 2 참고).
 - 하지만 Artifact 현상이 왜 DINO에서는 나타나지 않는지는 완전히 규명되지 않음.  
 
+---
 
 ### 3. Experiments
 
@@ -211,6 +218,8 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 </figure>
 
 
+---
+
 #### 3.3 Object Discovery
 
 - **DINO + LOST 성능**: VOC 2007 기준, 61.9.
@@ -222,6 +231,9 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/tab3.webp" alt="Fig 3" style="width:80%;">
   </div>
 </figure>
+
+
+---
 
 
 #### 3.4 Qualitative Evaluation of Registers
@@ -238,6 +250,9 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 - **Future Work**:
   - Reg token의 regularization 기법 및 추가 분석.
+
+
+---
 
 
 ## Appendix
