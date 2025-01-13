@@ -158,50 +158,72 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - 하지만 Artifact 현상이 왜 DINO에서는 나타나지 않는지는 완전히 규명되지 않음.  
 
 
-## <center> 3. Experiments
+### 3. Experiments
 
-### 3.1 Training Algorithms and Data
+#### 3.1 Training Algorithms and Data
 
-- DeiT3: supervised (ImageNet-22k, ViT-B)
-- OpenCLIP: text-supervised (Open source, ViT-B/16)
-- DINOv2: self-supervised (ImageNet-22k, ViT-L)
+- **DeiT-III**: Supervised training on ImageNet-22k with ViT-B architecture.
+- **OpenCLIP**: Text-supervised training using ViT-B/16 on a licensed text-image dataset.
+- **DINOv2**: Self-supervised training on ImageNet-22k with ViT-L configuration.
 
-### 3.2 Evaluation of the Proposed Solution
+---
+
+#### 3.2 Evaluation of the Proposed Solution
+
+##### Register Tokens의 효과
+- **Patch Norm 감소**: Register token을 추가하면 **artifact가 제거**되며, patch norm이 안정화됨.
 
 ![Figure 7](/assets/img/vit_register/fig7.webp){: .align-center}
 
-- Register token을 추가함으로써 patch norm이 크게 감소하는 것을 확인할 수 있다.
+##### Downstream Task 성능
+- Dense prediction task(예: Segmentation, Depth Estimation) 성능이 개선됨.
+- **ImageNet Classification**에서도 성능 유지 또는 향상(DINOv2: +0.5%p).
 
 ![Table 2](/assets/img/vit_register/tab2.webp){: .align-center}
 
-- Segmentation, depth estimation 성능을 보면 dense prediction 성능이 향상된다.
-- ImageNet 성능도 유지되거나 상승했다. (특히, DINOv2에서 0.5%p 상승)
+##### Register Token 개수와 성능
+- Register token이 하나만 추가되어도 artifact가 제거되고, dense prediction task 성능이 크게 향상됨.
+- **Optimal Register Token 수**: Dense prediction task에서는 최적의 register 수가 존재하며, ImageNet 성능은 register 수가 많아질수록 증가.
 
 ![Figure 8](/assets/img/vit_register/fig8.webp){: .align-center}
 
-- Top: register가 없는 경우 artifact가 나타난다.
-- Bottom: register가 하나만 추가되더라도 dense prediction task 성능이 크게 향상된다.
+---
 
-### 3.3 Object Discovery
+#### 3.3 Object Discovery
+
+- **DINO + LOST 성능**: VOC 2007 기준, 61.9 (Siméoni et al., 2021).
+- **DINOv2 + Reg + LOST 성능**: 기존 DINOv2의 35.3에서 **20.1-point 향상**된 55.4를 기록.
+- **OpenCLIP의 경우**: 일부 성능 감소가 관찰되었으나, 분석은 추가 연구로 제안.
 
 ![Table 3](/assets/img/vit_register/tab3.webp){: .align-center}
 
-VOC 2007 dataset에 대한 DINO + LOST의 성능이 61.9인데, DINOv2 + reg + LOST의 성능이 이에 미치지는 못한다. 그럼에도 register를 사용함으로써 상당한 성능 개선을 이룰 수 있다.
+---
 
-### 3.4 Qualitative Evaluation of Registers
+#### 3.4 Qualitative Evaluation of Registers
+
+- **Reg Token의 Attention Behavior**:
+  - 일부 register token은 다양한 object에 attention을 할당하며, 자연스럽게 **다양한 패턴**을 형성.
+  - 이는 명시적으로 설계되지 않은 자연 발생적인 현상.
 
 ![Figure 9](/assets/img/vit_register/fig9.webp){: .align-center}
 
-흥미로운 점은 각 reg 토큰들이 각기 다른 object에 attention되어 있다는 것으로, 저자들은 이에 대한 future work를 제안한다.
+- **Future Work**:
+  - Reg token의 regularization 기법 및 추가 분석.
 
-## <center> Appendix
+---
+
+## Appendix
 
 ### A. Interpolation Artifacts and Outlier Position Distribution
+
+- **DINOv2의 Positional Embedding Issue**:
+  - 16×16 positional embedding을 7×7로 interpolate할 때, **antialiasing 미적용**으로 gradient pattern이 생성(Figure 11).
+  - 이로 인해 **vertical-striped outlier pattern**이 발생(Figure 10, 좌측 그래프).
+
+- **해결 방안**:
+  - Antialiasing 적용 시 vertical pattern이 사라지고, outlier token이 중심부보다 가장자리에 주로 나타남(Figure 10, 우측 그래프).
+  - 이는 대부분의 이미지가 object-centric하기 때문에, 가장자리 patch에서 **local information 필요성이 적음**을 뒷받침.
 
 ![Figure 10](/assets/img/vit_register/fig10.webp){: .align-center}
 
 ![Figure 11](/assets/img/vit_register/fig11.webp){: .align-center}
-
-Official DINOv2에서는 positional embedding이 16x16에서 7x7로 interpolate될 때 antialiasing을 사용하지 않았다. 그래서 Figure 11과 같은 gradient pattern을 갖게 되어, Figure 10 좌측 그래프처럼 outlier token이 vertical-striped pattern을 갖고 나타나게 된다.
-
-반면 저자들은 antialiasing을 적용하여 Figure 10의 우측 그래프처럼 vertical pattern을 없앨 수 있었다. 이때 중심부보다는 가장자리에 outlier token이 많이 나타나는 것 또한, 대부분의 이미지가 object-centric하기에 가장자리 patch에 local information이 필요하지 않았을 것이라는 저자들의 가설을 뒷받침한다.
