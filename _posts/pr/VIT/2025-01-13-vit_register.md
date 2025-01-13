@@ -28,45 +28,41 @@ classes: wide
   <figcaption style="text-align:center">Fig 1. Register tokens enable interpretable attention maps in all vision transformers, similar to the original DINO method</figcaption>
 </figure>
 
-## Introduction
-## <center> Abstract
+### Abstract
+\- Attention map에서의 artifact를 정의하여 그 원인을 규명하고, 이러한 현상을 해석할 수 있는 가설 제시
+\- Register token을 추가하여 ViT 아키텍처의 dense prediction task 성능 향상 (특히, DINOv2)
 
-![Figure 1](/assets/img/vit_register/fig1.webp){: .align-center}
+### Introduction
 
-- Attention map에서의 artifact를 정의하여 그 원인을 규명하고, 이러한 현상을 해석할 수 있는 가설 제시
-- Register token을 추가하여 ViT 아키텍처의 dense prediction task 성능 향상 (특히, DINOv2)
+대량의 이미지를 활용해 사전 학습한 모델을 downstream task에 적용하는 것은 일반적인 접근법이다. 특히, [DINO](https://arxiv.org/abs/2104.14294)는 self-supervised로 학습하면서도 downstream task에서 준수한 성능을 보여주고, unsupervised segmentation도 가능하다는 점에서 주목받고 있다. 이를 바탕으로 DINO의 attention map을 활용한 object discovery 알고리즘인 [LOST](https://arxiv.org/abs/2109.14279)도 제안되었다.
 
-## <center> 1. Introduction
+[DINOv2](https://arxiv.org/abs/2304.07193)는 DINO를 확장하여 monocular depth estimation, semantic segmentation과 같은 dense prediction task에서 더욱 뛰어난 성능을 보였다. 하지만 **DINOv2가 LOST와 호환되지 않는 현상이 관찰되었고, 이는 DINOv2의 attention map에 존재하는 artifact 때문으로 추정**된다. 더 나아가, supervised ViT([DeiT](https://arxiv.org/abs/2012.12877), [OpenCLIP](https://arxiv.org/abs/2212.07143))에서도 유사한 artifact가 확인되었다. (Figure 2 참고)
 
-대용량의 이미지를 pretrain한 모델로 downstream task를 해결하는 것은 당연한 접근이다. 특히, DINO의 경우 self-supervised로 학습함에도 downstream task에 대한 성능이 준수하고 unsupervised segmentation도 가능하기에 많은 관심을 받았다. 더 나아가, DINO의 attention map을 활용한 object discovery 알고리즘인 LOST도 등장하였다.
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width:80%;">
+  </div>
+</figure>
 
-DINO 이후 제안된 DINOv2에서는 mono depth estimation, segmentation과 같은 dense prediction task에서 성능을 고도화했다. 그런데 **DINOv2와 LOST가 incompatible한 것을 발견했고, DINOv2 attention map에 존재하는 artifact가 그 원인일 것으로 추정했다.** 그리고 이후 supervised ViT(DeiT, OpenCLIP)에서도 동일한 artifact를 발견하게 된다. (Figure 2)
-- DINO에서 artifact가 거의 존재하지 않는 이유는 2.2에서 추정하고 있다. (명쾌한 설명은 아님)
+Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
+\- 약 10배 더 높은 norm을 가지며, 전체의 약 2%에 해당
+\- 주로 middle layer에서 나타나며, 오래 학습하거나 모델이 큰 경우에 두드러짐
+\- Local information을 버림
+    \- 인근 patch와 유사도가 높아 original information (e.g., position, pixel)이 포함되지 않음
+\- Global information을 포함
+    \- Outlier patch에 classifier를 적용했을 때 일반 patch보다 높은 성능을 보여, 이미지의 global 정보를 담고 있음을 시사
 
-![Figure 2](/assets/img/vit_register/fig2.webp){: .align-center}
+이는 모델이 유용하지 않은 patch를 스스로 식별해 해당 spatial 정보를 버리고, global 정보를 효과적으로 표현하도록 학습한다는 것을 의미한다. ViT의 token 수가 제한된 상황에서 이러한 학습 과정은 global 정보를 최적화하려는 모델의 내재적 메커니즘으로 설명된다.
 
-Artifacts를 나타내는 **outlier**들은 다음의 특징을 갖는 것을 파악했다.
-- 약 10배 더 높은 norm을 가지며, 전체의 약 2%에 해당한다.
-- 주로 middle layer에서 나타나며, 오래 학습하거나 모델이 큰 경우에 나타난다.
-- **discard local information**
-    - 인근 patch와 유사도가 높아 original information(position, pixel)이 포함되지 않는다.
-- **contain global information**
-    - 반면, patch에 classifier를 달아 예측하게 하면 일반적인 patch보다 outlier patch의 성능이 높더라.
-    - 이는 outlier patch가 이미지를 global하게 이해하고 있음을 의미한다.
+이를 해결하기 위해 register token을 추가했다.
+\- Outlier token이 사라짐
+\- Dense prediction task 성능이 향상
+\- Feature map이 smooth해짐
+    \- LOST를 활용한 object discovery 성능도 향상
 
-즉, **모델이 알아서 유용하지 않은 patch를 찾아 spatial 정보를 버리고 global 정보가 담기도록 학습한다**는 것이다. (ViT의 token 수가 제한되어 있기 때문에, 그 안에서 최대한 global 정보가 잘 담기게 학습된다고 설명한다.)
+### 2. Problem Formulation
 
-> the model learns to recognize patches containing little useful information, and recycle the corresponding tokens to aggregate global image information while discarding spatial information
-
-이를 해결하기 위해 register token을 추가했고, 그 결과
-- outlier token이 사라지며,
-- dense prediction task 성능이 향상되며,
-- feature map이 smooth해진다.
-    - LOST를 활용한 object discovery 성능도 향상된다.
-
-## <center> 2. Problem Formulation
-
-### 2.1 Artifacts in the Local Features of DINOv2
+#### 2.1 Artifacts in the Local Features of DINOv2
 
 #### Artifacts are high-norm outlier tokens
 
