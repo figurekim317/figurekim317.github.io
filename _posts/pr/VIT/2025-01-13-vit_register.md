@@ -64,55 +64,99 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 #### 2.1 Artifacts in the Local Features of DINOv2
 
-#### Artifacts are high-norm outlier tokens
+##### Artifacts are high-norm outlier tokens
 
 ![Figure 3](/assets/img/vit_register/fig3.webp){: .align-center}
 
-- left: DINO와 DINOv2의 local feature norm을 시각화한 것으로, DINOv2에 존재하는 outlier가 high-norm인 것을 볼 수 있다.
-- right: Small datasets에서 얻은 patch들의 분포를 나타내며, 임의로 지정한 cutoff value 150보다 높은 patch를 artifact로 정의한다. (모델에 따라 상이할 수 있음)
+- **Left**: DINO와 DINOv2의 local feature norm을 시각화한 결과, DINOv2에서는 **outlier tokens**가 다른 token들보다 훨씬 높은 **high-norm** 값을 가지는 것이 확인됨.
+- **Right**: Small dataset에서 얻은 patch token의 norm 분포를 나타내며, 분포가 bimodal 형태를 띔.  
+  - **Cutoff value**를 150으로 설정해, 이를 초과하는 token을 **artifact**로 정의.  
+  - 이 값은 모델에 따라 다를 수 있지만, 이후 분석에서는 norm이 150을 초과하는 token을 "high-norm" 또는 "outlier"로 간주.
 
-#### Outliers appear during the training of large models
+##### Outliers appear during the training of large models
 
 ![Figure 4](/assets/img/vit_register/fig4.webp){: .align-center}
 
-- a: 전체 40 layer 중 15번째 layer부터 발견된다.
-- b: 전체 training의 약 1/3 지점에서부터 발견된다.
-- c: Large, Huge, Giant size에서 발견된다.
+- **a**: 40개의 layer 중 **15번째 layer**에서 outlier token이 다른 token과 차별화되기 시작함.
+- **b**: 모델 학습의 약 **1/3 지점**부터 outlier token이 나타남.
+- **c**: 모델 크기에 따른 분석 결과, outlier는 **Large**, **Huge**, **Giant** 크기의 모델에서만 관찰됨.
+
+#### Outlier Tokens의 Local Information Analysis
+
+- Outlier tokens는 **local 정보가 부족**하다는 특징을 가짐:
+  - Neighbor patches와의 **cosine similarity**를 분석한 결과, outlier tokens의 유사도가 normal tokens보다 낮음.  
+  - **Position prediction** 및 **input patch reconstruction**을 통해 local information 보유량을 분석한 결과, outlier tokens는 normal tokens보다 낮은 성능을 보임. (아래 표 참고)
+
+| **Metric**            | **Normal Tokens** | **Outlier Tokens** |
+|-----------------------|-------------------|--------------------|
+| Top-1 Accuracy        | 41.7%            | 22.8%             |
+| Average Distance (↓)  | 0.79             | 5.09              |
+| L2 Error (↓)          | 18.38            | 25.23             |
+
+- 결론적으로, outlier tokens는 local 정보를 희생하면서도 **global 정보를 더 효과적으로 담기 위한 모델의 학습 전략**을 반영한 것으로 보임.
+
 
 #### High-norm tokens appear where patch information is redundant
 
 ![Figure 5a](/assets/img/vit_register/fig5a.webp){: .align-center}
 
-Artifact patch는 인접한 patch 4개와의 cosine 유사도가 높은 것을 보인다.
+- **Artifact patch**는 인접한 4개의 patch와 cosine 유사도가 높은 것으로 나타남.
+- 이는 **redundant information**을 포함하고 있음을 의미하며, 모델이 이러한 정보를 제거해도 이미지 표현 품질에 큰 영향을 미치지 않는다는 것을 시사.
+- Fig. 2에서 보이듯, 이런 patch는 종종 **uniform한 배경 영역**에서 발생.
 
-그렇다면 artifact patch는 어떤 정보를 갖고 있길래, 유사도가 높은 것일까?
+---
 
 #### High-norm tokens hold little local information
 
 ![Figure 5b](/assets/img/vit_register/fig5b.webp){: .align-center}
 
-- Position prediction: 각 patch가 image 내에서 어디에 위치하는지를 예측 (positional embedding layer에서 position information이 주입되고, 이 정보가 얼마나 남아있는지를 예측)
-- Pixel reconstruction
+**Artifact patch**의 local information을 분석하기 위해 두 가지 task에서 성능을 측정:
+1. **Position prediction**:
+    - Patch가 이미지 내에서 위치하는 좌표를 예측.
+    - 결과: Artifact patch의 **정확도가 낮아**, 위치 정보(position information)를 거의 포함하지 않음.
+2. **Pixel reconstruction**:
+    - Patch로부터 원래의 픽셀 값을 복원.
+    - 결과: Artifact patch는 일반 patch보다 **복원 정확도 낮음**.
 
-위 2개의 task에 대한 linear probing 성능이 낮기 때문에, local information이 artifact patch에 포함되어 있지 않다는 것을 알 수 있다.
+이 결과는 **Artifact patch가 local 정보를 거의 포함하지 않는다는 사실**을 보여줌.
+
+---
 
 #### Artifacts hold global information
 
 ![Table 1](/assets/img/vit_register/tab1.webp){: .align-center}
 
-이번에는 image classification task에 대한 linear probing 성능이다. 여기서는 normal patch에 비해 outlier patch의 성능이 더 높다.
+- Image classification task에서 **linear probing**을 수행해, artifact patch가 global 정보를 포함하고 있는지 확인:
+    - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 분류 정확도를 비교.
+    - 결과: Artifact patch의 정확도가 normal patch보다 **훨씬 높음**.
 
-즉, outlier patch는 (normal patch에 비해) **local information 보다 global information을 더 포함하고 있으며, 이로 인해 인접한 patch와의 cosine similarity가 높다**고 볼 수 있다.
+이는 Artifact patch가 **local information 대신 global information을 더 많이 포함**하고 있음을 의미함.
+
+---
 
 ### 2.2 Hypothesis and Remediation
 
-2.1 에서의 관측을 바탕으로 **충분히 학습된 큰 사이즈의 모델은 중복되는 token이 global information을 처리할 수 있게 한다**는 가설을 도출한다. 이러한 가설이 모델링 의도와는 일치하진 않지만 크게 문제되지는 않는다. 하지만 dense prediction task에서는 문제될 수 있다.
+#### Hypothesis
+- 충분히 큰 모델이 충분히 학습되면, 중복되는 patch token을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출.
+- 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음.
 
-이를 해결하기 위해 register라는 additional token을 class token과 동일한 방식으로 추가한다. 그리고 register token은 inference에서 사용하지 않는다.
-- 이러한 방식은 NLP 도메인의 Memory Transformer 논문에서 처음 적용되었다고 한다.
-- 기존의 token들과 다른 점은 어떠한 정보도 주입되지 않고, token을 사용하지 않는다는 점이다.
+#### Remediation
+이를 해결하기 위해 **register token**을 추가:
+1. **추가 위치**: Patch embedding layer 이후에 추가.
+2. **특징**: Learnable한 값으로 초기화되며, **[CLS] token**과 유사한 방식으로 동작.
+3. **사용 방식**:
+    - Training 동안 모델이 register token을 사용해 global 정보를 처리.
+    - Inference 시 register token은 제거되고, [CLS] token과 patch token만 사용.
 
-물론 DINO에서는 왜 이러한 현상이 나타나지 않는지 규명하지 못 했다. 다만 DINO보다 모델 사이즈가 커지고, 학습 시간이 길어지면서 DINOv2에서 나타난 것으로 추정된다.
+이 방식은 **NLP의 Memory Transformers**에서 처음 제안되었으며, vision transformer의 **interpretability 및 dense prediction task 성능** 문제를 해결하는 데 기여.
+
+---
+
+#### 추가 관찰
+- Artifact 현상은 모델 크기와 학습 길이에 따라 크게 좌우됨(Fig. 4 참고).
+- Pretraining 방식 또한 영향을 미침: OpenCLIP 및 DeiT-III에서는 작은 모델 크기(B)와 큰 모델 크기(L)에서도 outliers가 관찰됨(Fig. 2 참고).
+- 하지만 Artifact 현상이 왜 DINO에서는 나타나지 않는지는 완전히 규명되지 않음.  
+
 
 ## <center> 3. Experiments
 
