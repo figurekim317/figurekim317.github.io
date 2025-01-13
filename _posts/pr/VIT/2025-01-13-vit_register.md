@@ -1,4 +1,7 @@
 ---
+layout: post
+mathjax: true
+image:  /assets/images/blog/post-5.jpg
 title: "[Paper review] Vision transformer need registers"
 last_modified_at: 2025-01-13
 categories:
