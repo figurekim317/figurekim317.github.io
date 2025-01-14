@@ -106,7 +106,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 #### High-norm tokens appear where patch information is redundant
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width:50%;">
+    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width:40%;">
   </div>
 </figure>
 
@@ -119,7 +119,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig5b.webp" alt="Fig 5b" style="width:80%;">
+    <img src="/assets/img/vit_register/fig5b.webp" alt="Fig 5b" style="width:60%;">
   </div>
 </figure>
 
