@@ -23,9 +23,8 @@ classes: wide
 
 <figure>
   <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig1.png" alt="Fig 1" style="width:80%;">
+    <img src="/assets/img/vit_register/fig1.webp" alt="Fig 1" style="width:80%;">
   </div>
-  <figcaption style="text-align:center">Fig 1. Register tokens enable interpretable attention maps in all vision transformers, similar to the original DINO method</figcaption>
 </figure>
 
 
