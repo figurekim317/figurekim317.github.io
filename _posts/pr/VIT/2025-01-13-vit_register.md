@@ -45,6 +45,7 @@ classes: wide
     <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width:80%;">
   </div>
 </figure>
+<br>
 
 Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - 약 10배 더 높은 norm을 가지며, 전체의 약 2%에 해당
@@ -68,21 +69,22 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 #### 2.1 Artifacts in the Local Features of DINOv2
 
-##### Artifacts are high-norm outlier tokens
-
+##### - Artifacts are high-norm outlier tokens
+<br>
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/fig3.webp" alt="Fig 3" style="width:80%;">
   </div>
 </figure>
-
+<br>
 - **Left**: DINO와 DINOv2의 local feature norm을 시각화한 결과, DINOv2에서는 **outlier tokens**가 다른 token들보다 훨씬 높은 **high-norm** 값을 가지는 것이 확인됨.
 - **Right**: Small dataset에서 얻은 patch token의 norm 분포를 나타내며, 분포가 bimodal 형태를 띔.  
   - **Cutoff value**를 150으로 설정해, 이를 초과하는 token을 **artifact**로 정의.  
   - 이 값은 모델에 따라 다를 수 있지만, 이후 분석에서는 norm이 150을 초과하는 token을 "high-norm" 또는 "outlier"로 간주.
 
+<br>
 
-##### Outliers appear during the training of large models
+##### - Outliers appear during the training of large models
 
 <figure>
   <div style="text-align:center">
@@ -94,6 +96,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - **b**: 모델 학습의 약 **1/3 지점**부터 outlier token이 나타남.
 - **c**: 모델 크기에 따른 분석 결과, outlier는 **Large**, **Huge**, **Giant** 크기의 모델에서만 관찰됨.
 
+<br>
 
 #### Outlier Tokens의 Local Information Analysis
 
@@ -102,6 +105,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
   - **Position prediction** 및 **input patch reconstruction**을 통해 local information 보유량을 분석한 결과, outlier tokens는 normal tokens보다 낮은 성능을 보임. (Table 1)
 - 결론적으로, outlier tokens는 local 정보를 희생하면서도 **global 정보를 더 효과적으로 담기 위한 모델의 학습 전략**을 반영한 것으로 보임.
 
+<br>
 
 #### High-norm tokens appear where patch information is redundant
 <figure>
@@ -114,6 +118,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - 이는 **redundant information**을 포함하고 있음을 의미하며, 모델이 이러한 정보를 제거해도 이미지 표현 품질에 큰 영향을 미치지 않는다는 것을 시사.
 - Fig. 2에서 보이듯, 이런 patch는 종종 **uniform한 배경 영역**에서 발생.
 
+<br>
 
 #### High-norm tokens hold little local information
 
@@ -133,6 +138,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 이 결과는 **Artifact patch가 local 정보를 거의 포함하지 않는다는 사실**을 보여줌.
 
+<br>
 
 #### Artifacts hold global information
 
@@ -155,6 +161,8 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 #### Hypothesis
 - 충분히 큰 모델이 충분히 학습되면, 중복되는 patch token을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출.
 - 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음.
+
+<br>
 
 #### Remediation
 이를 해결하기 위해 **register token**을 추가:
@@ -195,6 +203,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/fig7.webp" alt="Fig 7" style="width:80%;">
   </div>
 </figure>
+<br>
 
 ##### Downstream Task 성능
 - Dense prediction task(예: Segmentation, Depth Estimation) 성능이 개선됨.
@@ -205,6 +214,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/tab2.webp" alt="Tab 2" style="width:80%;">
   </div>
 </figure>
+<br>
 
 ##### Register Token 개수와 성능
 - Register token이 하나만 추가되어도 artifact가 제거되고, dense prediction task 성능이 크게 향상됨.
@@ -215,7 +225,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/fig8.webp" alt="Fig 8" style="width:80%;">
   </div>
 </figure>
-
+<br>
 
 ---
 
@@ -230,7 +240,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/tab3.webp" alt="Fig 3" style="width:80%;">
   </div>
 </figure>
-
+<br>
 
 ---
 
