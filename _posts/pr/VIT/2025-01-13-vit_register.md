@@ -28,13 +28,13 @@ classes: wide
 </figure>
 
 
-### Abstract
+### 0. Abstract
 - Attention map에서의 artifact를 정의하여 그 원인을 규명하고, 이러한 현상을 해석할 수 있는 가설 제시
 - Register token을 추가하여 ViT 아키텍처의 dense prediction task 성능 향상 (특히, DINOv2)
 
 ---
 
-### Introduction
+### 1. Introduction
 
 대량의 이미지를 활용해 사전 학습한 모델을 downstream task에 적용하는 것은 일반적인 접근법이다. 특히, [DINO](https://arxiv.org/abs/2104.14294)는 self-supervised로 학습하면서도 downstream task에서 준수한 성능을 보여주고, unsupervised segmentation도 가능하다는 점에서 주목받고 있다. 이를 바탕으로 DINO의 attention map을 활용한 object discovery 알고리즘인 [LOST](https://arxiv.org/abs/2109.14279)도 제안되었다.
 
@@ -98,7 +98,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-#### Outlier Tokens의 Local Information Analysis
+##### - Outlier Tokens의 Local Information Analysis
 
 - Outlier tokens는 **local 정보가 부족**하다는 특징을 가짐:
   - Neighbor patches와의 **cosine similarity**를 분석한 결과, outlier tokens의 유사도가 normal tokens보다 낮음.  
@@ -107,7 +107,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-#### High-norm tokens appear where patch information is redundant
+##### - High-norm tokens appear where patch information is redundant
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width:40%;">
@@ -120,7 +120,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-#### High-norm tokens hold little local information
+##### - High-norm tokens hold little local information
 
 <figure>
   <div style="text-align:center">
@@ -140,7 +140,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-#### Artifacts hold global information
+##### - Artifacts hold global information
 
 <figure>
   <div style="text-align:center">
@@ -156,15 +156,15 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 ---
 
-### 2.2 Hypothesis and Remediation
+#### 2.2 Hypothesis and Remediation
 
-#### Hypothesis
+##### - Hypothesis
 - 충분히 큰 모델이 충분히 학습되면, 중복되는 patch token을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출.
 - 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음.
 
 <br>
 
-#### Remediation
+##### - Remediation
 이를 해결하기 위해 **register token**을 추가:
 1. **추가 위치**: Patch embedding layer 이후에 추가.
 2. **특징**: Learnable한 값으로 초기화되며, **[CLS] token**과 유사한 방식으로 동작.
@@ -176,7 +176,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 ---
 
-#### 추가 관찰
+##### - 추가 관찰
 - Artifact 현상은 모델 크기와 학습 길이에 따라 크게 좌우됨(Fig. 4 참고).
 - Pretraining 방식 또한 영향을 미침: OpenCLIP 및 DeiT-III에서는 작은 모델 크기(B)와 큰 모델 크기(L)에서도 outliers가 관찰됨(Fig. 2 참고).
 - 하지만 Artifact 현상이 왜 DINO에서는 나타나지 않는지는 완전히 규명되지 않음.  
@@ -195,7 +195,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 #### 3.2 Evaluation of the Proposed Solution
 
-##### Register Tokens의 효과
+##### - Register Tokens의 효과
 - **Patch Norm 감소**: Register token을 추가하면 **artifact가 제거**되며, patch norm이 안정화됨.
 
 <figure>
@@ -205,7 +205,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 </figure>
 <br>
 
-##### Downstream Task 성능
+##### - Downstream Task 성능
 - Dense prediction task(예: Segmentation, Depth Estimation) 성능이 개선됨.
 - **ImageNet Classification**에서도 성능 유지 또는 향상(DINOv2: +0.5%p).
 
@@ -216,7 +216,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 </figure>
 <br>
 
-##### Register Token 개수와 성능
+##### - Register Token 개수와 성능
 - Register token이 하나만 추가되어도 artifact가 제거되고, dense prediction task 성능이 크게 향상됨.
 - **Optimal Register Token 수**: Dense prediction task에서는 최적의 register 수가 존재하며, ImageNet 성능은 register 수가 많아질수록 증가.
 
