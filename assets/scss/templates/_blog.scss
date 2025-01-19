@@ -43,3 +43,22 @@ blockquote > p {
     line-height: 1.2;
   }
 }
+
+ul {
+  list-style-type: disc; /* 동그라미 (•) 불릿 적용 */
+  padding-left: 20px; /* 리스트 들여쓰기 조정 */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ol {
+  list-style-type: decimal; /* 숫자 리스트 스타일 적용 */
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  list-style: inherit; /* 부모의 리스트 스타일을 상속 */
+  margin-bottom: 5px;
+}
