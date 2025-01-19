@@ -44,21 +44,43 @@ blockquote > p {
   }
 }
 
+/* 추가된 리스트 스타일 */
 ul {
-  list-style-type: disc; /* 동그라미 (•) 불릿 적용 */
-  padding-left: 20px; /* 리스트 들여쓰기 조정 */
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-ol {
-  list-style-type: decimal; /* 숫자 리스트 스타일 적용 */
+  list-style-type: disc; /* 최상위 레벨 - 검은색 원 */
   padding-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-li {
-  list-style: inherit; /* 부모의 리스트 스타일을 상속 */
-  margin-bottom: 5px;
+ul ul {
+  list-style-type: circle; /* 두 번째 레벨 - 흰색 원 (테두리 검정) */
+}
+
+ul ul ul {
+  list-style-type: square; /* 세 번째 레벨 - 검은색 네모 */
+}
+
+ul ul ul ul {
+  list-style-type: none;
+}
+
+ul ul ul ul li::before {
+  content: "\25A1"; /* 네 번째 레벨 - 흰색 네모 (테두리 검정) */
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+ul ul li::before {
+  content: "\25CB"; /* 흰색 원 (테두리 검정) */
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+ul ul ul li::before {
+  content: "\25A0"; /* 검은색 네모 */
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.2em;
 }
