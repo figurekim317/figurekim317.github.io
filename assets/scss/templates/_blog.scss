@@ -63,24 +63,3 @@ ul ul ul {
 ul ul ul ul {
   list-style-type: none;
 }
-
-ul ul ul ul li::before {
-  content: "\25A1"; /* 네 번째 레벨 - 흰색 네모 (테두리 검정) */
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 1.2em;
-}
-
-ul ul li::before {
-  content: "\25CB"; /* 흰색 원 (테두리 검정) */
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 1.2em;
-}
-
-ul ul ul li::before {
-  content: "\25A0"; /* 검은색 네모 */
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 1.2em;
-}
