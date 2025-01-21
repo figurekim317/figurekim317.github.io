@@ -166,26 +166,21 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
   </div>
 </figure>
 
-- Image classification task에서 **linear probing**을 수행해, artifact patch가 global 정보를 포함하고 있는지 확인:
-    - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 분류 정확도를 비교.
-    - 결과: Artifact patch의 정확도가 normal patch보다 **훨씬 높음**.
+- Artifact가 global information를 포함하고 있는지 확인
+- Image classification task에서 **linear probing**을 수행해, artifact patch가 global 정보를 포함하고 있는지 확인
+    - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 classification 성능을 비교
+    - 결과: Artifact의 representation은 CLS token representation만큼 높은 Image Classification 성능을 보임
 
-이는 Artifact patch가 **local information 대신 global information을 더 많이 포함**하고 있음을 의미함.
-
-
-##### Outlier Tokens의 Local Information Analysis
-
-- Outlier tokens는 **local 정보가 부족**하다는 특징을 가짐:
-  - Neighbor patches와의 **cosine similarity**를 분석한 결과, outlier tokens의 유사도가 normal tokens보다 낮음 
-  - **Position prediction** 및 **input patch reconstruction**을 통해 local information 보유량을 분석한 결과, outlier tokens는 normal tokens보다 낮은 성능을 보임. (Table 1)
-- 결론적으로, outlier tokens는 local 정보를 희생하면서도 **global 정보를 더 효과적으로 담기 위한 모델의 학습 전략**을 반영한 것으로 보임.
+이는 Artifact patch가 **CLS token과 같이 풍부한 global information을 지니고 있다**고 유추할 수 있음
 
 <br>
 
-
-<br>
-
-
+##### Artifacts 특징 recap
+- Artifact는 큰 Vision Transformer 모델에서 학습 과정 중간에 등장함
+- Artifact는 인근 영역 patch에 redundant한 특징을 가지고 있음
+- Artifact는 해당 영역에 대한 local information을 거의 가지고 있지 않음
+- Artifact는 CLS token만큼이나 많은 global information을 가지고 있음
+- Artifact의 patch feature norm과 attention score가 일반 patch보다 매우 큼
 
 <br>
 
