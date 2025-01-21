@@ -75,7 +75,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 </figure>
 
 이를 해결하기 위해 register token을 추가했다.
-- ViT 기반의 다양한 방법론에 적용시, 다양한 task에서 기존의 성능을 유지하면서 더 정확한 feature maprhk attention map이 생성됨을 확인
+- ViT 기반의 다양한 방법론에 적용시, 다양한 task에서 기존의 성능을 유지하면서 더 정확한 feature map 및 attention map이 생성됨을 확인
   - Outlier token이 사라짐
   - Dense prediction task 성능이 향상
   - Feature map이 smooth해짐
@@ -87,7 +87,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 #### 2.1 Artifacts in the Local Features of DINOv2
 
-##### Artifacts are high-norm outlier tokens
+##### **Artifacts are high-norm outlier tokens**
 <br>
 <figure>
   <div style="text-align:center">
@@ -102,7 +102,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-##### Outliers appear during the training of large models
+##### **Outliers appear during the training of large models**
 
 <figure>
   <div style="text-align:center">
@@ -116,13 +116,13 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-##### High-norm tokens appear where patch information is redundant
-<figure style="display: flex; justify-content: center; gap: 20px;">
+##### **High-norm tokens appear where patch information is redundant**
+<figure style="display: flex; justify-content: center; gap: 10px;">
   <div style="flex: 1; text-align: center;">
-    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width: 80%;">
+    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width: 70%;">
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 100%;">
+    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 120%;">
   </div>
 </figure>
 
@@ -137,7 +137,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-##### High-norm tokens hold little local information
+##### **High-norm tokens hold little local information**
 
 <figure>
   <div style="text-align:center">
@@ -150,15 +150,16 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 1. **Position prediction**
   - Patch의 representation을 input, position을 label로 사용하여 해당 patch의 위치를 예측할 수 있도록 linear model을 지도 학습하여 artifact와 일반 patch 간의 prediction 성능을 비교
   - 결과: Artifact patch의 **accuracy 낮아**, 위치 정보(position information)를 거의 포함하지 않음
+
 2. **Pixel reconstruction**
-    - Patch의 representation을 input, pixel value를 정답으로 사용하여 해당 patch의 pixel value를 복원할 수 있도록 linear model을 지도학습하여 artifact와 일반 patch간의 reconstruction 성능을 비교
-    - 결과: Artifact patch는 일반 patch보다 **reconstruction 성능 낮음**
+  - Patch의 representation을 input, pixel value를 정답으로 사용하여 해당 patch의 pixel value를 복원할 수 있도록 linear model을 지도학습하여 artifact와 일반 patch간의 reconstruction 성능을 비교
+  - 결과: Artifact patch는 일반 patch보다 **reconstruction 성능 낮음**
 
 이 결과는 **Artifact patch가 다른 일반 patch에 비하여 local information을 거의 포함하지 않는다는 사실**을 보여줌
 
 <br>
 
-##### Artifacts hold global information
+##### **Artifacts hold global information**
 
 <figure>
   <div style="text-align:center">
@@ -168,33 +169,31 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 - Artifact가 global information를 포함하고 있는지 확인
 - Image classification task에서 **linear probing**을 수행해, artifact patch가 global 정보를 포함하고 있는지 확인
-    - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 classification 성능을 비교
-    - 결과: Artifact의 representation은 CLS token representation만큼 높은 Image Classification 성능을 보임
+  - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 classification 성능을 비교
+  - 결과: Artifact의 representation은 CLS token representation만큼 높은 Image Classification 성능을 보임
 
 이는 Artifact patch가 **CLS token과 같이 풍부한 global information을 지니고 있다**고 유추할 수 있음
 
 <br>
 
-##### Artifacts 특징 recap
+##### **Artifacts 특징 recap**
 - Artifact는 큰 Vision Transformer 모델에서 학습 과정 중간에 등장함
 - Artifact는 인근 영역 patch에 redundant한 특징을 가지고 있음
 - Artifact는 해당 영역에 대한 local information을 거의 가지고 있지 않음
 - Artifact는 CLS token만큼이나 많은 global information을 가지고 있음
 - Artifact의 patch feature norm과 attention score가 일반 patch보다 매우 큼
 
-<br>
-
 ---
 
 #### 2.2 Hypothesis and Remediation
 
-##### - Hypothesis
-- 충분히 큰 모델이 충분히 학습되면, 중복되는 patch token(artifact)을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출
+##### **Hypothesis**
+- 충분히 큰 모델이 충분히 학습되면, 중복되는 artifact을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출
 - 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음
 
 <br>
 
-##### - Remediation
+##### **Remediation**
 
 <figure>
   <div style="text-align:center">
@@ -204,7 +203,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 이를 해결하기 위해 **register token**을 input sequence에 추가
 1. **추가 위치**: Patch embedding layer 이후에 추가
-2. **특징**: Learnable한 값으로 초기화되며, **[CLS] token**과 유사한 방식으로 동작
+2. **특징**: Learnable한 값으로 초기화되며, [CLS] token과 유사한 방식으로 동작
 3. **사용 방식**:
     - Training 동안 모델이 register token을 사용해 global 정보를 처리
     - Inference 시 register token은 제거되고, [CLS] token과 patch token만 사용
@@ -215,12 +214,12 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 #### 3.1 Training Algorithms and Dataset  
 
-##### Backbone Model  
+##### **Backbone Model**  
 - DeiT-III: Pretrained on ImageNet with supervised learning  
 - OpenCLIP: Pretrained using text-supervised learning  
 - DINOv2: Pretrained with self-supervised learning  
 
-##### Tasks and Methods  
+##### **Tasks and Methods**
 - Image Classification  
   - Dataset: ImageNet  
   - Method: Linear probing  
@@ -231,14 +230,13 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 - Monocular Depth Estimation  
   - Dataset: NYUd  
-  - Method: BinsFormer 
-
+  - Method: BinsFormer
 
 ---
 
 #### 3.2 Evaluation of the Proposed Solution
 
-##### Register Tokens의 효과
+##### **Register Tokens의 효과**
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/fig7.webp" alt="Fig 7" style="width:80%;">
@@ -258,7 +256,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-##### Register Token 개수와 성능
+##### **Register Token 개수와 성능**
 
 <figure>
   <div style="text-align:center">
@@ -269,8 +267,6 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - Register token이 하나만 추가되어도 attention map의 artifact가 제거됨
 - Image-level task인 image classificatio은 register token의 수가 증가될 수록 성능 향상
 - Pixel-level task에서는 optimal register 개수가 있는 것으로 확인
-
-<br>
 
 ---
 
@@ -317,7 +313,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 ## Appendix
 
-### A. Interpolation Artifacts and Outlier Position Distribution
+#### A. Interpolation Artifacts and Outlier Position Distribution
 
 <figure>
   <div style="text-align:center">
@@ -332,12 +328,10 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
   </div>
 </figure>
 
-- **DINOv2의 Positional Embedding Issue**:
+- **DINOv2의 Positional Embedding Issue**
   - 16×16 positional embedding을 7×7로 interpolate할 때, **antialiasing 미적용**으로 gradient pattern이 생성(Figure 11).
-  - 이로 인해 **vertical-striped outlier pattern**이 발생(Figure 10, 좌측 그래프).
+  - 이로 인해 **vertical-striped outlier pattern**이 발생(Figure 10, 좌측 그래프)
 
-- **해결 방안**:
-  - Antialiasing 적용 시 vertical pattern이 사라지고, outlier token이 중심부보다 가장자리에 주로 나타남(Figure 10, 우측 그래프).
-  - 이는 대부분의 이미지가 object-centric하기 때문에, 가장자리 patch에서 **local information 필요성이 적음**을 뒷받침.
-
-
+- **해결 방안**
+  - Antialiasing 적용 시 vertical pattern이 사라지고, outlier token이 중심부보다 가장자리에 주로 나타남(Figure 10, 우측 그래프)
+  - 이는 대부분의 이미지가 object-centric하기 때문에, 가장자리 patch에서 **local information 필요성이 적음**을 뒷받침
