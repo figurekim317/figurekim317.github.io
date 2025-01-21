@@ -15,10 +15,10 @@ use_math: true
 classes: wide
 ---
 
-> ICLR 2024. [[Paper](https://arxiv.org/abs/2309.16588)]
-> Timothée Darcet, Maxime Oquab, Julien Mairal, Piotr Bojanowski
-> FAIR, Meta | Univ. Grenoble Alpes, Inria
-> 11 Apr 2024  
+> ICLR 2024. [[Paper](https://arxiv.org/abs/2309.16588)]  
+> Timothée Darcet, Maxime Oquab, Julien Mairal, Piotr Bojanowski  
+> FAIR, Meta | Univ. Grenoble Alpes, Inria  
+> 11 Apr 2024    
 
 
 <figure>
