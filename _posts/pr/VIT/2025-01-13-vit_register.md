@@ -119,22 +119,58 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 ##### High-norm tokens appear where patch information is redundant
 <figure style="display: flex; justify-content: center; gap: 20px;">
   <div style="flex: 1; text-align: center;">
-    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width: 40%;">
+    <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width: 80%;">
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 40%;">
+    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 80%;">
   </div>
 </figure>
+
 - 어떤 특징을 갖는 patch가 artifact로 재활용 되는가를 파악하기 위한 분석
 - 이미지가 ViT의 encoder에 입력되기 직전에 수행되는 patch embedding layer값을 분석에 사용
 - 한 patch의 embedding과 인근 4개의 patch embedding 사이의 유사도를 계산
-- Artifact와 나머지 patch로 구분하여 유사도 분포를 시각화
+- Artifact와 나머지 patch로 구분하여 유사도 분포를 시각화 (Fig 5a)
+- 일반 patch에 비하여 artifact들은 인근 영역과 초기 patch embedding 유사도가 매우 크게 분포
+- Artifact가 생성되는 영역은 인근 영역과 중복되는 특징을 갖고 있다고 유추 가능
+  - **Redundant and low-informative**
+- 정성적으로도 단조로운 색상과 특징을 갖는 배경에 artifact들이 주로 분포함을 통해 확인 가능
 
-**Artifact patch**는 인접한 4개의 patch와 cosine 유사도가 높은 것으로 나타남.
-- 이는 **redundant information**을 포함하고 있음을 의미하며, 모델이 이러한 정보를 제거해도 이미지 표현 품질에 큰 영향을 미치지 않는다는 것을 시사.
-- Fig. 2에서 보이듯, 이런 patch는 종종 **uniform한 배경 영역**에서 발생.
+<br>
 
+##### High-norm tokens hold little local information
 
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/fig5b.webp" alt="Fig 5b" style="width:60%;">
+  </div>
+</figure>
+
+- Artifact가 local information을 상실했는지 분석하기 위해 두 가지 task에서 성능을 측정
+- 두 task 수행을 위해 DINOv2 ViT-g 모델을 사용
+1. **Position prediction**
+  - Patch의 representation을 input, position을 label로 사용하여 해당 patch의 위치를 예측할 수 있도록 linear model을 지도 학습하여 artifact와 일반 patch 간의 prediction 성능을 비교
+  - 결과: Artifact patch의 **accuracy 낮아**, 위치 정보(position information)를 거의 포함하지 않음
+2. **Pixel reconstruction**
+    - Patch의 representation을 input, pixel value를 정답으로 사용하여 해당 patch의 pixel value를 복원할 수 있도록 linear model을 지도학습하여 artifact와 일반 patch간의 reconstruction 성능을 비교
+    - 결과: Artifact patch는 일반 patch보다 **reconstruction 성능 낮음**
+
+이 결과는 **Artifact patch가 다른 일반 patch에 비하여 local information을 거의 포함하지 않는다는 사실**을 보여줌
+
+<br>
+
+##### Artifacts hold global information
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/tab1.webp" alt="Tab 1" style="width:80%;">
+  </div>
+</figure>
+
+- Image classification task에서 **linear probing**을 수행해, artifact patch가 global 정보를 포함하고 있는지 확인:
+    - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 분류 정확도를 비교.
+    - 결과: Artifact patch의 정확도가 normal patch보다 **훨씬 높음**.
+
+이는 Artifact patch가 **local information 대신 global information을 더 많이 포함**하고 있음을 의미함.
 
 
 ##### Outlier Tokens의 Local Information Analysis
@@ -149,39 +185,10 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-##### - High-norm tokens hold little local information
 
-<figure>
-  <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig5b.webp" alt="Fig 5b" style="width:60%;">
-  </div>
-</figure>
-
-**Artifact patch**의 local information을 분석하기 위해 두 가지 task에서 성능을 측정:
-1. **Position prediction**:
-    - Patch가 이미지 내에서 위치하는 좌표를 예측.
-    - 결과: Artifact patch의 **정확도가 낮아**, 위치 정보(position information)를 거의 포함하지 않음.
-2. **Pixel reconstruction**:
-    - Patch로부터 원래의 픽셀 값을 복원.
-    - 결과: Artifact patch는 일반 patch보다 **복원 정확도 낮음**.
-
-이 결과는 **Artifact patch가 local 정보를 거의 포함하지 않는다는 사실**을 보여줌.
 
 <br>
 
-##### - Artifacts hold global information
-
-<figure>
-  <div style="text-align:center">
-    <img src="/assets/img/vit_register/tab1.webp" alt="Tab 1" style="width:80%;">
-  </div>
-</figure>
-
-- Image classification task에서 **linear probing**을 수행해, artifact patch가 global 정보를 포함하고 있는지 확인:
-    - Random으로 선택된 normal patch와 artifact patch 각각에 대해 logistic regression 모델을 학습하여 분류 정확도를 비교.
-    - 결과: Artifact patch의 정확도가 normal patch보다 **훨씬 높음**.
-
-이는 Artifact patch가 **local information 대신 global information을 더 많이 포함**하고 있음을 의미함.
 
 ---
 
