@@ -15,7 +15,7 @@ use_math: true
 classes: wide
 ---
 
-> ICLR 2024. [Paper](https://arxiv.org/abs/2309.16588) 
+> ICLR 2024. [[Paper](https://arxiv.org/abs/2309.16588)]
 > Timothée Darcet, Maxime Oquab, Julien Mairal, Piotr Bojanowski
 > FAIR, Meta | Univ. Grenoble Alpes, Inria
 > 11 Apr 2024  
@@ -122,7 +122,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width: 70%;">
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 120%;">
+    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 100%;">
   </div>
 </figure>
 
