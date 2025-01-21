@@ -28,9 +28,19 @@ classes: wide
 </figure>
 
 
-### 0. Abstract
-- Attention map에서의 artifact를 정의하여 그 원인을 규명하고, 이러한 현상을 해석할 수 있는 가설 제시
-- Register token을 추가하여 ViT 아키텍처의 dense prediction task 성능 향상 (특히, DINOv2)
+### 0. Overview
+ViT가 일부 patch를 global information 저장 용도로 활용하며 발생하는 **artifact** 현상을 분석하고 이를 극복할 수 있는 방안을 제시함
+- **Artifact 정의 및 원인 분석**  
+  - ViT가 low-informative 영역의 일부 패치를 재활용하여 global 정보를 저장  
+  - 해당 패치의 local 정보가 손실되면서 모델 내부 연산(CLS 토큰 임베딩 등)에 활용됨  
+
+- **Artifact 현상의 해석 및 가설 제시**  
+  - Attention map에서 artifact가 형성되는 패턴 분석  
+  - 모델이 inference 단계에서 자연스럽게 발생시키는 구조적 특징 탐구  
+
+- **Dense prediction task 성능 향상 기법 제안**  
+  - Register token을 추가하여 ViT의 global 정보 저장 방식 개선  
+  - 특히, DINOv2에서의 성능 향상을 목표로 실험 및 검증
 
 ---
 
@@ -52,10 +62,17 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - 주로 middle layer에서 나타나며, 오래 학습하거나 모델이 큰 경우에 두드러짐
 - Local information을 버림
     - 인근 patch와 유사도가 높아 original information (e.g., position, pixel)이 포함되지 않음
+    - Image-level task에선 도움이 될 수 있으나 pixel-level task에선 불리하게 작용함
 - Global information을 포함
     - Outlier patch에 classifier를 적용했을 때 일반 patch보다 높은 성능을 보여, 이미지의 global 정보를 담고 있음을 시사
 
 이는 모델이 유용하지 않은 patch를 스스로 식별해 해당 spatial 정보를 버리고, global 정보를 효과적으로 표현하도록 학습한다는 것을 의미한다. ViT의 token 수가 제한된 상황에서 이러한 학습 과정은 global 정보를 최적화하려는 모델의 내재적 메커니즘으로 설명된다.
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/fig6.png" alt="Fig 3" style="width:80%;">
+  </div>
+</figure>
 
 이를 해결하기 위해 register token을 추가했다.
 - Outlier token이 사라짐
