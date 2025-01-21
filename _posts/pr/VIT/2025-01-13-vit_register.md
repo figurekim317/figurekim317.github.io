@@ -122,7 +122,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
     <img src="/assets/img/vit_register/fig5a.webp" alt="Fig 5a" style="width: 80%;">
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 80%;">
+    <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width: 100%;">
   </div>
 </figure>
 
@@ -184,103 +184,118 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 <br>
 
-
 ---
 
 #### 2.2 Hypothesis and Remediation
 
 ##### - Hypothesis
-- 충분히 큰 모델이 충분히 학습되면, 중복되는 patch token을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출.
-- 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음.
+- 충분히 큰 모델이 충분히 학습되면, 중복되는 patch token(artifact)을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출
+- 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음
 
 <br>
 
 ##### - Remediation
-이를 해결하기 위해 **register token**을 추가:
-1. **추가 위치**: Patch embedding layer 이후에 추가.
-2. **특징**: Learnable한 값으로 초기화되며, **[CLS] token**과 유사한 방식으로 동작.
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/fig6.png" alt="Fig 3" style="width:80%;">
+  </div>
+</figure>
+
+이를 해결하기 위해 **register token**을 input sequence에 추가
+1. **추가 위치**: Patch embedding layer 이후에 추가
+2. **특징**: Learnable한 값으로 초기화되며, **[CLS] token**과 유사한 방식으로 동작
 3. **사용 방식**:
-    - Training 동안 모델이 register token을 사용해 global 정보를 처리.
-    - Inference 시 register token은 제거되고, [CLS] token과 patch token만 사용.
-
-이 방식은 **NLP의 Memory Transformers**에서 처음 제안되었으며, vision transformer의 **interpretability 및 dense prediction task 성능** 문제를 해결하는 데 기여
-
----
-
-##### - 추가 관찰
-- Artifact 현상은 모델 크기와 학습 길이에 따라 크게 좌우됨(Fig. 4 참고).
-- Pretraining 방식 또한 영향을 미침: OpenCLIP 및 DeiT-III에서는 작은 모델 크기(B)와 큰 모델 크기(L)에서도 outliers가 관찰됨(Fig. 2 참고).
-- 하지만 Artifact 현상이 왜 DINO에서는 나타나지 않는지는 완전히 규명되지 않음.  
+    - Training 동안 모델이 register token을 사용해 global 정보를 처리
+    - Inference 시 register token은 제거되고, [CLS] token과 patch token만 사용
 
 ---
 
 ### 3. Experiments
 
-#### 3.1 Training Algorithms and Data
+#### 3.1 Training Algorithms and Dataset  
 
-- **DeiT-III**: Supervised training on ImageNet-22k with ViT-B architecture.
-- **OpenCLIP**: Text-supervised training using ViT-B/16 on a licensed text-image dataset.
-- **DINOv2**: Self-supervised training on ImageNet-22k with ViT-L configuration.
+##### Backbone Model  
+- DeiT-III: Pretrained on ImageNet with supervised learning  
+- OpenCLIP: Pretrained using text-supervised learning  
+- DINOv2: Pretrained with self-supervised learning  
+
+##### Tasks and Methods  
+- Image Classification  
+  - Dataset: ImageNet  
+  - Method: Linear probing  
+
+- Image Segmentation  
+  - Dataset: ADE20K 
+  - Method: Segmentation with additional linear layer  
+
+- Monocular Depth Estimation  
+  - Dataset: NYUd  
+  - Method: BinsFormer 
+
 
 ---
 
 #### 3.2 Evaluation of the Proposed Solution
 
-##### - Register Tokens의 효과
-- **Patch Norm 감소**: Register token을 추가하면 **artifact가 제거**되며, patch norm이 안정화됨.
-
+##### Register Tokens의 효과
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/fig7.webp" alt="Fig 7" style="width:80%;">
   </div>
 </figure>
-<br>
-
-##### - Downstream Task 성능
-- Dense prediction task(예: Segmentation, Depth Estimation) 성능이 개선됨.
-- **ImageNet Classification**에서도 성능 유지 또는 향상(DINOv2: +0.5%p).
 
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/tab2.webp" alt="Tab 2" style="width:80%;">
   </div>
 </figure>
+
+- **Patch Norm 감소** 
+  - Register token을 추가하면 **artifact가 제거**되며, patch norm이 안정화됨
+  - Image-level task와 pixel-level task에서 모두 성능이 유지되거나 향상되는 결과를 확인함
+  - 추가적으로 OpenCLIP을 이용한 zero-shot classification에서도 성능이 향상됨
+
 <br>
 
-##### - Register Token 개수와 성능
-- Register token이 하나만 추가되어도 artifact가 제거되고, dense prediction task 성능이 크게 향상됨.
-- **Optimal Register Token 수**: Dense prediction task에서는 최적의 register 수가 존재하며, ImageNet 성능은 register 수가 많아질수록 증가.
+##### Register Token 개수와 성능
 
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/fig8.webp" alt="Fig 8" style="width:80%;">
   </div>
 </figure>
+- Register token이 없는 경우 부터 16개인 경우까지 DINOv2 모델을 각각 학습하고 attention map의 상태변화와 downstream task성능의 변화를 분석
+- Register token이 하나만 추가되어도 attention map의 artifact가 제거됨
+- Image-level task인 image classificatio은 register token의 수가 증가될 수록 성능 향상
+- Pixel-level task에서는 optimal register 개수가 있는 것으로 확인
+
 <br>
 
 ---
 
 #### 3.3 Object Discovery
 
-- **DINO + LOST 성능**: VOC 2007 기준, 61.9.
-- **DINOv2 + Reg + LOST 성능**: 기존 DINOv2의 35.3에서 **20.1-point 향상**된 55.4를 기록.
-- **OpenCLIP의 경우**: 일부 성능 감소가 관찰되었으나, 분석은 추가 연구로 제안.
-
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/tab3.webp" alt="Fig 3" style="width:80%;">
   </div>
 </figure>
-<br>
+
+- DINOv2와 DeiT-III
+  - Register Token 추가 시 object discovery 성능 대폭 향상  
+- OpenCLIP
+  - Register Token을 추가하면 성능이 약간 하락 
+- DINOv2 VOC 2007 성능  
+    - 기존 DINO : 61.9 corloc 
+    - Register Token 없이 DINOv2: 35.3 corloc 
+    - Register Token 추가 후 DINOv2: 55.4 corloc (+20.1 향상) 
+
+결과적으로, DINOv2의 object discovery은 기존 DINO만큼은 도달하지 못했으나, Register Token을 통해 상당한 성능 향상을 확인  
 
 ---
 
-
-#### 3.4 Qualitative Evaluation of Registers
-
-- **Reg Token의 Attention Behavior**:
-  - 일부 register token은 다양한 object에 attention을 할당하며, 자연스럽게 **다양한 패턴**을 형성.
-  - 이는 명시적으로 설계되지 않은 자연 발생적인 현상.
+#### 3.4 Qualitative Evaluation of Registers  
 
 <figure>
   <div style="text-align:center">
@@ -288,16 +303,34 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
   </div>
 </figure>
 
-- **Future Work**:
-  - Reg token의 regularization 기법 및 추가 분석.
+- Register Token의 동작 방식을 정성적으로 분석  
+- 모든 Register Token이 동일한 attention 패턴을 보이는지 확인  
+- Register Token 간 차별화된 행동이 나타나는지 검증  
+- Class Token 및 Register Token의 attention map을 시각화하여 패치 토큰과의 상호작용 분석  
+- Register Token들은 완전히 동일한 행동을 보이지 않음  
+- 일부 Register Token은 특정 객체에 집중하는 특이한 attention 패턴을 형성  
+- 특정한 강제 없이도 자연스러운 attention 다양성이 발생  
 
+**Register Token의 내부 구조와 regularization 기법을 추가적으로 연구할 필요성**을 시사
 
 ---
-
 
 ## Appendix
 
 ### A. Interpolation Artifacts and Outlier Position Distribution
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/fig10.webp" alt="Fig 10" style="width:80%;">
+  </div>
+</figure>
+
+
+<figure>
+  <div style="text-align:center">
+    <img src="/assets/img/vit_register/fig11.webp" alt="Fig 11" style="width:80%;">
+  </div>
+</figure>
 
 - **DINOv2의 Positional Embedding Issue**:
   - 16×16 positional embedding을 7×7로 interpolate할 때, **antialiasing 미적용**으로 gradient pattern이 생성(Figure 11).
@@ -307,14 +340,4 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
   - Antialiasing 적용 시 vertical pattern이 사라지고, outlier token이 중심부보다 가장자리에 주로 나타남(Figure 10, 우측 그래프).
   - 이는 대부분의 이미지가 object-centric하기 때문에, 가장자리 patch에서 **local information 필요성이 적음**을 뒷받침.
 
-<figure>
-  <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig10.webp" alt="Fig 10" style="width:80%;">
-  </div>
-</figure>
 
-<figure>
-  <div style="text-align:center">
-    <img src="/assets/img/vit_register/fig11.webp" alt="Fig 11" style="width:80%;">
-  </div>
-</figure>
