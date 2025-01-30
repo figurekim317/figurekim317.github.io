@@ -266,7 +266,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 </figure>
 - Register token이 없는 경우 부터 16개인 경우까지 DINOv2 모델을 각각 학습하고 attention map의 상태변화와 downstream task성능의 변화를 분석
 - Register token이 하나만 추가되어도 attention map의 artifact가 제거됨
-- Image-level task인 image classificatio은 register token의 수가 증가될 수록 성능 향상
+- Image-level task인 image classification은 register token의 수가 증가될 수록 성능 향상
 - Pixel-level task에서는 optimal register 개수가 있는 것으로 확인
 
 ---
