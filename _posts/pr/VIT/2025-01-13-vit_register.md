@@ -46,16 +46,16 @@ ViT가 일부 patch를 global information 저장 용도로 활용하며 발생�
 
 ### 1. Introduction
 
-대량의 이미지를 활용해 사전 학습한 모델을 downstream task에 적용하는 것은 일반적인 접근법이다. 특히, [DINO](https://arxiv.org/abs/2104.14294)는 self-supervised로 학습하면서도 downstream task에서 준수한 성능을 보여주고, unsupervised segmentation도 가능하다는 점에서 주목받고 있다. 이를 바탕으로 DINO의 attention map을 활용한 object discovery 알고리즘인 [LOST](https://arxiv.org/abs/2109.14279)도 제안되었다.
-
-[DINOv2](https://arxiv.org/abs/2304.07193)는 DINO를 확장하여 monocular depth estimation, semantic segmentation과 같은 dense prediction task에서 더욱 뛰어난 성능을 보였다. 하지만 **DINOv2가 LOST와 호환되지 않는 현상이 관찰되었고, 이는 DINOv2의 attention map에 존재하는 artifact 때문으로 추정**된다. 더 나아가, supervised ViT([DeiT](https://arxiv.org/abs/2012.12877), [OpenCLIP](https://arxiv.org/abs/2212.07143))에서도 유사한 artifact가 확인되었다. (Figure 2 참고)
-
 <figure>
   <div style="text-align:center">
     <img src="/assets/img/vit_register/fig2.webp" alt="Fig 2" style="width:80%;">
   </div>
 </figure>
-<br>
+
+대량의 이미지를 활용해 사전 학습한 모델을 downstream task에 적용하는 것은 일반적인 접근법이다. 특히, [DINO](https://arxiv.org/abs/2104.14294)는 self-supervised로 학습하면서도 downstream task에서 준수한 성능을 보여주고, unsupervised segmentation도 가능하다는 점에서 주목받고 있다. 이를 바탕으로 DINO의 attention map을 활용한 object discovery 알고리즘인 [LOST](https://arxiv.org/abs/2109.14279)도 제안되었다.
+
+[DINOv2](https://arxiv.org/abs/2304.07193)는 DINO를 확장하여 monocular depth estimation, semantic segmentation과 같은 dense prediction task에서 더욱 뛰어난 성능을 보였다. 하지만 **DINOv2가 LOST와 호환되지 않는 현상이 관찰되었고, 이는 DINOv2의 attention map에 존재하는 artifact 때문으로 추정**된다. 더 나아가, supervised ViT([DeiT](https://arxiv.org/abs/2012.12877), [OpenCLIP](https://arxiv.org/abs/2212.07143))에서도 유사한 artifact가 확인되었다. (Figure 2 참고)
+
 
 Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 - 약 10배 더 높은 norm을 가지며, 전체의 약 2%에 해당
