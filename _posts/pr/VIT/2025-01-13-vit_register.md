@@ -147,6 +147,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 - Artifact가 local information을 상실했는지 분석하기 위해 두 가지 task에서 성능을 측정
 - 두 task 수행을 위해 DINOv2 ViT-g 모델을 사용
+
 1. **Position prediction**
   - Patch의 representation을 input, position을 label로 사용하여 해당 patch의 위치를 예측할 수 있도록 linear model을 지도 학습하여 artifact와 일반 patch 간의 prediction 성능을 비교
   - 결과: Artifact patch의 **accuracy 낮아**, 위치 정보(position information)를 거의 포함하지 않음
