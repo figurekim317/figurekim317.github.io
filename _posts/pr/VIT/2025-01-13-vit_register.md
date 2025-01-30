@@ -111,7 +111,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 </figure>
 
 - **a**: 40개의 layer 중 **15번째 layer**에서 norm의 크기 차이가 현저한 patch 등장
-- **b**: ViT-g 모델에서 712k의 합습 iteration 중 **1/3 지점**부터 norm의 크기 차이가 현저한 patch 등장
+- **b**: ViT-g 모델에서 712k의 학습 iteration 중 **1/3 지점**부터 norm의 크기 차이가 현저한 patch 등장
 - **c**: ViT-L보다 **사이즈가 큰 모델에서만** artifact가 등장함
 
 <br>
