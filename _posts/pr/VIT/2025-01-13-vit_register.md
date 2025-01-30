@@ -190,7 +190,7 @@ Artifacts를 나타내는 **outlier**들은 다음의 특징을 가진다.
 
 ##### **Hypothesis**
 - 충분히 큰 모델이 충분히 학습되면, 중복되는 artifact을 **global information**을 저장하고 처리하는 데 사용하도록 학습된다는 가설을 도출
-- 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 성능 저하를 초래할 수 있음
+- 이러한 현상이 자체적으로는 문제는 아니지만, dense prediction task에서는 **local information이 손실**되어 pixel-level task에서 성능 저하를 초래할 수 있음
 
 <br>
 
