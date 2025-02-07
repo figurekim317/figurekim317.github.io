@@ -1,6 +1,6 @@
 ---
 title: "[논문리뷰] Feed-Forward Bullet-Time Reconstruction of Dynamic Scenes from Monocular Videos"
-last_modified_at: 2025-02-04
+last_modified_at: 2023-02-04
 categories:
   - 논문리뷰
 tags:
