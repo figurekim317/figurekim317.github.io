@@ -1,8 +1,9 @@
 ---
-title: "[논문리뷰] Feed-Forward Bullet-Time Reconstruction of Dynamic Scenes from Monocular Videos"
+title: "[Paper review] Feed-Forward Bullet-Time Reconstruction of Dynamic Scenes from Monocular Videos"
 last_modified_at: 2023-02-04
 categories:
-  - 논문리뷰
+  - Paper review
+image: /assets/images/blog/post-5.jpg
 tags:
   - ViT
   - Gaussian Splatting
