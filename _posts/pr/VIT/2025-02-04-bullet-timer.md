@@ -1,6 +1,6 @@
 ---
 title: "[Paper review] Feed-Forward Bullet-Time Reconstruction of Dynamic Scenes from Monocular Videos"
-last_modified_at: 2023-02-04
+last_modified_at: 2025-02-04
 categories:
   - Paper review
 image: /assets/images/blog/post-5.jpg
@@ -28,7 +28,7 @@ classes: wide
 
 반면, 학습 기반 접근법은 feed-forward 방식으로 재구성을 직접 예측하기 위해 대규모 데이터셋에서 학습되어 데이터에서 강력한 prior를 학습한다. 이러한 고유한 prior는 복잡한 모션으로 인한 모호성을 해결하는 데 도움이 될 수 있지만 아직 동적 장면으로 확장되지 않았다. 이러한 제한은 동적 장면을 모델링하는 복잡성과 4D 학습 데이터의 부족에서 비롯된다. 따라서 유일한 feed-forward 동적 재구성 모델은 물체 중심의 합성 데이터셋에서 학습되고 고정된 카메라 시점과 멀티뷰 학습이 필요하며 실제 장면 시나리오로 일반화할 수 없다.
 
-본 논문은 동적 장면을 효과적으로 처리할 수 있는 feed-forward 재구성 모델을 구축하기 위해, 픽셀 정렬된 [3D Gaussian Splatting (3DGS)](https://kimjy99.github.io/논문리뷰/3d-gaussian-splatting) 예측 모델의 최근 성공을 바탕으로 feed-forward 동적 재구성을 위한 새로운 bullet-time 방법을 제안하였다. 
+본 논문은 동적 장면을 효과적으로 처리할 수 있는 feed-forward 재구성 모델을 구축하기 위해, 픽셀 정렬된 3D Gaussian Splatting (3DGS) 예측 모델의 최근 성공을 바탕으로 feed-forward 동적 재구성을 위한 새로운 bullet-time 방법을 제안하였다. 
 
 핵심 아이디어는 컨텍스트(입력) 프레임에 bullet-time 임베딩을 추가하여 출력된 3DGS 표현에 대한 원하는 타임스탬프를 나타내는 것이다. 모델은 bullet 타임스탬프에서 장면을 반영하도록 컨텍스트 프레임의 예측을 집계하도록 학습되어 공간적으로 완전한 3DGS 장면을 생성한다. 이 디자인은 정적 및 동적 재구성 시나리오를 자연스럽게 통합할 뿐만 아니라 장면 역학을 캡처하는 방법을 학습하는 동안 모델이 암시적으로 모션을 인식할 수 있도록 한다. 제안된 방법은 다음과 같은 장점이 있다. 
 
@@ -56,7 +56,7 @@ classes: wide
 <center><img src='{{"/assets/img/bullet-timer/bullet-timer-fig3.webp" | relative_url}}' width="80%"></center>
 
 ##### 모델 디자인
-[GS-LRM](https://kimjy99.github.io/논문리뷰/gs-lrm)에서 영감을 얻은 BTimer 모델은 ViT 기반 네트워크를 backbone으로 사용하며, 모델의 시작과 끝에 모두 LayerNorm이 적용된 24개의 self-attention block으로 구성된다. 
+GS-LRM에서 영감을 얻은 BTimer 모델은 ViT 기반 네트워크를 backbone으로 사용하며, 모델의 시작과 끝에 모두 LayerNorm이 적용된 24개의 self-attention block으로 구성된다. 
 
 각 입력 컨텍스트 프레임 $$\mathbf{I}_i \in \mathcal{I}_c$$를 8$\times$8 패치로 나누고, linear embedding layer를 사용하여 feature space $$\{\mathbf{f}_{ij}^\textrm{rgb}\}_{j=1}^{HW/64}$$로 projection한다. 카메라 포즈 $$\mathbf{P}_i \in \mathcal{P}_c$$에서 얻은 카메라 Plucker embedding과 시간 임베딩은 각각 컨텍스트 프레임과 비슷한 방법으로 카메라 포즈 feature $$\{\mathbf{f}_{ij}^\textrm{pos}\}$$와 시간 feature $$\{\mathbf{f}_i^\textrm{time}\}$$를 형성한다. 이러한 feature를 모두 더해 컨텍스트 프레임의 패치에 대한 입력 토큰을 형성한다. 
 
@@ -114,7 +114,7 @@ BTimer 모델은 이미 모든 관찰된 타임스탬프에 대한 3DGS 표현�
 저자들은 이 문제를 완화하기 위해, 주어진 타임스탬프에서 이미지를 직접 출력하는 Novel Time Enhancer (NTE) 모듈을 제안하였다. 이 모듈은 BTimer 모델의 입력으로 사용된다.
 
 ##### NTE 모듈 디자인
-NTE 모듈의 디자인은 decoder-only [LVSM](https://kimjy99.github.io/논문리뷰/lvsm) 모델에서 많은 영감을 받았다. 구체적으로, NTE는 BTimer 모델에서 동일한 ViT 아키텍처를 사용하지만, 입력 컨텍스트 토큰의 시간 feature는 해당 컨텍스트 타임스탬프만 인코딩한다. 
+NTE 모듈의 디자인은 decoder-only LVSM모델에서 많은 영감을 받았다. 구체적으로, NTE는 BTimer 모델에서 동일한 ViT 아키텍처를 사용하지만, 입력 컨텍스트 토큰의 시간 feature는 해당 컨텍스트 타임스탬프만 인코딩한다. 
 
 $$
 \begin{equation}
@@ -130,7 +130,7 @@ NTE 모듈은 단독으로 사용하여 새로운 뷰를 생성할 수 있지만
 ### 3. Curriculum Training at Scale
 신경망 학습에서 중요한 것은 학습을 스케일링하는 것이고, 모델의 일반화 능력은 주로 데이터 다양성에 의해 결정된다. 본 논문의 bullet-time 재구성 방법은 자연스럽게 정적과 동적 장면을 모두 지원하고, RGB loss만 필요하기 때문에, 수많은 정적 데이터셋의 가용성을 활용하여 모델을 사전 학습시킬 수 있는 잠재력이 있다. 
 
-따라서 저자들은 어떤 데이터셋에도 특화되지 않은 재구성 모델을 학습시켜 정적 및 동적 장면 모두로 일반화하고, 실내 및 실외 장면뿐만 아니라 물체를 처리할 수 있도록 하는 것을 목표로 하였다. 이는 다른 도메인에서는 다른 모델이 필요한 [GS-LRM](https://kimjy99.github.io/논문리뷰/gs-lrm)이나 [MVSplat](https://arxiv.org/abs/2403.14627)과는 대조적이다.
+따라서 저자들은 어떤 데이터셋에도 특화되지 않은 재구성 모델을 학습시켜 정적 및 동적 장면 모두로 일반화하고, 실내 및 실외 장면뿐만 아니라 물체를 처리할 수 있도록 하는 것을 목표로 하였다. 이는 다른 도메인에서는 다른 모델이 필요한 GS-LRM이나 MVSplat과는 대조적이다.
 
 ##### Stage 1: Low-res to High-res Static Pretraining
 보다 일반화 가능한 3D prior로 모델을 초기화하기 위해, 먼저 정적 데이터셋들을 혼합하여 모델을 사전 학습시킨다. 
@@ -155,8 +155,8 @@ NTE 모듈은 단독으로 사용하여 새로운 뷰를 생성할 수 있지만
 ##### Annotating Internet Videos
 1. PANDA-70M 데이터셋에서 무작위로 부분집합을 선택
 2. 동영상을 약 20초 길이의 짧은 클립으로 자름
-3. [Segment Anything Model](https://kimjy99.github.io/논문리뷰/segment-anything)로 동영상의 동적 물체를 마스킹
-4. [DROID-SLAM](https://arxiv.org/abs/2108.10869)으로 카메라 포즈를 추정
+3. Segment Anything Model로 동영상의 동적 물체를 마스킹
+4. DROID-SLAM으로 카메라 포즈를 추정
 5. 낮은 품질의 동영상이나 포즈는 reprojection error를 측정하여 필터링
 
 최종 데이터셋에는 고품질 카메라 궤적이 있는 4만 개 이상의 클립이 포함된다. 
