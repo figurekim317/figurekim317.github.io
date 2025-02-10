@@ -1,8 +1,9 @@
 ---
-title: "[논문리뷰] Transfusion: Predict the Next Token and Diffuse Images with One Multi-Modal Model"
+title: "[Paper review] Transfusion: Predict the Next Token and Diffuse Images with One Multi-Modal Model"
 last_modified_at: 2025-01-09
+image:  /assets/images/blog/post-5.jpg
 categories:
-  - 논문리뷰
+  - Paper review
 tags:
   - Diffusion
   - Transformer
