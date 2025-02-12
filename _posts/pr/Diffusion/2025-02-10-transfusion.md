@@ -26,6 +26,7 @@ classes: wide
 ## Introduction
 본 논문에서는 하나의 모델을 학습시켜 discrete한 텍스트 토큰을 예측하고 continuous한 이미지를 diffuse함으로써 정보 손실 없이 두 모달리티를 완전히 통합할 수 있음을 보여주며, discrete하고 continuous한 모달리티를 원활하게 생성할 수 있는 모델을 학습하기 위한 레시피인 **Transfusion**을 소개한다. 
 
+
 각 모달리티에 대해 다른 목적, 즉 텍스트의 next token prediction과 이미지의 diffusion을 사용하여 50% 텍스트 데이터와 50% 이미지 데이터에 대한 Transformer 모델을 사전 학습시킨다. 모델은 학습 시 두 모달리티와 loss function에 모두 노출된다. 텍스트 토큰은 임베딩 행렬을 통해 벡터로 변환되며, 각 이미지는 패치 벡터들의 시퀀스로 나타낸다. 저자들은 텍스트 토큰에 casual attention을 적용하고 이미지 패치에 bidirectional attention을 적용하였다. Inference의 경우, 언어 모델에서 텍스트를 생성하고 diffusion model에서 이미지를 생성하는 표준 관행을 결합하는 디코딩 알고리즘을 도입하였다.
 
 Chameleon과 비교했을 떄, Transfusion은 모든 모달리티 조합에서 더 나은 확장성을 보였으며, text-to-image 생성에서는 1/3 미만의 계산량으로 FID와 CLIP score를 능가하였다. Transfusion은 동일한 FLOP에서 Chameleon 모델보다 약 2배 낮은 FID를 달성하였다. Image-to-text 생성의 경우, Transfusion은 Chameleon의 21.8%에 해당하는 FLOP으로 동일한 성능을 보였다. Text-to-text 예측의 경우, Chameleon의 약 50%~60%에 해당하는 FLOP으로 동일한 perplexity parity를 달성하였다.
